@@ -24,7 +24,8 @@ public class EmpAddressVO implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private int empAddressId;
-	private String CurrentAddress;
+	private int empid;
+	private String CurrentAddress;	
 	private String PermanentAddress;
 	private String MailingAddress;
 	private String OfficeAddress;
@@ -39,6 +40,12 @@ public class EmpAddressVO implements Serializable {
 	}
 	public void setEmpAddressId(int empAddressId) {
 	this.empAddressId = empAddressId;
+	}
+	public int getEmpid() {
+		return empid;
+	}
+	public void setEmpid(int empid) {
+		this.empid = empid;
 	}
 	public String getCurrentAddress() {
 	return CurrentAddress;

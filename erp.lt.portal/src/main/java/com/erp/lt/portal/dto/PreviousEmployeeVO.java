@@ -22,12 +22,15 @@ public class PreviousEmployeeVO implements Serializable {
 	private static final long serialVersionUID = 3760132215319943425L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long EmpId;
+	
+	
 	private String previousOrganization;
 	private String address;
 	private String previousDesignation;
 	private int salary;
 	private String beginDate;
+	private Long EmpId;
+
 	private String endDate;
 	public Long getEmpId() {
 	return EmpId;
