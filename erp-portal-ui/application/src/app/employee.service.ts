@@ -15,11 +15,14 @@ export class EmployeeService  {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createEmployee(employee: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}`, employee);
+  createEmployee(employee: Object): Observable<any> {
+    var postUrl = 'http://localhost:8080/springboot-crud-rest/api/v1';
+    var createBaseUrl=postUrl+"/employee/create";
+    console.log(employee);
+      return this.http.post(`${createBaseUrl}`, employee);
   }
 
-  updateEmployee(id: number, value: any): Observable<Object> {
+  updateEmployee(id: number, value: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
 

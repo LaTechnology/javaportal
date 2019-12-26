@@ -1,4 +1,5 @@
 <div class="panel panel-primary">
+  <table id="example" class="display" style="width:100%"></table>
     <div class="panel-heading">
       <h2>Employee List</h2>
     </div>
@@ -8,15 +9,31 @@
           <tr>
             <th>Firstname</th>
             <th>Lastname</th>
-            <th>Email</th>
-            <th>Actions</th>
+            <th>MaritalStatus</th>
+            <th>MarriageDate</th>
+            <th>DateOfBirth</th>
+            <th>Nationality</th>
+            <th>CountryOfBirth</th>
+            <th>StateOfBirth</th>
+            <th>Citizen</th>
+            <th>Gender</th>
+            <th>ACTION</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees | async">
             <td>{{employee.firstName}}</td>
             <td>{{employee.lastName}}</td>
-            <td>{{employee.emailId}}</td>
+            <td>{{employee.maritalstatus}}</td>
+            <td>{{employee.marriagedate}}</td>
+            <td>{{employee.dateofBirth}}</td>
+            <td>{{employee.nationality}}</td>
+            <td>{{employee.countryofbirth}}</td>
+            <td>{{employee.stateofbirth}}</td>
+            <td>{{employee.citizen}}</td>
+            <td>{{employee.gender}}</td>
+           
+            
             <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
                 <button (click)="updateEmployee(employee.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
                 <button (click)="employeeDetails(employee.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
@@ -26,3 +43,14 @@
       </table>
     </div>
   </div>
+
+
+  <script>
+  
+  
+  
+  
+  
+  
+  </script>
+
