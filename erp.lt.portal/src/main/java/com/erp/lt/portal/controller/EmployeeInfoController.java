@@ -60,7 +60,7 @@ public class EmployeeInfoController {
 
 	@PatchMapping(path = "/patching/empinfo/{empId}")
 	
-	public void editedEmployeeInfo(@PathVariable(value = "empId") int empId, @RequestBody EmployeeInfoVO employeeInfoVO) {
+	public void editedEmployee(@PathVariable(value = "empId") int empId, @RequestBody EmployeeInfoVO employeeInfoVO) {
 		Optional<EmployeeInfoVO> empdto = employeeinfoservice.getEmployeeInfo(empId);
 		if (empdto == null) {
 			System.out.println("Employee Not found");
