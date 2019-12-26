@@ -44,7 +44,7 @@ public class EmployeeInfoController {
 
 	@GetMapping(path = "/getall/empinfo/empinfo")
 	public List<EmployeeInfoVO> getAllEmployee(@RequestBody EmployeeInfoVO employeeInfoVO) {
-		
+
 		return employeeinfoservice.getAllEmployeeInfo(employeeInfoVO);
 	}
 
@@ -59,7 +59,6 @@ public class EmployeeInfoController {
 	}
 
 	@PatchMapping(path = "/patching/empinfo/{empId}")
-	
 	public void editedEmployee(@PathVariable(value = "empId") int empId, @RequestBody EmployeeInfoVO employeeInfoVO) {
 		Optional<EmployeeInfoVO> empdto = employeeinfoservice.getEmployeeInfo(empId);
 		if (empdto == null) {
@@ -75,6 +74,5 @@ public class EmployeeInfoController {
 		employeeinfoservice.deleteEmployeeInfo(empId);
 
 	}
-
 
 }
