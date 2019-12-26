@@ -16,7 +16,7 @@ import javax.persistence.Id;
  */
 @Entity(name = "employeeinfo")
 public class EmployeeInfoVO implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -35,72 +35,92 @@ public class EmployeeInfoVO implements Serializable {
 	private String countryOfBirth;
 	private String stateOfBirth;
 
-
 	public int getEmpId() {
-	return empId;
+		return empId;
 	}
+
 	public void setEmpId(int empId) {
-	this.empId = empId;
+		this.empId = empId;
 	}
+
 	public String getFirstName() {
-	return firstName;
+		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
-	this.firstName = firstName;
+		this.firstName = firstName;
 	}
+
 	public String getLastName() {
-	return lastName;
+		return lastName;
 	}
+
 	public void setLastName(String lastName) {
-	this.lastName = lastName;
+		this.lastName = lastName;
 	}
+
 	public String getGender() {
-	return gender;
+		return gender;
 	}
+
 	public void setGender(String gender) {
-	this.gender = gender;
+		this.gender = gender;
 	}
+
 	public String getDob() {
-	return dob;
+		return dob;
 	}
+
 	public void setDob(String dob) {
-	this.dob = dob;
+		this.dob = dob;
 	}
+
 	public String getMaritalStatus() {
-	return maritalStatus;
+		return maritalStatus;
 	}
+
 	public void setMaritalStatus(String maritalStatus) {
-	this.maritalStatus = maritalStatus;
+		this.maritalStatus = maritalStatus;
 	}
+
 	public String getMarriageDate() {
-	return marriageDate;
+		return marriageDate;
 	}
+
 	public void setMarriageDate(String marriageDate) {
-	this.marriageDate = marriageDate;
+		this.marriageDate = marriageDate;
 	}
+
 	public String getNationality() {
-	return nationality;
+		return nationality;
 	}
+
 	public void setNationality(String nationality) {
-	this.nationality = nationality;
+		this.nationality = nationality;
 	}
+
 	public String getCitizen() {
-	return citizen;
+		return citizen;
 	}
+
 	public void setCitizen(String citizen) {
-	this.citizen = citizen;
+		this.citizen = citizen;
 	}
+
 	public String getCountryOfBirth() {
-	return countryOfBirth;
+		return countryOfBirth;
 	}
+
 	public void setCountryOfBirth(String countryOfBirth) {
-	this.countryOfBirth = countryOfBirth;
+		this.countryOfBirth = countryOfBirth;
 	}
+
 	public String getStateOfBirth() {
-	return stateOfBirth;
+		return stateOfBirth;
 	}
+
 	public void setStateOfBirth(String stateOfBirth) {
-	this.stateOfBirth = stateOfBirth;
+		this.stateOfBirth = stateOfBirth;
 	}
 
 }
