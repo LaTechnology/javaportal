@@ -10,8 +10,9 @@
 	</parent>
 	<groupId>com.erp.portal.model</groupId>
 	<artifactId>erp_portal_model</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>erp_portal_model</name>
+	
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
