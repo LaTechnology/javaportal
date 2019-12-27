@@ -1,0 +1,64 @@
+<h3>Update Employee</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Last Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">MaritalStatus</label>
+      <input type="text" class="form-control" id="maritalstatus" required [(ngModel)]="employee.maritalstatus" name="maritalstatus">
+    </div>
+
+
+    <div class="form-group">
+      <label for="name">MarriageDate</label>
+      <input type="date" class="form-control" id="marriagedate" required [(ngModel)]="employee.marriagedate" name="marriagedate">
+    </div>
+
+
+    <div class="form-group">
+      <label for="name">DateOfBirth</label>
+      <input type="date" class="form-control" id="dateofbirth" required [(ngModel)]="employee.dateofbirth" name="dateofbirth">
+    </div>
+
+
+    <div class="form-group">
+      <label for="name">Nationality</label>
+      <input type="text" class="form-control" id="nationality" required [(ngModel)]="employee.nationality" name="nationality">
+    </div>
+
+    <div class="form-group">
+      <label for="name">CountryOfBirth</label>
+      <input type="text" class="form-control" id="countryOfBirth" required [(ngModel)]="employee.countryOfBirth" name="countryOfBirth">
+    </div>
+
+    <div class="form-group">
+      <label for="name">StateOfBirth</label>
+      <input type="text" class="form-control" id="stateOfBirth" required [(ngModel)]="employee.stateOfBirth" name="stateOfBirth">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Citizen</label>
+      <input type="text" class="form-control" id="citizen" required [(ngModel)]="employee.citizen" name="citizen">
+    </div>
+
+    
+    <div class="form-group">
+      <label for="name">Gender</label>
+      <input type="text" class="form-control" id="gender" required [(ngModel)]="employee.gender" name="gender">
+    </div>
+
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+
+
