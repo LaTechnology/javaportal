@@ -8,10 +8,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
 	<groupId>com.lt.portal</groupId>
 	<artifactId>erp.lt.portal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>erp.lt.portal</name>
+
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -19,6 +20,13 @@
 	</properties>
 
 	<dependencies>
+	
+	<dependency>
+		<groupId>com.erp.portal.model</groupId>
+	<artifactId>erp_portal_model</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
