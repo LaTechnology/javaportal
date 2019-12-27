@@ -5,55 +5,54 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the communication_details database table.
  * 
  */
 @Entity
-@Table(name="communication_details", catalog = "employee_selfservicedb")
-@NamedQuery(name="CommunicationDetail.findAll", query="SELECT c FROM CommunicationDetail c")
+@Table(name = "communication_details", catalog = "employee_selfservicedb")
+@NamedQuery(name = "CommunicationDetail.findAll", query = "SELECT c FROM CommunicationDetail c")
 public class CommunicationDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int code;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="begin_date")
+	@Column(name = "begin_date")
 	private Date beginDate;
 
-	@Column(name="client_email_id")
+	@Column(name = "client_email_id")
 	private String clientEmailId;
 
-	@Column(name="company_email_id")
+	@Column(name = "company_email_id")
 	private String companyEmailId;
 
-	@Column(name="emergency_comunication_number")
+	@Column(name = "emergency_comunication_number")
 	private String emergencyComunicationNumber;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="end_date")
+	@Column(name = "end_date")
 	private Date endDate;
 
-	@Column(name="personal_email_id")
+	@Column(name = "personal_email_id")
 	private String personalEmailId;
 
-	//bi-directional many-to-one association to EmployeeInfo
-	@ManyToOne
-	@JoinColumn(name="employee_code")
+	// bi-directional many-to-one association to EmployeeInfo
+	@OneToOne
+	@JoinColumn(name = "employee_code")
 	private EmployeeInfo employeeInfo;
 
-	//bi-directional many-to-one association to MobileDetail
-	@OneToMany(mappedBy="communicationDetail")
-	private List<MobileDetail> mobileDetails;
+	// bi-directional many-to-one association to MobileDetail
+	@OneToOne(mappedBy = "communicationDetail")
+	private MobileDetail mobileDetails;
 
 	public CommunicationDetail() {
 	}
 
 	public int getCode() {
-		return this.code;
+		return code;
 	}
 
 	public void setCode(int code) {
@@ -61,7 +60,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public Date getBeginDate() {
-		return this.beginDate;
+		return beginDate;
 	}
 
 	public void setBeginDate(Date beginDate) {
@@ -69,7 +68,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public String getClientEmailId() {
-		return this.clientEmailId;
+		return clientEmailId;
 	}
 
 	public void setClientEmailId(String clientEmailId) {
@@ -77,7 +76,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public String getCompanyEmailId() {
-		return this.companyEmailId;
+		return companyEmailId;
 	}
 
 	public void setCompanyEmailId(String companyEmailId) {
@@ -85,7 +84,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public String getEmergencyComunicationNumber() {
-		return this.emergencyComunicationNumber;
+		return emergencyComunicationNumber;
 	}
 
 	public void setEmergencyComunicationNumber(String emergencyComunicationNumber) {
@@ -93,7 +92,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public Date getEndDate() {
-		return this.endDate;
+		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {
@@ -101,7 +100,7 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public String getPersonalEmailId() {
-		return this.personalEmailId;
+		return personalEmailId;
 	}
 
 	public void setPersonalEmailId(String personalEmailId) {
@@ -109,33 +108,20 @@ public class CommunicationDetail implements Serializable {
 	}
 
 	public EmployeeInfo getEmployeeInfo() {
-		return this.employeeInfo;
+		return employeeInfo;
 	}
 
 	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
 		this.employeeInfo = employeeInfo;
 	}
 
-	public List<MobileDetail> getMobileDetails() {
-		return this.mobileDetails;
+	public MobileDetail getMobileDetails() {
+		return mobileDetails;
 	}
 
-	public void setMobileDetails(List<MobileDetail> mobileDetails) {
+	public void setMobileDetails(MobileDetail mobileDetails) {
 		this.mobileDetails = mobileDetails;
 	}
-
-	public MobileDetail addMobileDetail(MobileDetail mobileDetail) {
-		getMobileDetails().add(mobileDetail);
-		mobileDetail.setCommunicationDetail(this);
-
-		return mobileDetail;
-	}
-
-	public MobileDetail removeMobileDetail(MobileDetail mobileDetail) {
-		getMobileDetails().remove(mobileDetail);
-		mobileDetail.setCommunicationDetail(null);
-
-		return mobileDetail;
-	}
+ 
 
 }

@@ -43,8 +43,8 @@ public class EmployeeInfo implements Serializable {
 	private byte status;
 
 	//bi-directional many-to-one association to CommunicationDetail
-	@OneToMany(mappedBy="employeeInfo")
-	private List<CommunicationDetail> communicationDetails;
+	@OneToOne(mappedBy="employeeInfo")
+	private CommunicationDetail communicationDetails;
 
 	//bi-directional many-to-one association to EducationDetail
 	@OneToMany(mappedBy="employeeInfo")
@@ -147,25 +147,24 @@ public class EmployeeInfo implements Serializable {
 		this.status = status;
 	}
 
-	public List<CommunicationDetail> getCommunicationDetails() {
+	public CommunicationDetail getCommunicationDetails() {
 		return this.communicationDetails;
 	}
 
-	public void setCommunicationDetails(List<CommunicationDetail> communicationDetails) {
+	public void setCommunicationDetails(CommunicationDetail communicationDetails) {
 		this.communicationDetails = communicationDetails;
 	}
 
 	public CommunicationDetail addCommunicationDetail(CommunicationDetail communicationDetail) {
-		getCommunicationDetails().add(communicationDetail);
+//		getCommunicationDetails().add(communicationDetail);
 		communicationDetail.setEmployeeInfo(this);
 
 		return communicationDetail;
 	}
 
 	public CommunicationDetail removeCommunicationDetail(CommunicationDetail communicationDetail) {
-		getCommunicationDetails().remove(communicationDetail);
+//		getCommunicationDetails().remove(communicationDetail);
 		communicationDetail.setEmployeeInfo(null);
-
 		return communicationDetail;
 	}
 

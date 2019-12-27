@@ -3,31 +3,30 @@ package com.erp.lt.portal.model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the mobile_details database table.
  * 
  */
 @Entity
-@Table(name="mobile_details")
-@NamedQuery(name="MobileDetail.findAll", query="SELECT m FROM MobileDetail m")
+@Table(name = "mobile_details")
+@NamedQuery(name = "MobileDetail.findAll", query = "SELECT m FROM MobileDetail m")
 public class MobileDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		private int code;
-	
-		@Column(name="mobile_number_1")
-		private int mobileNumber1;
-	
-		@Column(name="moblie_number_2")
-		private int moblieNumber2;
-	
-		//bi-directional many-to-one association to CommunicationDetail
-		@ManyToOne
-		@JoinColumn(name="comminication_details_code")
-		private CommunicationDetail communicationDetail;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int code;
+
+	@Column(name = "mobile_number_1")
+	private int mobileNumber1;
+
+	@Column(name = "moblie_number_2")
+	private int moblieNumber2;
+
+	// bi-directional many-to-one association to CommunicationDetail
+	@OneToOne
+	@JoinColumn(name = "comminication_details_code")
+	private CommunicationDetail communicationDetail;
 
 	public MobileDetail() {
 	}
@@ -63,5 +62,8 @@ public class MobileDetail implements Serializable {
 	public void setCommunicationDetail(CommunicationDetail communicationDetail) {
 		this.communicationDetail = communicationDetail;
 	}
+
+		
+	
 
 }

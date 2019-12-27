@@ -18,8 +18,9 @@ import com.erp.lt.portal.model.MobileDetail;
  */
 @Repository 
 public interface MobileDetailsRepostiory extends JpaRepository<MobileDetail, Integer> {
-	@Query(value ="SELECT cd.employee_code,md.mobile_number_1,md.moblie_number_2  " + 
-			"FROM employee_selfservicedb.communication_details cd join employee_selfservicedb.mobile_details md " + 
-			"on cd.code = md.comminication_details_code where md.comminication_details_code=:code;", nativeQuery = true)
-	public Optional<MobileDetail> getMobileDetails(@Param(value ="code") int code);
+	@Query(value = "select  mobiledt.code, mobiledt.mobile_number_1, mobiledt.moblie_number_2 , commd.code"
+			+ " From  communication_details as commd left join mobile_details as "
+			+ " mobiledt on commd.code = mobiledt.comminication_details_code "
+			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
+	public Optional<MobileDetail> getMobileDetails(@Param(value = "communication_code") int communication_code);
 }
