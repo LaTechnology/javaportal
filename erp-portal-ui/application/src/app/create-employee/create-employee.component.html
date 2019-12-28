@@ -1,58 +1,70 @@
-<h3>Create Employee</h3>
-<div [hidden]="submitted" style="width: 400px;">
+  <h2><b>EMPLOYEE PERSONAL INFORMATION</b></h2>
+  <br>
   <form (ngSubmit)="onSubmit()" autocomplete="off">
-    <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col-md-6">
       <label for="name">First Name</label>
       <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="name">Last Name</label>
       <input type="text" class="form-control" id="lastName" required [(ngModel)]="employee.lastName" name="lastName">
     </div>
+    </div>
 
-    <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col-md-6">
       <label for="name">MaritalStatus</label>
       <input type="text" class="form-control" id="maritalstatus" required [(ngModel)]="employee.maritalstatus" name="maritalstatus">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="name">MarriageDate</label>
-      <input type="text" class="form-control" id="marriagedate" required [(ngModel)]="employee.marriagedate" name="marriagedate">
+      <input type="date" class="form-control" id="marriagedate" required [(ngModel)]="employee.marriagedate" name="marriagedate">
+    </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col-md-6">
       <label for="name">DateOfBirth</label>
-      <input type="text" class="form-control" id="dateofBirth" required [(ngModel)]="employee.dateofBirth" name="dateofBirth">
+      <input type="date" class="form-control" id="dateofBirth" required [(ngModel)]="employee.dateofBirth" name="dateofBirth">
     </div>
 
-    <div class="form-group">
-      <label for="name">Nationality</label>
+    <div class="form-group col-md-6">     
+       <label for="name">Nationality</label>
       <input type="text" class="form-control" id="nationality" required [(ngModel)]="employee.nationality" name="nationality">
     </div>
+    </div>
 
-    <div class="form-group">
+    <div class="form-row">
+      <div class="form-group col-md-6">
       <label for="name">CountryOfBirth</label>
       <input type="text" class="form-control" id="countryofbirth" required [(ngModel)]="employee.countryofbirth" name="countryofbirth">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="name">StateOfBirth</label>
       <input type="text" class="form-control" id="stateofbirth" required [(ngModel)]="employee.stateofbirth" name="stateofbirth">
     </div>
-
-    <div class="form-group">
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group col-md-6">
       <label for="name">Citizen</label>
       <input type="text" class="form-control" id="citizen" required [(ngModel)]="employee.citizen" name="citizen">
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <label for="name">Gender</label>
       <input type="text" class="form-control" id="gender" required [(ngModel)]="employee.gender" name="gender">
     </div>
+    </div>
+   <div>
     <button type="submit" class="btn btn-success">Submit</button>
+    </div>
   </form>
-</div>
+
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>
 </div>

@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-.footer {
+
+/* .footer {
     position: absolute;
     bottom: 0;
     width:100%;
@@ -8,4 +9,6 @@
     background-color: blue;
     text-align: center;
     color: white;
-}
+} */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
