@@ -7,7 +7,7 @@ package com.erp.lt.portal;
  * @author User
  *
  */
-public class ERPConstants {
+public class ERPConstantsCom {
 	public static final String URL_BASE = "/api/v1";
 	public static final String COMMUNICATION_DETAILS_ADD_URL = "/add/com/details/";
 	public static final String COMMUNICATION_DETAILS_GET_URL = "/get/com/details/{empId}";
