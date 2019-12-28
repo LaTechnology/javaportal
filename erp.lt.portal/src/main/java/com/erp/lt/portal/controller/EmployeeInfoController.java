@@ -38,7 +38,7 @@ public class EmployeeInfoController {
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GET_URL)
-	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
+	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeCode") String employeeCode) {
 		return employeeinfoservice.getEmployeeInfoByEmpId(employeeCode);
 	}
 
