@@ -4,75 +4,95 @@
 package com.erp.lt.portal.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erp.lt.portal.dto.EmployeeInfoVO;
+import com.erp.lt.portal.ERPConstants;
 import com.erp.lt.portal.service.EmployeeInfoService;
+import com.erp.lt.portal.vo.EmployeeInfoVO;
+
+import javassist.NotFoundException;
 
 /**
- * @author User
+ * @author admin
  *
  */
 @RestController
+@RequestMapping(path = ERPConstants.URL_BASE)
 public class EmployeeInfoController {
 	@Autowired
 	EmployeeInfoService employeeinfoservice;
 
-	@PostMapping(path = "/add/empinfo", consumes = { "application/json" })
-	public void addEmployee(@RequestBody EmployeeInfoVO employeeInfoVO) {
-		employeeinfoservice.addEmployeeInfo(employeeInfoVO);
+	@PostMapping(path = ERPConstants.EMPLOYEE_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public void addEmployee(@RequestBody EmployeeInfoVO employeeInfoVo) {
+		employeeinfoservice.addEmployeeInfo(employeeInfoVo);
+	}
+
+	@GetMapping(path = ERPConstants.EMPLOYEE_GET_URL)
+	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
+		return employeeinfoservice.getEmployeeInfoByEmpId(employeeCode);
+	}
+
+	@GetMapping(path = ERPConstants.EMPLOYEE_GETALL_URL)
+	public List<EmployeeInfoVO> getAllEmployee() {
+		return employeeinfoservice.getAllEmployeeInfo();
 
 	}
 
-	@GetMapping(path = "/get/empinfo/{empId}")
-	public EmployeeInfoVO getEmployee(@PathVariable(value = "empId") int empId) {
-
-		Optional<EmployeeInfoVO> optional = employeeinfoservice.getEmployeeInfo(empId);
-
-		return optional.get();
-	}
-
-	@GetMapping(path = "/getall/empinfo/empinfo")
-	public List<EmployeeInfoVO> getAllEmployee(@RequestBody EmployeeInfoVO employeeInfoVO) {
-
-		return employeeinfoservice.getAllEmployeeInfo(employeeInfoVO);
-	}
-
-	@PutMapping(path = "/edit/empinfo/{empId}")
-	public void editEmployee(@PathVariable(value = "empId") int empId, @RequestBody EmployeeInfoVO employeeInfoVO) {
-		Optional<EmployeeInfoVO> empdto = employeeinfoservice.getEmployeeInfo(empId);
-		if (empdto == null) {
+	@PutMapping(path = ERPConstants.EMPLOYEE_EDIT_URL)
+	public boolean editEmployee(@RequestBody EmployeeInfoVO employeeInfoVo) {
+		boolean infoVO = true;
+		try {
+			infoVO = employeeinfoservice.editEmployeeInfo(employeeInfoVo);
+		} catch (NotFoundException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (infoVO) {
 			System.out.println("Employee Not found");
 		} else {
-			employeeinfoservice.editEmployeeInfo(employeeInfoVO);
+			try {
+				employeeinfoservice.editEmployeeInfo(employeeInfoVo);
+			} catch (NotFoundException e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		return infoVO;
 	}
 
-	@PatchMapping(path = "/patching/empinfo/{empId}")
-	public void editedEmployee(@PathVariable(value = "empId") int empId, @RequestBody EmployeeInfoVO employeeInfoVO) {
-		Optional<EmployeeInfoVO> empdto = employeeinfoservice.getEmployeeInfo(empId);
-		if (empdto == null) {
-			System.out.println("Employee Not found");
+	@PatchMapping(path = ERPConstants.EMPLOYEE_PATCHING_URL)
+
+	public boolean editedEmployeeInfo(@RequestBody EmployeeInfoVO employeeInfoVo) {
+		boolean status = false;
+		try {
+			status = employeeinfoservice.patchEmployeeInfo(employeeInfoVo);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (status) {
+			System.out.println("Employee saved");
 		} else {
-			employeeinfoservice.editEmployeeInfo(employeeInfoVO);
+			System.out.println("Employee not saved");
 		}
-
+		return status;
 	}
-
-	@DeleteMapping(path = "/delete/empinfo/{empId}")
-	public void deleteEmployee(@PathVariable(value = "empId") int empId) {
-		employeeinfoservice.deleteEmployeeInfo(empId);
-
-	}
+	/*
+	 * @DeleteMapping(path = ERPConstants.EMPLOYEE_DELETE_URL) public void
+	 * deleteEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
+	 * employeeinfoservice.deleteEmployeeInfo(employeeCode);
+	 * 
+	 * if (0 >= employeeCode) {
+	 * employeeinfoservice.deleteEmployeeInfo(employeeCode); } }
+	 */
 
 }

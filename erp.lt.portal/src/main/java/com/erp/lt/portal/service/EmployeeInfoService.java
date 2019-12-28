@@ -1,20 +1,31 @@
+/**
+ * 
+ */
 package com.erp.lt.portal.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.erp.lt.portal.dto.EmployeeInfoVO;
+import com.erp.lt.portal.vo.EmployeeInfoVO;
 
+import javassist.NotFoundException;
+
+/**
+ * @author admin
+ *
+ */
 public interface EmployeeInfoService {
-
 	public void addEmployeeInfo(EmployeeInfoVO employeeInfoVO);
 
-	public void editEmployeeInfo(EmployeeInfoVO employeeInfoVO);
+	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-	public Optional<EmployeeInfoVO> getEmployeeInfo(int empId);
+	public EmployeeInfoVO getEmployeeInfoByEmpId(int employeeCode);
 
-	public void deleteEmployeeInfo(int empId);
+	public List<EmployeeInfoVO> getAllEmployeeInfo();
 
-	public List<EmployeeInfoVO> getAllEmployeeInfo(EmployeeInfoVO employeeInfoVO);
+	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
+
+	// public void deleteEmployeeInfo(int employeeCode);
+	// public boolean editEmployeeInfoById(EmployeeInfoVO employeeInfo, int
+		// employeeCode) throws NotFoundException;
 
 }
