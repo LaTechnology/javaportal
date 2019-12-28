@@ -25,11 +25,9 @@ public class EducationDetailsVO implements Serializable {
 	private String instituteName;
 
 	private String universityName;
-	
-	private int employeecode;
-	
-	
-	
+
+	 private int employeecode;
+
 	private int educationTypecode;
 
 	public int getEducationTypecode() {
@@ -41,8 +39,8 @@ public class EducationDetailsVO implements Serializable {
 	}
 
 	private int educationBoardCode;
-	
-	private EmployeeInfo employeeInfo;
+
+	// private EmployeeInfo employeeInfo;
 
 	public int getEducationId() {
 		return educationId;
@@ -100,14 +98,26 @@ public class EducationDetailsVO implements Serializable {
 		this.universityName = universityName;
 	}
 
-	
+	/*
+	 * public EmployeeInfo getEmployeeInfo() { return employeeInfo; }
+	 * 
+	 * public void setEmployeeInfo(EmployeeInfo employeeInfo) { this.employeeInfo =
+	 * employeeInfo; }
+	 */
 
-	public EmployeeInfo getEmployeeInfo() {
-		return employeeInfo;
+	/*
+	 * public int getEmployeecode() { return employeecode; }
+	 * 
+	 * public void setEmployeecode(int employeecode) { this.employeecode =
+	 * employeecode; }
+	 */
+
+	public int getEducationBoardCode() {
+		return educationBoardCode;
 	}
 
-	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
-		this.employeeInfo = employeeInfo;
+	public void setEducationBoardCode(int educationBoardCode) {
+		this.educationBoardCode = educationBoardCode;
 	}
 
 	public int getEmployeecode() {
@@ -118,14 +128,4 @@ public class EducationDetailsVO implements Serializable {
 		this.employeecode = employeecode;
 	}
 
-	public int getEducationBoardCode() {
-		return educationBoardCode;
-	}
-
-	public void setEducationBoardCode(int educationBoardCode) {
-		this.educationBoardCode = educationBoardCode;
-	}
-
-	
 }
-
