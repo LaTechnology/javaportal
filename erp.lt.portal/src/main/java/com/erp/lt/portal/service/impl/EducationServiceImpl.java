@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import com.erp.lt.portal.model.EducationDetail;
 import com.erp.lt.portal.model.Educationboard;
 import com.erp.lt.portal.model.Educationtype;
+import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.repository.EducationBoardRepository;
 import com.erp.lt.portal.repository.EducationRepository;
 import com.erp.lt.portal.repository.EducationTypeRepository;
+import com.erp.lt.portal.repository.EmployeeInfoRepository;
 import com.erp.lt.portal.service.EducationService;
 import com.erp.lt.portal.vo.EducationDetailsVO;
 
@@ -24,7 +26,7 @@ import javassist.NotFoundException;
 public class EducationServiceImpl implements EducationService {
 
 	@Autowired
-	EducationRepository educationRrepository;
+	EducationRepository educationrepository;
 	
 	@Autowired
 	EducationTypeRepository  educationTypeRepository;
@@ -32,18 +34,21 @@ public class EducationServiceImpl implements EducationService {
 	@Autowired
 	EducationBoardRepository educationBoardRepository;
 
+	@Autowired
+	EmployeeInfoRepository employeeinforepo;
+	
 	@Override
 	public void deleteEmployeeEducation(int eduId) {
-		if (0 > eduId) {
-			educationRrepository.deleteById(eduId);
+		if (eduId !=0) {
+			educationrepository.deleteById(eduId);
 		}
 		
 	}
 
 	@Override
-	public EducationDetailsVO getEmployeeEducationDetail(int eduId) {
+	public EducationDetailsVO getEmployeeEducationDetail(int eduId){
 		EducationDetailsVO detailsVO = new EducationDetailsVO();
-		EducationDetail entity = educationRrepository.getEducationDetail(eduId);
+		EducationDetail entity = educationrepository.getEducationDetail(eduId);
 	   // Optional<Educationtype> educationtype= educationTypeRepository.findById(eduId);
 	       
 		if (0 != entity.getEducationId()) {
@@ -71,9 +76,7 @@ public class EducationServiceImpl implements EducationService {
 			detailsVO.setUniversityName(entity.getUniversityName());
 		}
 		
-		if(0!= entity.getEmployeecode()) {
-			detailsVO.setEmployeecode(entity.getEmployeecode());
-	   }
+		
 		
 		if(0!= entity.getEducationtype().getCode()) {
 			detailsVO.setEducationTypecode(entity.getEducationtype().getCode());
@@ -83,6 +86,10 @@ public class EducationServiceImpl implements EducationService {
 			detailsVO.setEducationBoardCode(entity.getEducationboard().getCode());
 		}
 	
+		  if(null !=entity.getEmployeeInfo()) {
+		  detailsVO.setEmployeecode(entity.getEmployeeInfo().getEmployeeCode());
+		  }
+		 
 		
 		return detailsVO;
 	}
@@ -90,13 +97,11 @@ public class EducationServiceImpl implements EducationService {
 	
 	
 	@Override
-	public void editEmployeeEducation(EducationDetailsVO detailsVO) throws NotFoundException {
-	
-	
+	public boolean editEmployeeEducation(EducationDetailsVO detailsVO) throws NotFoundException {
 	     EducationDetail old=null;
 		 boolean status= false;
 		
-		Optional<EducationDetail> exisitingEducationDetails = educationRrepository.findById(detailsVO.getEducationId());
+		Optional<EducationDetail> exisitingEducationDetails = educationrepository.findById(detailsVO.getEducationId());
 		Optional<Educationtype> EducationType= null;
 		Optional<Educationboard> EducationBoard= null;
 		
@@ -123,11 +128,12 @@ public class EducationServiceImpl implements EducationService {
 		}
 		 
 
-		educationRrepository.save(old);
+		educationrepository.save(old);
 		status= true;
 		if (!exisitingEducationDetails.isPresent()) {
 			throw new NotFoundException("Employee not found");
 		}
+		return status;
 
 	}
 
@@ -136,13 +142,21 @@ public class EducationServiceImpl implements EducationService {
 		EducationDetail detail = new EducationDetail();
 		Optional<Educationtype> EducationType= null;
 		Optional<Educationboard> EducationBoard= null;
+		Optional<EmployeeInfo> employeeinfo= null;
 		
-	    if(detailsVO.getEducationBoardCode()!=-1) {
+	    if(detailsVO.getEducationBoardCode()>0) {
 	    	 EducationBoard= educationBoardRepository.findById(detailsVO.getEducationBoardCode());
 	    }
-	    if(detailsVO.getEducationTypecode()!=-1) {
+	    if(detailsVO.getEducationTypecode()>0) {
 	    	EducationType= educationTypeRepository.findById(detailsVO.getEducationTypecode());
 	    }
+	    
+		
+		 if(detailsVO.getEmployeecode()>0) { 
+			 employeeinfo= employeeinforepo.findById(detailsVO.getEmployeecode());
+		 }
+		 
+		 
 
 		if (0 != detailsVO.getEducationId()) {
 			detail.setEducationId(detailsVO.getEducationId());
@@ -179,6 +193,46 @@ public class EducationServiceImpl implements EducationService {
 			detail.setEducationboard(EducationBoard.get()); 
 		}
         
-		educationRrepository.save(detail);
+		if(null!= employeeinfo ) {
+			detail.setEmployeeInfo(employeeinfo.get());
+		}
+		
+		educationrepository.save(detail);
 	}
+
+	/*
+	 * @Override public EducationDetailsVO
+	 * getEmployeeEducationDetailByEmployeeCode(int employeeCode) {
+	 * EducationDetailsVO detailsVO = new EducationDetailsVO(); EducationDetail
+	 * entity = educationrepository.getEducationDetailByEmpCode(employeeCode);
+	 * 
+	 * if (0 != entity.getEducationId()) {
+	 * detailsVO.setEducationId(entity.getEducationId()); } if (null !=
+	 * entity.getAdditionalCertification()) {
+	 * detailsVO.setAdditionalCertification(entity.getAdditionalCertification()); }
+	 * 
+	 * if (null != entity.getCgpa()) { detailsVO.setCgpa(entity.getCgpa()); } if
+	 * (null != entity.getBeginDate()) {
+	 * detailsVO.setBeginDate(entity.getBeginDate()); } if (null !=
+	 * entity.getEndDate()) { detailsVO.setEndDate(entity.getEndDate()); } if (null
+	 * != entity.getInstituteName()) {
+	 * detailsVO.setInstituteName(entity.getInstituteName()); }
+	 * 
+	 * if (null != entity.getUniversityName()) {
+	 * detailsVO.setUniversityName(entity.getUniversityName()); }
+	 * 
+	 * if(0!= entity.getEducationtype().getCode()) {
+	 * detailsVO.setEducationTypecode(entity.getEducationtype().getCode()); }
+	 * 
+	 * if(0!= entity.getEducationboard().getCode()) {
+	 * detailsVO.setEducationBoardCode(entity.getEducationboard().getCode()); }
+	 * if(null !=entity.getEmployeeInfo()) {
+	 * detailsVO.setEmployeecode(entity.getEmployeeInfo().getEmployeeCode()); }
+	 * 
+	 * 
+	 * return detailsVO;
+	 * 
+	 * 
+	 * }
+	 */
 }

@@ -34,7 +34,7 @@ public class EducationDetail implements Serializable {
 
 	private String universityName;
 	
-	private int employeecode;
+	
 
 	//bi-directional many-to-one association to Educationboard
 	@ManyToOne
@@ -134,14 +134,7 @@ public class EducationDetail implements Serializable {
 		this.employeeInfo = employeeInfo;
 	}
 
-	public int getEmployeecode() {
-		return employeecode;
-	}
 	
-
-	public void setEmployeecode(int employeecode) {
-		this.employeecode = employeecode;
-	}
 
 	
 	

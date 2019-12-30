@@ -24,8 +24,5 @@ public interface EmployeeInfoService {
 
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-	// public void deleteEmployeeInfo(int employeeCode);
-	// public boolean editEmployeeInfoById(EmployeeInfoVO employeeInfo, int
-		// employeeCode) throws NotFoundException;
-
+	
 }

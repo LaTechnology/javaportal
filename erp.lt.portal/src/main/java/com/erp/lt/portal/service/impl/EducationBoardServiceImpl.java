@@ -27,10 +27,7 @@ public class EducationBoardServiceImpl implements EducationBoardService {
 		   }
 		   if(null != board.getBoardType()) {
 			  boardVO.setBoardType( board.getBoardType());
-		   }
-		
-		
-		
+		   }	
 		return null;
 	}
 

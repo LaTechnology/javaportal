@@ -19,6 +19,7 @@ public class EmployeeInfoVO implements Serializable {
 	private String email;
 	private int employeeCode;
 
+
 	private String citizen;
 
 	private String countryofbirth;
@@ -41,11 +42,11 @@ public class EmployeeInfoVO implements Serializable {
 
 	private int maritalStatusCode;
 
-	public int getEmployeeCode() {
+	public String getEmployeeCode() {
 		return employeeCode;
 	}
 
-	public void setEmployeeCode(int employeeCode) {
+	public void setEmployeeCode(String employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 

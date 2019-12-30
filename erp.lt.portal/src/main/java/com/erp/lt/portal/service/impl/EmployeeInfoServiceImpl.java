@@ -88,10 +88,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 		EmployeeInfo old = null;
 		boolean status = false;
-		if (modified.getEmployeeCode() <= 0) {
+		if (modified.getEmployeeCode() !=null) {
 			throw new NotFoundException("Employee not found");
 		}
-		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(modified.getEmployeeCode());
+		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(Integer.parseInt(modified.getEmployeeCode()));
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (modified.getGenderCode() != -1) {
@@ -167,10 +167,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 				if (0 != employeeInfo.getStatus()) {
 					empInfoVo.setStatus(employeeInfo.getStatus());
 				}
-			}
-		}
 		return empInfoVo;
-
 	}
 
 	@Override
@@ -180,7 +177,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		for (EmployeeInfo empInfo : employeeInfos) {
 			EmployeeInfoVO infoVO = new EmployeeInfoVO();
 			if (0 != empInfo.getEmployeeCode()) {
-				infoVO.setEmployeeCode(empInfo.getEmployeeCode());
+				infoVO.setEmployeeCode(String.valueOf(empInfo.getEmployeeCode()));
 			}
 			if (null != empInfo.getFirstname()) {
 				infoVO.setFirstname(empInfo.getFirstname());
@@ -224,10 +221,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfoVo) throws NotFoundException {
 		EmployeeInfo old = null;
 		boolean status = false;
-		if (employeeInfoVo.getEmployeeCode() <= 0) {
+		if (employeeInfoVo.getEmployeeCode() !=null) {
 			throw new NotFoundException("Employee not found");
 		}
-		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(employeeInfoVo.getEmployeeCode());
+		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(Integer.parseInt(employeeInfoVo.getEmployeeCode()));
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (employeeInfoVo.getGenderCode() != -1) {
@@ -258,12 +255,6 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		return status;
 
 	}
-	/*
-	 * @Override public void deleteEmployeeInfo(int employeeCode) {
-	 * 
-	 * if (0 > employeeCode) employeeInfoRepository.deleteById(employeeCode);
-	 * 
-	 * }
-	 */
+
 
 }
