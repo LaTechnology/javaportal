@@ -9,6 +9,13 @@ import com.erp.lt.portal.model.EducationDetail;
 
 @Repository
 public interface EducationRepository extends JpaRepository<EducationDetail, Integer>{
+
+	
+	  @Query(value="SELECT e FROM EducationDetail e where e.educationId=:empId")
+	  public EducationDetail getEducationDetailByEmpcode(@Param(value = "empId") Integer empId);
+	 
+	
+
 	@Query(value="SELECT e FROM EducationDetail e where e.educationId=:empId")
 	   public EducationDetail getEducationDetail(@Param(value = "empId") Integer empId);
 

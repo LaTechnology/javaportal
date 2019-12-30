@@ -35,10 +35,18 @@ public class EducationController {
 	public void deleteEmployeeEducation(@PathVariable(value = "eduId") int eduId) {
 			educationService.deleteEmployeeEducation(eduId);
 	}	
+	
+	/*
+	 * @GetMapping(path = "/get/educationdetailsBycode/{employeeCode}") public
+	 * EducationDetailsVO getEmployeeEduBycode(@PathVariable(value = "employeeCode")
+	 * int employeeCode) { return
+	 * educationService.getEmployeeEducationDetailByEmployeeCode(employeeCode); }
+	 */
+	
+	
 	@PutMapping(path= "/edit/educationdetails/")
 	public boolean editEmployee(@RequestBody EducationDetailsVO detailsVO) {
-		boolean status = false;
-		
+		boolean status = false;	
 	try {
 		status= educationService.editEmployeeEducation(detailsVO);
 	}catch(NotFoundException e){
