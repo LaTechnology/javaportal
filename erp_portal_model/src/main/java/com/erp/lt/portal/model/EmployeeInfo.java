@@ -5,21 +5,28 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the employee_info database table.
  * 
  */
 @Entity
-@Table(name="employee_info")
-@NamedQuery(name="EmployeeInfo.findAll", query="SELECT e FROM EmployeeInfo e")
+@Table(name = "employee_info")
+@NamedQuery(name = "EmployeeInfo.findAll", query = "SELECT e FROM EmployeeInfo e")
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="employee_code")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_code")
 	private int employeeCode;
+
+	// employee number
+	@Column(name = "employee_number") // FK
+	private String employeeNumber;
+
+	// employee email // login id
+	@Column(name = "employee_email")
+	private String email;
 
 	private String citizen;
 
@@ -33,7 +40,7 @@ public class EmployeeInfo implements Serializable {
 	private String lastName;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="marriage_date")
+	@Column(name = "marriage_date")
 	private Date marriageDate;
 
 	private String nationality;
@@ -42,26 +49,26 @@ public class EmployeeInfo implements Serializable {
 
 	private byte status;
 
-	//bi-directional many-to-one association to CommunicationDetail
-	@OneToMany(mappedBy="employeeInfo")
+	// bi-directional many-to-one association to CommunicationDetail
+	@OneToMany(mappedBy = "employeeInfo")
 	private List<CommunicationDetail> communicationDetails;
 
-	//bi-directional many-to-one association to EducationDetail
-	@OneToMany(mappedBy="employeeInfo")
+	// bi-directional many-to-one association to EducationDetail
+	@OneToMany(mappedBy = "employeeInfo")
 	private List<EducationDetail> educationDetails;
 
-	//bi-directional many-to-one association to GenderType
+	// bi-directional many-to-one association to GenderType
 	@ManyToOne
-	@JoinColumn(name="gender_type_code")
+	@JoinColumn(name = "gender_type_code")
 	private GenderType genderType;
 
-	//bi-directional many-to-one association to MaritalStatus
+	// bi-directional many-to-one association to MaritalStatus
 	@ManyToOne
-	@JoinColumn(name="marital_status_code")
+	@JoinColumn(name = "marital_status_code")
 	private MaritalStatus maritalStatus;
 
-	//bi-directional many-to-one association to EmployementHistory
-	@OneToMany(mappedBy="employeeInfo")
+	// bi-directional many-to-one association to EmployementHistory
+	@OneToMany(mappedBy = "employeeInfo")
 	private List<EmployementHistory> employementHistories;
 
 	public EmployeeInfo() {
@@ -227,6 +234,22 @@ public class EmployeeInfo implements Serializable {
 		employementHistory.setEmployeeInfo(null);
 
 		return employementHistory;
+	}
+
+	public String getEmployeeNumber() {
+		return employeeNumber;
+	}
+
+	public void setEmployeeNumber(String employeeNumber) {
+		this.employeeNumber = employeeNumber;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
