@@ -124,51 +124,50 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	}
 
 	@Override
-	public EmployeeInfoVO getEmployeeInfoByEmpId(String employeeCode) {
+	public EmployeeInfoVO getEmployeeInfoByEmpId(String employeeeNumber) {
 		EmployeeInfoVO empInfoVo = new EmployeeInfoVO();
-		Optional<EmployeeInfo> optional = employeeInfoRepository.findById(Integer.parseInt(employeeCode));
-		EmployeeInfo employeeInfo = optional.get();
-		if (null != employeeInfo) {
-			if (0 != employeeInfo.getEmployeeCode()) {
-				empInfoVo.setEmployeeCode(employeeCode);
-			}
-			if (null != employeeInfo.getFirstname()) {
-				empInfoVo.setFirstname(employeeInfo.getFirstname());
-			}
-			if (null != employeeInfo.getCitizen()) {
-				empInfoVo.setCitizen(employeeInfo.getCitizen());
-			}
-			if (null != employeeInfo.getLastName()) {
-				empInfoVo.setLastName(employeeInfo.getLastName());
-			}
-			if (null != employeeInfo.getCountryofbirth()) {
-				empInfoVo.setCountryofbirth(employeeInfo.getCountryofbirth());
-			}
-			if (null != employeeInfo.getNationality()) {
-				empInfoVo.setNationality(employeeInfo.getNationality());
-			}
-			if (null != employeeInfo.getDob()) {
-				empInfoVo.setDob(employeeInfo.getDob());
-			}
-			if (null != employeeInfo.getStateofbirth()) {
-				empInfoVo.setStateofbirth(employeeInfo.getStateofbirth());
-			}
-			if (0 != employeeInfo.getGenderType().getCode()) {
-				empInfoVo.setGenderCode(employeeInfo.getGenderType().getCode());
-			}
-			if (0 != employeeInfo.getMaritalStatus().getCode()) {
-				empInfoVo.setMaritalStatusCode(employeeInfo.getMaritalStatus().getCode());
-			}
-			if (null != employeeInfo.getMarriageDate()) {
-				empInfoVo.setMarriageDate(employeeInfo.getMarriageDate());
-			}
-			if (0 != employeeInfo.getStatus()) {
-				empInfoVo.setStatus(employeeInfo.getStatus());
-			}
-
-		}
+		EmployeeInfoVO employeeInfoVO = employeeInfoRepository.getEmployeeCodeByEmployeeNumber(employeeeNumber);
+		if (null != employeeInfoVO) {
+			Optional<EmployeeInfo> optional = employeeInfoRepository.findById(employeeInfoVO.getEmployeeCode());
+			EmployeeInfo employeeInfo = optional.get();
+			if (null != employeeInfo) {
+				if (0 != employeeInfo.getEmployeeCode()) {
+					empInfoVo.setEmployeeCode(employeeInfo.getEmployeeCode());
+				}
+				if (null != employeeInfo.getFirstname()) {
+					empInfoVo.setFirstname(employeeInfo.getFirstname());
+				}
+				if (null != employeeInfo.getCitizen()) {
+					empInfoVo.setCitizen(employeeInfo.getCitizen());
+				}
+				if (null != employeeInfo.getLastName()) {
+					empInfoVo.setLastName(employeeInfo.getLastName());
+				}
+				if (null != employeeInfo.getCountryofbirth()) {
+					empInfoVo.setCountryofbirth(employeeInfo.getCountryofbirth());
+				}
+				if (null != employeeInfo.getNationality()) {
+					empInfoVo.setNationality(employeeInfo.getNationality());
+				}
+				if (null != employeeInfo.getDob()) {
+					empInfoVo.setDob(employeeInfo.getDob());
+				}
+				if (null != employeeInfo.getStateofbirth()) {
+					empInfoVo.setStateofbirth(employeeInfo.getStateofbirth());
+				}
+				if (0 != employeeInfo.getGenderType().getCode()) {
+					empInfoVo.setGenderCode(employeeInfo.getGenderType().getCode());
+				}
+				if (0 != employeeInfo.getMaritalStatus().getCode()) {
+					empInfoVo.setMaritalStatusCode(employeeInfo.getMaritalStatus().getCode());
+				}
+				if (null != employeeInfo.getMarriageDate()) {
+					empInfoVo.setMarriageDate(employeeInfo.getMarriageDate());
+				}
+				if (0 != employeeInfo.getStatus()) {
+					empInfoVo.setStatus(employeeInfo.getStatus());
+				}
 		return empInfoVo;
-
 	}
 
 	@Override
@@ -257,7 +256,5 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 	}
 
-
-	
 
 }
