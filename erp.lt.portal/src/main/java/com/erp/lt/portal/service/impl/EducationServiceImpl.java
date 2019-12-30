@@ -16,6 +16,7 @@ import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.repository.EducationBoardRepository;
 import com.erp.lt.portal.repository.EducationRepository;
 import com.erp.lt.portal.repository.EducationTypeRepository;
+import com.erp.lt.portal.repository.EmployeeInfoRepository;
 import com.erp.lt.portal.service.EducationService;
 import com.erp.lt.portal.vo.EducationDetailsVO;
 
@@ -33,17 +34,19 @@ public class EducationServiceImpl implements EducationService {
 	@Autowired
 	EducationBoardRepository educationBoardRepository;
 
+	@Autowired
+	EmployeeInfoRepository employeeinforepo;
 	
 	@Override
 	public void deleteEmployeeEducation(int eduId) {
-		if (0 > eduId) {
+		if (eduId !=0) {
 			educationrepository.deleteById(eduId);
 		}
 		
 	}
 
 	@Override
-	public EducationDetailsVO getEmployeeEducationDetail(int eduId) {
+	public EducationDetailsVO getEmployeeEducationDetail(int eduId){
 		EducationDetailsVO detailsVO = new EducationDetailsVO();
 		EducationDetail entity = educationrepository.getEducationDetail(eduId);
 	   // Optional<Educationtype> educationtype= educationTypeRepository.findById(eduId);
@@ -148,10 +151,12 @@ public class EducationServiceImpl implements EducationService {
 	    	EducationType= educationTypeRepository.findById(detailsVO.getEducationTypecode());
 	    }
 	    
-		/*
-		 * if(detailsVO.getEmployeecode()>0) { employeeinfo=
-		 * educationTypeRepository.findById(detailsVO.getEducationTypecode()); }
-		 */
+		
+		 if(detailsVO.getEmployeecode()>0) { 
+			 employeeinfo= employeeinforepo.findById(detailsVO.getEmployeecode());
+		 }
+		 
+		 
 
 		if (0 != detailsVO.getEducationId()) {
 			detail.setEducationId(detailsVO.getEducationId());
@@ -188,6 +193,46 @@ public class EducationServiceImpl implements EducationService {
 			detail.setEducationboard(EducationBoard.get()); 
 		}
         
+		if(null!= employeeinfo ) {
+			detail.setEmployeeInfo(employeeinfo.get());
+		}
+		
 		educationrepository.save(detail);
 	}
+
+	/*
+	 * @Override public EducationDetailsVO
+	 * getEmployeeEducationDetailByEmployeeCode(int employeeCode) {
+	 * EducationDetailsVO detailsVO = new EducationDetailsVO(); EducationDetail
+	 * entity = educationrepository.getEducationDetailByEmpCode(employeeCode);
+	 * 
+	 * if (0 != entity.getEducationId()) {
+	 * detailsVO.setEducationId(entity.getEducationId()); } if (null !=
+	 * entity.getAdditionalCertification()) {
+	 * detailsVO.setAdditionalCertification(entity.getAdditionalCertification()); }
+	 * 
+	 * if (null != entity.getCgpa()) { detailsVO.setCgpa(entity.getCgpa()); } if
+	 * (null != entity.getBeginDate()) {
+	 * detailsVO.setBeginDate(entity.getBeginDate()); } if (null !=
+	 * entity.getEndDate()) { detailsVO.setEndDate(entity.getEndDate()); } if (null
+	 * != entity.getInstituteName()) {
+	 * detailsVO.setInstituteName(entity.getInstituteName()); }
+	 * 
+	 * if (null != entity.getUniversityName()) {
+	 * detailsVO.setUniversityName(entity.getUniversityName()); }
+	 * 
+	 * if(0!= entity.getEducationtype().getCode()) {
+	 * detailsVO.setEducationTypecode(entity.getEducationtype().getCode()); }
+	 * 
+	 * if(0!= entity.getEducationboard().getCode()) {
+	 * detailsVO.setEducationBoardCode(entity.getEducationboard().getCode()); }
+	 * if(null !=entity.getEmployeeInfo()) {
+	 * detailsVO.setEmployeecode(entity.getEmployeeInfo().getEmployeeCode()); }
+	 * 
+	 * 
+	 * return detailsVO;
+	 * 
+	 * 
+	 * }
+	 */
 }

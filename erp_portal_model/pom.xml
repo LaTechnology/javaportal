@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.erp.portal.model</groupId>
-	<artifactId>erp_portal_model</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>erp_it_portal_model</artifactId>
+	<version>0.0.1</version>
 	
 	<description>Demo project for Spring Boot</description>
 

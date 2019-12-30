@@ -7,7 +7,6 @@ import javassist.NotFoundException;
 
 public interface EducationService {
 
-	
 	public void addemployeeEducation(EducationDetailsVO dto);
 
 	public boolean editEmployeeEducation(EducationDetailsVO dto) throws NotFoundException;
@@ -16,6 +15,9 @@ public interface EducationService {
 
 	public EducationDetailsVO getEmployeeEducationDetail(int eduId);
 	
-	
+	/*
+	 * public EducationDetailsVO getEmployeeEducationDetailByEmployeeCode(int
+	 * employeeCode);
+	 */
 	
 }
