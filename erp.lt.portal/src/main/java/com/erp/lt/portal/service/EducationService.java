@@ -1,5 +1,6 @@
 package com.erp.lt.portal.service;
 
+import java.util.List;
 
 import com.erp.lt.portal.vo.EducationDetailsVO;
 
@@ -13,11 +14,6 @@ public interface EducationService {
 
 	public void deleteEmployeeEducation(int eduId);
 
-	public EducationDetailsVO getEmployeeEducationDetail(int eduId);
-	
-	/*
-	 * public EducationDetailsVO getEmployeeEducationDetailByEmployeeCode(int
-	 * employeeCode);
-	 */
-	
+	public List<EducationDetailsVO> getEmployeeEducationDetail(int eduId);
+
 }

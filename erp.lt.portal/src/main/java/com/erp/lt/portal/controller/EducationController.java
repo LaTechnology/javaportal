@@ -1,5 +1,7 @@
 package com.erp.lt.portal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +29,7 @@ public class EducationController {
 	}
 
 	@GetMapping(path = "/get/educationdetails/{eduId}")
-	public EducationDetailsVO getEmployeeEdu(@PathVariable(value = "eduId") int eduId) {
+	public List<EducationDetailsVO> getEmployeeEdu(@PathVariable(value = "eduId") int eduId) {
 		return educationService.getEmployeeEducationDetail(eduId);
 	}
 
