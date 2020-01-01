@@ -38,8 +38,8 @@ public class EmployeeInfoController {
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GET_URL)
-	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeNumber") String employeeNumber) {
-		return employeeinfoservice.getEmployeeInfoByEmpId(employeeNumber);
+	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
+		return employeeinfoservice.getEmployeeInfoByEmpId(employeeCode);
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GETALL_URL)

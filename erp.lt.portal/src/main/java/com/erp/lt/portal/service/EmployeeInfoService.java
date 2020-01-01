@@ -18,11 +18,12 @@ public interface EmployeeInfoService {
 
 	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-	public EmployeeInfoVO getEmployeeInfoByEmpId(String employeeCode);
+	public EmployeeInfoVO getEmployeeInfoByEmpId(int employeeCode);
 
 	public List<EmployeeInfoVO> getAllEmployeeInfo();
 
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
+
 
 	
 }
