@@ -22,9 +22,9 @@
 	<dependencies>
 	
 	<dependency>
-		<groupId>com.erp.portal.model</groupId>
-	<artifactId>erp_portal_model</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.erp.portal.model</groupId>
+	<artifactId>erp_it_portal_model</artifactId>
+	<version>0.0.1</version>
 	</dependency>
 	
 		<dependency>

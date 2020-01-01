@@ -37,16 +37,18 @@ public class EducationDetail implements Serializable {
 	
 
 	//bi-directional many-to-one association to Educationboard
+
 	@ManyToOne
 	@JoinColumn(name="education_board_code")
 	private Educationboard educationboard;
 
 	//bi-directional many-to-one association to Educationtype
 	@ManyToOne
-	@JoinColumn(name="education_type_code")
+	@JoinColumn(name="education_type_code")	
 	private Educationtype educationtype;
 
 	//bi-directional many-to-one association to EmployeeInfo
+	
 	@ManyToOne
 	@JoinColumn(name="employee_code")
 	private EmployeeInfo employeeInfo;
