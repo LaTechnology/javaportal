@@ -47,43 +47,59 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			maritalStatusOptional = maritalStatusRepository.findById(employeeInfoVO.getMaritalStatusCode());
 		}
 
+		System.out.println(employeeInfoVO.getClass());
 		if (null != employeeInfoVO.getFirstname()) {
 			empinfo.setFirstname(employeeInfoVO.getFirstname());
-		}
-		if (null != employeeInfoVO.getCitizen()) {
-			empinfo.setCitizen(employeeInfoVO.getCitizen());
+			
 		}
 		if (null != employeeInfoVO.getLastName()) {
-			empinfo.setLastName(employeeInfoVO.getLastName());
+			empinfo.setLastname(employeeInfoVO.getLastName());
+			
 		}
+	 
+		if (null != employeeInfoVO.getCitizen()) {
+			empinfo.setCitizen(employeeInfoVO.getCitizen());
+			
+		}
+	 
 		if (null != employeeInfoVO.getCountryofbirth()) {
 			empinfo.setCountryofbirth(employeeInfoVO.getCountryofbirth());
+			
 		}
 		if (null != employeeInfoVO.getNationality()) {
 			empinfo.setNationality(employeeInfoVO.getNationality());
+			
 		}
 		if (null != employeeInfoVO.getDob()) {
 			empinfo.setDob(employeeInfoVO.getDob());
+			
 		}
 		if (null != employeeInfoVO.getStateofbirth()) {
 			empinfo.setStateofbirth(employeeInfoVO.getStateofbirth());
+
+			
 		}
 		if (null != genderType) {
 			empinfo.setGenderType(genderType.get());
+
 		}
 		if (null != employeeInfoVO.getMarriageDate()) {
 			empinfo.setMarriageDate(employeeInfoVO.getMarriageDate());
+			
 		}
 		if (0 != employeeInfoVO.getStatus()) {
 			empinfo.setStatus(employeeInfoVO.getStatus());
+			
 		}
 		if (null != maritalStatusOptional) {
 			empinfo.setMaritalStatus(maritalStatusOptional.get());
+			
 		}
 		employeeInfoRepository.save(empinfo);
 	}
 
 	@Override
+
 	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException {
 		return getEmployeeInfo(employeeCode);
 	}
@@ -105,6 +121,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 		boolean status = false;
 		final EmployeeInfo old = getEmployeeInfo(String.valueOf(modified.getEmployeeCode()));
+
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (modified.getGenderCode() != -1) {
@@ -113,12 +130,11 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		if (modified.getMaritalStatusCode() != -1) {
 			maritalStatusOptional = maritalStatusRepository.findById(modified.getMaritalStatusCode());
 		}
-		if (null != old) {
 			old.setCitizen(modified.getCitizen());
 			old.setFirstname(modified.getFirstname());
 			old.setCountryofbirth(modified.getCountryofbirth());
 			old.setDob(modified.getDob());
-			old.setLastName(modified.getLastName());
+			old.setLastname(modified.getLastName());
 			old.setNationality(modified.getNationality());
 			old.setMarriageDate(modified.getMarriageDate());
 			old.setStateofbirth(modified.getStateofbirth());
@@ -177,6 +193,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			}
 		}
 		return empInfoVo;
+
 	}
 
 	@Override
@@ -191,12 +208,12 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			if (null != empInfo.getFirstname()) {
 				infoVO.setFirstname(empInfo.getFirstname());
 			}
+			if (null != empInfo.getLastname()) {
+				infoVO.setLastName(empInfo.getLastname());
+			}
 			if (null != empInfo.getCitizen()) {
 				infoVO.setCitizen(empInfo.getCitizen());
-			}
-			if (null != empInfo.getLastName()) {
-				infoVO.setLastName(empInfo.getLastName());
-			}
+			} 
 			if (null != empInfo.getCountryofbirth()) {
 				infoVO.setCountryofbirth(empInfo.getCountryofbirth());
 			}
@@ -230,10 +247,12 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfoVo) throws NotFoundException {
 		EmployeeInfo old = null;
 		boolean status = false;
+
 		if (employeeInfoVo.getEmployeeCode() <= 0) {
 			throw new NotFoundException("Employee not found");
 		}
 		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(employeeInfoVo.getEmployeeCode());
+
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (employeeInfoVo.getGenderCode() != -1) {
@@ -248,7 +267,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(employeeInfoVo.getFirstname());
 			old.setCountryofbirth(employeeInfoVo.getCountryofbirth());
 			old.setDob(employeeInfoVo.getDob());
-			old.setLastName(employeeInfoVo.getLastName());
+		old.setLastname(employeeInfoVo.getLastName());
 			old.setNationality(employeeInfoVo.getNationality());
 			old.setMarriageDate(employeeInfoVo.getMarriageDate());
 			old.setStateofbirth(employeeInfoVo.getStateofbirth());
@@ -270,5 +289,6 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		// TODO Auto-generated method stub
 
 	}
+
 
 }

@@ -15,12 +15,13 @@ public class EmployeeInfoVO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5222006776920099426L;
+
 	private String employeeNumber;
 	private String email;
 	
 	private int employeeCode;
 
-	private String citizen;
+  private String citizen;
 
 	private String countryofbirth;
 
@@ -137,21 +138,7 @@ public class EmployeeInfoVO implements Serializable {
 	public void setMaritalStatusCode(int maritalStatusCode) {
 		this.maritalStatusCode = maritalStatusCode;
 	}
+ 
 
-	public String getEmployeeNumber() {
-		return employeeNumber;
-	}
-
-	public void setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber = employeeNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+ 
 }

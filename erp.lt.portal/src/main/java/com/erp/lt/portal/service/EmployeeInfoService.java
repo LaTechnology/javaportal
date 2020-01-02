@@ -19,6 +19,7 @@ public interface EmployeeInfoService {
 
 	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
+
 	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeCode) throws NotFoundException;
 
 	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException;
