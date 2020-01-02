@@ -11,23 +11,8 @@ public class EmployeeAddressVO implements Serializable {
 	private static final long serialVersionUID = -7799807974972674074L;
 
 	private int addressCode;
+	
 	private int employeeCode;
-
-	public int getAddressCode() {
-		return addressCode;
-	}
-
-	public void setAddressCode(int addressCode) {
-		this.addressCode = addressCode;
-	}
-
-	public int getEmployeeCode() {
-		return employeeCode;
-	}
-
-	public void setEmployeeCode(int employeeCode) {
-		this.employeeCode = employeeCode;
-	}
 
 	private String addressline1;
 
@@ -37,9 +22,10 @@ public class EmployeeAddressVO implements Serializable {
 
 	private String country;
 
-	private int pincode;
+	private String pincode;
 	
 	private Date begindate;
+	
 	
 	public Date getBegindate() {
 		return begindate;
@@ -63,7 +49,9 @@ public class EmployeeAddressVO implements Serializable {
 	private String state;
 	
 	private AddressType addressType;
-    // private int addressType;
+	
+	private int addressTypeCode;
+	
 	private EmployeeInfo employeeInfo;
 
 	
@@ -99,13 +87,7 @@ public class EmployeeAddressVO implements Serializable {
 		this.country = country;
 	}
 
-	public int getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
-	}
+	
 
 	public String getState() {
 		return state;
@@ -140,11 +122,38 @@ public class EmployeeAddressVO implements Serializable {
 	public void setAddressType(AddressType addressType) {
 		this.addressType = addressType;
 	}
+	
+	public int getAddressCode() {
+		return addressCode;
+	}
 
-	/*
-	 * public int getAddressType() { return addressType; }
-	 * 
-	 * public void setAddressType(int addressType) { this.addressType = addressType;
-	 * }
-	 */
+	public void setAddressCode(int addressCode) {
+		this.addressCode = addressCode;
+	}
+
+	public int getEmployeeCode() {
+		return employeeCode;
+	}
+
+	public void setEmployeeCode(int employeeCode) {
+		this.employeeCode = employeeCode;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+
+	public int getAddressTypeCode() {
+		return addressTypeCode;
+	}
+
+	public void setAddressTypeCode(int addressTypeCode) {
+		this.addressTypeCode = addressTypeCode;
+	}
+
+
 }
