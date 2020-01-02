@@ -2,6 +2,7 @@ package com.erp.lt.portal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -16,57 +17,73 @@ public class EmployeeAddress implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	@Column(name="address_code")
+	private int addressCode;
 
-	private String addressline1;
+	@Column(name="address_line_1")
+	private String addressLine1;
 
-	private String addressline2;
+	@Column(name="address_line_2")
+	private String addressLine2;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="begin_date")
+	private Date beginDate;
 
 	private String city;
 
 	private String country;
 
-	
+	private int employeecode;
 
-	private int pincode;
+	@Temporal(TemporalType.DATE)
+	@Column(name="end_date")
+	private Date endDate;
+
+	private int idEmployee_address;
+
+	private String pincode;
 
 	private String state;
 
 	//bi-directional many-to-one association to AddressType
-	@OneToOne
-	@JoinColumn(name="addresstypecodee")
-	private AddressType addressType;
-
-	//bi-directional many-to-one association to EmployeeInfo
 	@ManyToOne
-	@JoinColumn(name="employee_id")
-	private EmployeeInfo employeeInfo;
+	@JoinColumn(name="address_type_code")
+	private AddressType addressType;
 
 	public EmployeeAddress() {
 	}
 
-	public int getId() {
-		return this.id;
+	public int getAddressCode() {
+		return this.addressCode;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAddressCode(int addressCode) {
+		this.addressCode = addressCode;
 	}
 
-	public String getAddressline1() {
-		return this.addressline1;
+	public String getAddressLine1() {
+		return this.addressLine1;
 	}
 
-	public void setAddressline1(String addressline1) {
-		this.addressline1 = addressline1;
+	public void setAddressLine1(String addressLine1) {
+		this.addressLine1 = addressLine1;
 	}
 
-	public String getAddressline2() {
-		return this.addressline2;
+	public String getAddressLine2() {
+		return this.addressLine2;
 	}
 
-	public void setAddressline2(String addressline2) {
-		this.addressline2 = addressline2;
+	public void setAddressLine2(String addressLine2) {
+		this.addressLine2 = addressLine2;
+	}
+
+	public Date getBeginDate() {
+		return this.beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
 	}
 
 	public String getCity() {
@@ -85,13 +102,35 @@ public class EmployeeAddress implements Serializable {
 		this.country = country;
 	}
 
-	
+	public int getEmployeecode() {
+		return this.employeecode;
+	}
 
-	public int getPincode() {
+	public void setEmployeecode(int employeecode) {
+		this.employeecode = employeecode;
+	}
+
+	public Date getEndDate() {
+		return this.endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getIdEmployee_address() {
+		return this.idEmployee_address;
+	}
+
+	public void setIdEmployee_address(int idEmployee_address) {
+		this.idEmployee_address = idEmployee_address;
+	}
+
+	public String getPincode() {
 		return this.pincode;
 	}
 
-	public void setPincode(int pincode) {
+	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
 
@@ -109,14 +148,6 @@ public class EmployeeAddress implements Serializable {
 
 	public void setAddressType(AddressType addressType) {
 		this.addressType = addressType;
-	}
-
-	public EmployeeInfo getEmployeeInfo() {
-		return this.employeeInfo;
-	}
-
-	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
-		this.employeeInfo = employeeInfo;
 	}
 
 }
