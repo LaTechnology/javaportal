@@ -5,10 +5,7 @@ package com.erp.lt.portal.vo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-import com.erp.lt.portal.model.EmployeeInfo;
-import com.erp.lt.portal.model.MobileDetail;
 
 /**
  * @author User
@@ -21,23 +18,21 @@ public class CommunicationDetailsVO implements Serializable {
 	 */
 	private static final long serialVersionUID = -1053736679110683910L;
 
-	private int code;// 1
+	private int code; 
 
-	private Date beginDate;// 2
+	private Date beginDate;
 
-	private String clientEmailId;// 3
+	private String clientEmailId;
 
-	private String companyEmailId;// 4
+	private String companyEmailId;
 
 	private String emergencyComunicationNumber;
 
 	private Date endDate;
+	
+	private int employeeCode;
 
 	private String personalEmailId;
-
-	private String employeeInfo;
-
-	private String mobileDetails;
 
 	public int getCode() {
 		return code;
@@ -95,20 +90,14 @@ public class CommunicationDetailsVO implements Serializable {
 		this.personalEmailId = personalEmailId;
 	}
 
-	public String getMobileDetails() {
-		return mobileDetails;
+	public int getEmployeeCode() {
+		return employeeCode;
 	}
 
-	public void setMobileDetails(String mobileDetails) {
-		this.mobileDetails = mobileDetails;
+	public void setEmployeeCode(int employeeCode) {
+		this.employeeCode = employeeCode;
 	}
 
-	public String getEmployeeInfo() {
-		return employeeInfo;
-	}
 
-	public void setEmployeeInfo(String employeeInfo) {
-		this.employeeInfo = employeeInfo;
-	}
 
 }

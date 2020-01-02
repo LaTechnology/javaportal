@@ -5,15 +5,18 @@ package com.erp.lt.portal.service.impl;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.erp.lt.portal.model.CommunicationDetail;
 import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.repository.CommunicationDetailsRepository;
+import com.erp.lt.portal.repository.EmployeeInfoRepository;
 import com.erp.lt.portal.service.CommunicationDetailsService;
+import com.erp.lt.portal.service.EmployeeInfoService;
 import com.erp.lt.portal.vo.CommunicationDetailsVO;
+
+import javassist.NotFoundException;
 
 /**
  * @author User
@@ -24,6 +27,10 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 
 	@Autowired
 	CommunicationDetailsRepository communicationDetailsRepository;
+	@Autowired
+	EmployeeInfoRepository employeeInfoRepository;
+	@Autowired
+	EmployeeInfoService employeeInfoService;
 
 	@Override
 	public CommunicationDetailsVO getCommunicationDetailsByEmpId(int empId) {
@@ -49,12 +56,15 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			if (null != detail.getEmergencyComunicationNumber()) {
 				detailsVO.setEmergencyComunicationNumber(detail.getEmergencyComunicationNumber());
 			}
-			if (null != detail.getMobileDetails()) {
-//				detailsVO.setMobileDetails("" + detail.getMobileDetails().getCode());
-			}
+			/*
+			 * if (null != detail.getMobileDetails()) {
+			 * detailsVO.setMobileDetails(detail.getMobileDetails()); }
+			 */
+
 			if (null != detail.getEmployeeInfo()) {
-				detailsVO.setEmployeeInfo("" + detail.getEmployeeInfo().getEmployeeCode());
+				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getEmployeeCode());
 			}
+
 			if (null != detail.getPersonalEmailId()) {
 				detailsVO.setPersonalEmailId(detail.getPersonalEmailId());
 			}
@@ -64,90 +74,16 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 	}
 
 	@Override
-	public void addCommunicationDetials(CommunicationDetailsVO communicationDetailVo) {
+	public void addCommunicationDetials(CommunicationDetailsVO communicationDetailVo) throws NotFoundException {
 		CommunicationDetail communicationDetail = new CommunicationDetail();
-		Optional<EmployeeInfo> mobiledetail = null;
-		
-
-		if (null != communicationDetailVo.getCompanyEmailId()) {
-			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
-
-		}
-
-		if (null != communicationDetailVo.getBeginDate()) {
-			communicationDetail.setBeginDate(communicationDetailVo.getBeginDate());
-		}
-
-		if (null != communicationDetailVo.getEndDate()) {
-			communicationDetail.setEndDate(communicationDetailVo.getEndDate());
-		}
-
-		if (0 != communicationDetailVo.getCode()) {
-			communicationDetail.setCode(communicationDetailVo.getCode());
-		}
-
-		if (null != communicationDetailVo.getClientEmailId()) {
-			communicationDetail.setClientEmailId(communicationDetailVo.getClientEmailId());
-		}
-		if (null != communicationDetailVo.getEmergencyComunicationNumber()) {
-			communicationDetail.setEmergencyComunicationNumber(communicationDetailVo.getEmergencyComunicationNumber());
-		}
-		
-//		 if (null != communicationDetailVo.getMobileDetails()) {
-//	communicationDetail.setMobileDetails(String.pcommunicationDetailVo.getMobileDetails());
-		 
-//		   if (null != communicationDetailVo.getEmployeeInfo()) {
-//		  communicationDetail.setEmployeeInfo(communicationDetailVo.getEmployeeInfo());
-//		   }
-		 
-//		if (null != communicationDetailVo.getPersonalEmailId()) {
-//			communicationDetail.setPersonalEmailId(communicationDetailVo.getPersonalEmailId());
-//		}
+		doMap(communicationDetailVo, communicationDetail);
 		communicationDetailsRepository.save(communicationDetail);
 	}
 
 	@Override
-	public void editCommunicationDetials(CommunicationDetailsVO communicationDetailVo) {
+	public void editCommunicationDetials(CommunicationDetailsVO communicationDetailVo) throws NotFoundException {
 		CommunicationDetail communicationDetail = new CommunicationDetail();
-
-		if (null != communicationDetailVo.getCompanyEmailId()) {
-			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
-
-		}
-
-		if (null != communicationDetailVo.getBeginDate()) {
-			communicationDetail.setBeginDate(communicationDetailVo.getBeginDate());
-		}
-
-		if (null != communicationDetailVo.getEndDate()) {
-			communicationDetail.setEndDate(communicationDetailVo.getEndDate());
-		}
-
-		if (0 != communicationDetailVo.getCode()) {
-			communicationDetail.setCode(communicationDetailVo.getCode());
-		}
-
-		if (null != communicationDetailVo.getClientEmailId()) {
-			communicationDetail.setClientEmailId(communicationDetailVo.getClientEmailId());
-		}
-		if (null != communicationDetailVo.getEmergencyComunicationNumber()) {
-			communicationDetail.setEmergencyComunicationNumber(communicationDetailVo.getEmergencyComunicationNumber());
-		}
-
-		/*
-		 * if (null != communicationDetailVo.getMobileDetails()) {
-		 * communicationDetail.setMobileDetails(communicationDetailVo.getMobileDetails()
-		 * );
-		 * 
-		 * }
-		 * 
-		 * if (null != communicationDetailVo.getEmployeeInfo()) {
-		 * communicationDetail.setEmployeeInfo(communicationDetailVo.getEmployeeInfo());
-		 * }
-		 */
-		if (null != communicationDetailVo.getPersonalEmailId()) {
-			communicationDetail.setPersonalEmailId(communicationDetailVo.getPersonalEmailId());
-		}
+		doMap(communicationDetailVo, communicationDetail);
 		communicationDetailsRepository.save(communicationDetail);
 	}
 
@@ -157,6 +93,46 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			communicationDetailsRepository.deleteById(empId);
 		}
 
+	}
+
+	@Override
+	public void doMap(CommunicationDetailsVO communicationDetailVo, CommunicationDetail communicationDetail)
+			throws NotFoundException {
+		EmployeeInfo employeeInfo = null;
+		if (-1 != communicationDetailVo.getEmployeeCode()) {
+			employeeInfo = employeeInfoService
+					.getEmployeeInfoByEmpId(String.valueOf(communicationDetailVo.getEmployeeCode()));
+		}
+		if (null != communicationDetailVo.getCompanyEmailId()) {
+			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
+
+		}
+
+		if (null != communicationDetailVo.getBeginDate()) {
+			communicationDetail.setBeginDate(communicationDetailVo.getBeginDate());
+		}
+
+		if (null != communicationDetailVo.getEndDate()) {
+			communicationDetail.setEndDate(communicationDetailVo.getEndDate());
+		}
+
+		if (0 != communicationDetailVo.getCode()) {
+			communicationDetail.setCode(communicationDetailVo.getCode());
+		}
+
+		if (null != communicationDetailVo.getClientEmailId()) {
+			communicationDetail.setClientEmailId(communicationDetailVo.getClientEmailId());
+		}
+		if (null != communicationDetailVo.getEmergencyComunicationNumber()) {
+			communicationDetail.setEmergencyComunicationNumber(communicationDetailVo.getEmergencyComunicationNumber());
+		}
+		if (null != employeeInfo) {
+			communicationDetail.setEmployeeInfo(employeeInfo);
+		}
+
+		if (null != communicationDetailVo.getPersonalEmailId()) {
+			communicationDetail.setPersonalEmailId(communicationDetailVo.getPersonalEmailId());
+		}
 	}
 
 }

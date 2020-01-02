@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.erp.lt.portal.ERPConstants;
+import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.service.EmployeeInfoService;
 import com.erp.lt.portal.vo.EmployeeInfoVO;
 
@@ -39,7 +40,14 @@ public class EmployeeInfoController {
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GET_URL)
 	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeNumber") String employeeNumber) {
-		return employeeinfoservice.getEmployeeInfoByEmpId(employeeNumber);
+		EmployeeInfoVO employeeInfoVO = new EmployeeInfoVO();
+		try {
+			final EmployeeInfo employeeInfo = employeeinfoservice.getEmployeeInfoByEmpId(employeeNumber);
+			employeeinfoservice.doMap(employeeInfo, employeeInfoVO);
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
+		return employeeInfoVO;
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GETALL_URL)

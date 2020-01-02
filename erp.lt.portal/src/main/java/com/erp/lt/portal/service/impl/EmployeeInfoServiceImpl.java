@@ -83,15 +83,28 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		employeeInfoRepository.save(empinfo);
 	}
 
-	// @Override
-	public boolean editEmployeeInfo(EmployeeInfoVO modified) throws NotFoundException {
+	@Override
+	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException {
+		return getEmployeeInfo(employeeCode);
+	}
 
-		EmployeeInfo old = null;
-		boolean status = false;
-		if (modified.getEmployeeCode() !=null) {
+	private EmployeeInfo getEmployeeInfo(String employeeCode) throws NotFoundException {
+		EmployeeInfo employeeInfo = null;
+		if (null == employeeCode) {
 			throw new NotFoundException("Employee not found");
 		}
-		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(Integer.parseInt(modified.getEmployeeCode()));
+		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(Integer.valueOf(employeeCode));
+		if (eixstingEmployeeInfo.isPresent()) {
+			employeeInfo = eixstingEmployeeInfo.get();
+		}
+		return employeeInfo;
+	}
+
+	// @Override
+	public boolean editEmployeeInfo(final EmployeeInfoVO modified) throws NotFoundException {
+
+		boolean status = false;
+		final EmployeeInfo old = getEmployeeInfo(String.valueOf(modified.getEmployeeCode()));
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (modified.getGenderCode() != -1) {
@@ -100,8 +113,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		if (modified.getMaritalStatusCode() != -1) {
 			maritalStatusOptional = maritalStatusRepository.findById(modified.getMaritalStatusCode());
 		}
-		if (eixstingEmployeeInfo.isPresent()) {
-			old = eixstingEmployeeInfo.get();
+		if (null != old) {
 			old.setCitizen(modified.getCitizen());
 			old.setFirstname(modified.getFirstname());
 			old.setCountryofbirth(modified.getCountryofbirth());
@@ -115,21 +127,16 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setGenderType(genderType.get());
 		}
 		employeeInfoRepository.save(old);
-		status = true;
-		if (!eixstingEmployeeInfo.isPresent()) {
-			throw new NotFoundException("Employee not found");
-		}
+
 		return status;
 
 	}
 
 	@Override
-	public EmployeeInfoVO getEmployeeInfoByEmpId(String employeeeNumber) {
+	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeeNumber) throws NotFoundException {
 		EmployeeInfoVO empInfoVo = new EmployeeInfoVO();
-		EmployeeInfoVO employeeInfoVO = employeeInfoRepository.getEmployeeCodeByEmployeeNumber(employeeeNumber);
-		if (null != employeeInfoVO) {
-			Optional<EmployeeInfo> optional = employeeInfoRepository.findById(employeeInfoVO.getEmployeeCode());
-			EmployeeInfo employeeInfo = optional.get();
+		final EmployeeInfo employeeInfo = getEmployeeInfo(employeeeNumber);
+		if (null != employeeInfo) {
 			if (null != employeeInfo) {
 				if (0 != employeeInfo.getEmployeeCode()) {
 					empInfoVo.setEmployeeCode(employeeInfo.getEmployeeCode());
@@ -167,6 +174,8 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 				if (0 != employeeInfo.getStatus()) {
 					empInfoVo.setStatus(employeeInfo.getStatus());
 				}
+			}
+		}
 		return empInfoVo;
 	}
 
@@ -177,7 +186,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		for (EmployeeInfo empInfo : employeeInfos) {
 			EmployeeInfoVO infoVO = new EmployeeInfoVO();
 			if (0 != empInfo.getEmployeeCode()) {
-				infoVO.setEmployeeCode(String.valueOf(empInfo.getEmployeeCode()));
+				infoVO.setEmployeeCode(empInfo.getEmployeeCode());
 			}
 			if (null != empInfo.getFirstname()) {
 				infoVO.setFirstname(empInfo.getFirstname());
@@ -221,10 +230,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfoVo) throws NotFoundException {
 		EmployeeInfo old = null;
 		boolean status = false;
-		if (employeeInfoVo.getEmployeeCode() !=null) {
+		if (employeeInfoVo.getEmployeeCode() <= 0) {
 			throw new NotFoundException("Employee not found");
 		}
-		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(Integer.parseInt(employeeInfoVo.getEmployeeCode()));
+		Optional<EmployeeInfo> eixstingEmployeeInfo = employeeInfoRepository.findById(employeeInfoVo.getEmployeeCode());
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (employeeInfoVo.getGenderCode() != -1) {
@@ -256,5 +265,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 	}
 
+	@Override
+	public void doMap(EmployeeInfo employeeInfo, EmployeeInfoVO employeeInfoVO) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
