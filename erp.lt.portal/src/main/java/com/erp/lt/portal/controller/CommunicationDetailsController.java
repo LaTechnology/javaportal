@@ -19,44 +19,68 @@ import com.erp.lt.portal.ERPConstantsCom;
 import com.erp.lt.portal.service.CommunicationDetailsService;
 import com.erp.lt.portal.vo.CommunicationDetailsVO;
 
-import lombok.extern.slf4j.Slf4j;
+import javassist.NotFoundException;
 
 /**
  * @author User
  *
  */
 @RestController
-@Slf4j
 @RequestMapping(path = ERPConstantsCom.URL_BASE)
+
 public class CommunicationDetailsController {
 
 	@Autowired
 	CommunicationDetailsService communicationDetailsService;
 
-	@GetMapping(path =ERPConstantsCom.COMMUNICATION_DETAILS_GET_URL  )
+	@GetMapping(path = ERPConstantsCom.COMMUNICATION_DETAILS_GET_URL)
 	public CommunicationDetailsVO getByEmpId(@PathVariable(value = "empId") int empId) {
 		return communicationDetailsService.getCommunicationDetailsByEmpId(empId);
 	}
 
-	@PostMapping(path =ERPConstantsCom.COMMUNICATION_DETAILS_ADD_URL, consumes = {MediaType.APPLICATION_JSON_VALUE} )
+	@PostMapping(path = ERPConstantsCom.COMMUNICATION_DETAILS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void addCommunicationDetials(@RequestBody CommunicationDetailsVO communicationDetailsVO) {
-		communicationDetailsService.addCommunicationDetials(communicationDetailsVO);
+		try {
+			communicationDetailsService.addCommunicationDetials(communicationDetailsVO);
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
 
 	}
 
-	@PutMapping(path =ERPConstantsCom.COMMUNICATION_DETAILS_EDIT_URL )
+	@PutMapping(path = ERPConstantsCom.COMMUNICATION_DETAILS_EDIT_URL)
 	public void editCommunicationDetials(@RequestBody CommunicationDetailsVO communicationDetailsVO) {
-		communicationDetailsService.editCommunicationDetials(communicationDetailsVO);
 
+		try {
+			communicationDetailsService.editCommunicationDetials(communicationDetailsVO);
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
+	/*
+	 * @PutMapping(path = "/edit/com/details/{empId}") public void
+	 * editCommunicationDetials(@PathVariable(value = "empId") int empId,
+	 * 
+	 * @RequestBody CommunicationDetailsVo communicationDetailsVo) {
+	 * Optional<CommunicationDetailsVo> empdto =
+	 * communicationService.getByEmpId(empId); if (empdto == null) {
+	 * System.out.println("Employee Not found"); } else {
+	 * communicationService.editCommunicationDetials(communicationDetailsVo); } }
+	 */
+
 	@PatchMapping(path = ERPConstantsCom.COMMUNICATION_DETAILS_PATCHING_URL)
 	public void patchCommunicationDetials(@RequestBody CommunicationDetailsVO communicationDetailsVO) {
-		communicationDetailsService.editCommunicationDetials(communicationDetailsVO);
+		try {
+			communicationDetailsService.editCommunicationDetials(communicationDetailsVO);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
-	@DeleteMapping(path =ERPConstantsCom.COMMUNICATION_DETAILS_DELETE_URL)
+	@DeleteMapping(path = ERPConstantsCom.COMMUNICATION_DETAILS_DELETE_URL)
 	public void deleteCommunicationDetailsByEmpId(@PathVariable(value = "empId") int empId) {
 		communicationDetailsService.deleteCommunicationDetailsByEmpId(empId);
 

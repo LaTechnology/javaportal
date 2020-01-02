@@ -5,6 +5,7 @@ package com.erp.lt.portal.service;
 
 import java.util.List;
 
+import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.vo.EmployeeInfoVO;
 
 import javassist.NotFoundException;
@@ -18,12 +19,15 @@ public interface EmployeeInfoService {
 
 	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-	public EmployeeInfoVO getEmployeeInfoByEmpId(int employeeCode);
+
+	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeCode) throws NotFoundException;
+
+	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException;
 
 	public List<EmployeeInfoVO> getAllEmployeeInfo();
 
+	void doMap(EmployeeInfo employeeInfo, EmployeeInfoVO employeeInfoVO);
+
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-
-	
 }
