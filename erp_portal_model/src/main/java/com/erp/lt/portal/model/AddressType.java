@@ -2,6 +2,7 @@ package com.erp.lt.portal.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -16,8 +17,8 @@ public class AddressType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int code;
+	@Column(name="address_type_code")
+	private int addressTypeCode;
 
 	private String title;
 
@@ -28,12 +29,12 @@ public class AddressType implements Serializable {
 	public AddressType() {
 	}
 
-	public int getCode() {
-		return this.code;
+	public int getAddressTypeCode() {
+		return this.addressTypeCode;
 	}
 
-	public void setCode(int code) {
-		this.code = code;
+	public void setAddressTypeCode(int addressTypeCode) {
+		this.addressTypeCode = addressTypeCode;
 	}
 
 	public String getTitle() {
