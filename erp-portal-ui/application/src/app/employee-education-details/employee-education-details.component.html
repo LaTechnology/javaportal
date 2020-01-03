@@ -1,0 +1,18 @@
+<p>
+  employee-education-details works!
+</p>
+<h2>Employee Education Details</h2> 
+
+<hr/>
+<div *ngIf="employeeEducation">
+  <div>
+    <label><b>University Name:</b></label> {{employeeEducation.universityName}}
+  </div>
+  <div>
+    <label><b>Institute Name:</b></label> {{employeeEducation.instituteName}}
+  </div>
+ </div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Employee Education List</button><br>
