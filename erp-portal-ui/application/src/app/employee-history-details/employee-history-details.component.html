@@ -1,0 +1,31 @@
+<p>
+  Employee History Added Succesfully
+</p>
+
+
+<h2>Employee History Details</h2> 
+
+<hr/>
+<div *ngIf="employeeHistory">
+  <div>
+    <label><b>Employeer Name </b></label> {{employeeHistory.EmployeerName}}
+  </div>
+  <div>
+    <label><b>BeginDate: </b></label> {{employeeHistory.beginDate}}
+  </div>
+  <div>
+    <label><b>End Date: </b></label> {{employeeHistory.endDate}}
+  </div>  
+  <div>
+    <label><b>Address: </b></label> {{employeeAddress.addressLine1}},
+
+  </div>  
+  <div>
+    <label><b>Designation: </b></label> {{employeeDesignation.designationType}}
+  </div> 
+  
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Employee History List</button><br>
