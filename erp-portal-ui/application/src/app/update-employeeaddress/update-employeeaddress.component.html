@@ -1,0 +1,73 @@
+<h3>Update Employee Address</h3>
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="name">BeginDate</label>
+      <input type="date" class="form-control" id="begindate" required [(ngModel)]="employeeaddress.begindate" name="begindate">
+    </div>
+   <div class="form-group col-md-6">
+      <label for="name">EndDate</label>
+      <input type="date" class="form-control" id="enddate" required [(ngModel)]="employeeaddress.enddate" name="enddate">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="name">AddressLine1</label>
+      <input type="text" class="form-control" id="addressline1" required [(ngModel)]="employeeaddress.addressline1" name="addressline1">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">AddressLine2</label>
+      <input type="text" class="form-control" id="addressline2" required [(ngModel)]="employeeaddress.addressline2" name="addressline2">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="name">City</label>
+      <input type="text" class="form-control" id="city" required [(ngModel)]="employeeaddress.city" name="city">
+    </div>
+    <div class="form-group col-md-6"> 
+      <label for="name">Country</label>
+      <input type="text" class="form-control" id="country" required [(ngModel)]="employeeaddress.country" name="country">
+    </div>
+</div>
+
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="name">State</label>
+      <input type="text" class="form-control" id="state" required [(ngModel)]="employeeaddress.state" name="state">
+    </div>
+        <div class="form-group col-md-6">
+      <label for="name">Pincode</label>
+      <input type="text" class="form-control" id="pincode" required [(ngModel)]="employeeaddress.pincode" name="pincode">
+    </div>
+</div>
+
+
+<div class="form-row">
+  <div class="form-group col-md-6">
+      <label for="name">AddressType</label>
+      <select id="AddressType" class="form-control">
+          <option select id="Choose..." name="Choose..." class="input-medium" disabled="disabled">Choose...</option>
+          <option value="1">Current</option>
+          <option value="2">Permanent</option>
+          <option value="3">Mailing</option>
+          <option value="4">Office</option>
+          <option value="5">Worksite</option>
+          <option value="6">Emergency Contact Address</option>
+        </select>        
+    </div>
+  </div>
+
+
+<div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</div>
+</form>
+<div [hidden]="!submitted">
+</div>
+
+
+
