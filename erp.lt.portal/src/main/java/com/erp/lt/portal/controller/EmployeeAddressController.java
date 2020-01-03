@@ -16,6 +16,8 @@ import com.erp.lt.portal.ERPConstantsAddress;
 import com.erp.lt.portal.service.EmployeeAddressService;
 import com.erp.lt.portal.vo.EmployeeAddressVO;
 
+import javassist.NotFoundException;
+
 @RestController
 @RequestMapping(path = ERPConstantsAddress.URL_BASE)
 public class EmployeeAddressController {
@@ -37,16 +39,24 @@ public class EmployeeAddressController {
 
 	@PutMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_EDIT_URL)
 	public void editemployeeaddress(@RequestBody EmployeeAddressVO employeeaddressvo) {
-		empAddressService.editemployeaddress(employeeaddressvo);
+
+		try {
+			empAddressService.editemployeaddress(employeeaddressvo);
+		} catch (NotFoundException e) {
+
+			e.printStackTrace();
+		}
 	}
 
-	@PatchMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_PATCHING_URL)
-	public void patchingemployeeaddress(@RequestBody EmployeeAddressVO employeeaddressvo) {
-		empAddressService.editemployeaddress(employeeaddressvo);
-	}
+	/*
+	 * @PatchMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_PATCHING_URL)
+	 * public void patchingemployeeaddress(@RequestBody EmployeeAddressVO
+	 * employeeaddressvo) { empAddressService.editemployeaddress(employeeaddressvo);
+	 * }
+	 */
 
 	@DeleteMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_DELETE_URL)
-	public void deleteEmployee(@PathVariable(value = "employeeNumber") String employeeNumber) {
+	public void deleteEmployee(@PathVariable(value = "employeeNumber") int employeeNumber) {
 
 		empAddressService.deleteemployeaddress(employeeNumber);
 

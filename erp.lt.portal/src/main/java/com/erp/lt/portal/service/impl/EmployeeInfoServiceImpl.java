@@ -21,10 +21,7 @@ import com.erp.lt.portal.vo.EmployeeInfoVO;
 
 import javassist.NotFoundException;
 
-/**
- * @author admin
- *
- */
+
 @Service
 public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
@@ -47,25 +44,24 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			maritalStatusOptional = maritalStatusRepository.findById(employeeInfoVO.getMaritalStatusCode());
 		}
 
-		System.out.println(employeeInfoVO.getClass());
+		
 		if (null != employeeInfoVO.getFirstname()) {
 			empinfo.setFirstname(employeeInfoVO.getFirstname());
-			
-		}
-		if (null != employeeInfoVO.getLastName()) {
-			empinfo.setLastname(employeeInfoVO.getLastName());
-			
-		}
-	 
+			}
+		
+		 if(null != employeeInfoVO.getLastName()) {
+		  empinfo.setLastName(employeeInfoVO.getLastName());     
+		 
+		 }
+		
+		
 		if (null != employeeInfoVO.getCitizen()) {
 			empinfo.setCitizen(employeeInfoVO.getCitizen());
-			
 		}
-	 
 		if (null != employeeInfoVO.getCountryofbirth()) {
 			empinfo.setCountryofbirth(employeeInfoVO.getCountryofbirth());
-			
-		}
+			}
+		
 		if (null != employeeInfoVO.getNationality()) {
 			empinfo.setNationality(employeeInfoVO.getNationality());
 			
@@ -85,19 +81,17 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		}
 		if (null != employeeInfoVO.getMarriageDate()) {
 			empinfo.setMarriageDate(employeeInfoVO.getMarriageDate());
-			
-		}
+			}
+		
 		if (0 != employeeInfoVO.getStatus()) {
 			empinfo.setStatus(employeeInfoVO.getStatus());
-			
 		}
+		
 		if (null != maritalStatusOptional) {
 			empinfo.setMaritalStatus(maritalStatusOptional.get());
-			
 		}
 		employeeInfoRepository.save(empinfo);
 	}
-
 	@Override
 
 	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException {
@@ -116,7 +110,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		return employeeInfo;
 	}
 
-	// @Override
+	 @Override
 	public boolean editEmployeeInfo(final EmployeeInfoVO modified) throws NotFoundException {
 
 		boolean status = false;
@@ -134,19 +128,19 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(modified.getFirstname());
 			old.setCountryofbirth(modified.getCountryofbirth());
 			old.setDob(modified.getDob());
-			old.setLastname(modified.getLastName());
+			old.setLastName(modified.getLastName());
 			old.setNationality(modified.getNationality());
 			old.setMarriageDate(modified.getMarriageDate());
 			old.setStateofbirth(modified.getStateofbirth());
 			old.setStatus(modified.getStatus());
 			old.setMaritalStatus(maritalStatusOptional.get());
 			old.setGenderType(genderType.get());
-		}
+		
 		employeeInfoRepository.save(old);
 
 		return status;
-
 	}
+	
 
 	@Override
 	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeeNumber) throws NotFoundException {
@@ -201,19 +195,27 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		List<EmployeeInfo> employeeInfos = employeeInfoRepository.findAll();
 		List<EmployeeInfoVO> infoVOs = new ArrayList<>();
 		for (EmployeeInfo empInfo : employeeInfos) {
+			
 			EmployeeInfoVO infoVO = new EmployeeInfoVO();
+			
 			if (0 != empInfo.getEmployeeCode()) {
 				infoVO.setEmployeeCode(empInfo.getEmployeeCode());
-			}
+				}
+			
 			if (null != empInfo.getFirstname()) {
 				infoVO.setFirstname(empInfo.getFirstname());
-			}
-			if (null != empInfo.getLastname()) {
-				infoVO.setLastName(empInfo.getLastname());
-			}
+				}
+			
+			
+			if (null != empInfo.getLastName()) {
+			  infoVO.setLastName(empInfo.getLastName()); 
+			  }
+			 
+			
 			if (null != empInfo.getCitizen()) {
 				infoVO.setCitizen(empInfo.getCitizen());
 			} 
+			
 			if (null != empInfo.getCountryofbirth()) {
 				infoVO.setCountryofbirth(empInfo.getCountryofbirth());
 			}
@@ -267,7 +269,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(employeeInfoVo.getFirstname());
 			old.setCountryofbirth(employeeInfoVo.getCountryofbirth());
 			old.setDob(employeeInfoVo.getDob());
-		old.setLastname(employeeInfoVo.getLastName());
+		    old.setLastName(employeeInfoVo.getLastName());
 			old.setNationality(employeeInfoVo.getNationality());
 			old.setMarriageDate(employeeInfoVo.getMarriageDate());
 			old.setStateofbirth(employeeInfoVo.getStateofbirth());
@@ -291,4 +293,4 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	}
 
 
-}
+	}
