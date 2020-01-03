@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+    <table id="example" class="display" style="width:100%"></table>
+      <div class="panel-heading">
+        <h2>Employee communicationinfo List</h2>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>company emailid</th>
+              <th>personal emailid</th>
+              <th>client emailid</th>
+              <th>Emergency contact number</th>
+              <th>Begin date</th>
+              <th>End date</th>
+              <th>ACTION</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employeecommunication of communication_details | async">
+              <td>{{employeecommunication.company_email_id}}</td>
+              <td>{{employeecommunication.personal_email_id}}</td>
+              <td>{{employeecommunication.client_email_id}}</td>
+              <td>{{employeecommunication.emergency_contact_number}}</td>
+              <td>{{employeecommunication.begin_date}}</td>
+              <td>{{employeecommunication.end_date}}</td>
+             
+             
+              
+              <td><button (click)="deleteEmployee(employeecommunication.id)" class="btn btn-danger">Delete</button>
+                  <button (click)="updatecommunication(employeecommunication.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                  <button (click)=" employeeDetails(employeecommunication.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  

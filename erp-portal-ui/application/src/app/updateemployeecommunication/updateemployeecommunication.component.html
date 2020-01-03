@@ -1,0 +1,44 @@
+<h3>UPDATE Employee communication info  </h3>
+
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class ="form-row"   >
+
+    <div class="form-group col-md-6">
+      <label for="name">company emailid</label>
+      <input type="text" class="form-control" id="company_email_id" required [(ngModel)]="employeecommunication.company_email_id" name="company_email_id">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">personal emailid</label>
+      <input type="text" class="form-control" id="personal_email_id" required [(ngModel)]="employeecommunication.personal_email_id" name="personal_email_id">
+    </div>
+  </div>
+    <div class ="form-row"   >
+      <div class="form-group col-md-6">
+      <label for="name">client emailid</label>
+      <input type="text" class="form-control" id="client_email_id" required [(ngModel)]="employeecommunication.client_email_id" name="client_email_id">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Emergency contact number</label>
+      <input type="number" class="form-control" id="emergency_contact_number" required [(ngModel)]="employeecommunication.emergency_contact_number" name="emergency_contact_number">
+    </div>
+  </div>
+    <div class ="form-row"   >
+      <div class="form-group col-md-6">
+      <label for="name">begin date</label>
+      <input type="text" class="form-control" id="begin_date" required [(ngModel)]="employeecommunication.begin_date" name="begin_date ">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">end date</label>
+      <input type="text" class="form-control" id="end_date " required [(ngModel)]="employeecommunication.end_date" name="end_date">
+    </div>
+  </div>
+
+    <div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  
+  </form>
+  <div [hidden]="!submitted">
+    
+  </div>
+
