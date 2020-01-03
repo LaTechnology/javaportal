@@ -47,14 +47,13 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		
 		if (null != employeeInfoVO.getFirstname()) {
 			empinfo.setFirstname(employeeInfoVO.getFirstname());
+ 
 			}
 		
 		 if(null != employeeInfoVO.getLastName()) {
 		  empinfo.setLastName(employeeInfoVO.getLastName());     
 		 
-		 }
-		
-		
+		 } 
 		if (null != employeeInfoVO.getCitizen()) {
 			empinfo.setCitizen(employeeInfoVO.getCitizen());
 		}
@@ -109,7 +108,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		}
 		return employeeInfo;
 	}
-
+ 
 	 @Override
 	public boolean editEmployeeInfo(final EmployeeInfoVO modified) throws NotFoundException {
 
@@ -140,7 +139,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 		return status;
 	}
-	
+	 
 
 	@Override
 	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeeNumber) throws NotFoundException {
@@ -204,14 +203,13 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			
 			if (null != empInfo.getFirstname()) {
 				infoVO.setFirstname(empInfo.getFirstname());
+ 
 				}
 			
 			
 			if (null != empInfo.getLastName()) {
 			  infoVO.setLastName(empInfo.getLastName()); 
-			  }
-			 
-			
+			  } 
 			if (null != empInfo.getCitizen()) {
 				infoVO.setCitizen(empInfo.getCitizen());
 			} 
@@ -269,7 +267,9 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(employeeInfoVo.getFirstname());
 			old.setCountryofbirth(employeeInfoVo.getCountryofbirth());
 			old.setDob(employeeInfoVo.getDob());
+ 
 		    old.setLastName(employeeInfoVo.getLastName());
+ 
 			old.setNationality(employeeInfoVo.getNationality());
 			old.setMarriageDate(employeeInfoVo.getMarriageDate());
 			old.setStateofbirth(employeeInfoVo.getStateofbirth());
@@ -290,6 +290,12 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	public void doMap(EmployeeInfo employeeInfo, EmployeeInfoVO employeeInfoVO) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

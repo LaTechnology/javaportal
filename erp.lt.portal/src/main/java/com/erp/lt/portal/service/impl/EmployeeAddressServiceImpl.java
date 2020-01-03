@@ -35,6 +35,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		EmployeeAddressVO addressVO = new EmployeeAddressVO();
 		Optional<EmployeeAddress> employeeaddress = addressRepository.getEmployeeAddress(Id);
 		EmployeeAddress address = employeeaddress.get();
+
         EmployeeInfo employeeInfo= employeeInfoRepository.getOne(Id);
         		
 		if(0!=address.getAddressCode()) {
@@ -131,6 +132,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 	public void deleteemployeaddress(int Addresscode) {
              
 			addressRepository.deleteById(Addresscode);
+ 
 	}
 
 	
@@ -141,7 +143,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		Optional<AddressType> addressType = null;
 		
 		Optional<EmployeeInfo> employeeinfo = null;
-
+ 
 		if (0!=employeeaddressvo.getAddressTypeCode()) {
 			addressType = employeeAddressTypeRepository.findById(employeeaddressvo.getAddressTypeCode());
 		}
@@ -154,6 +156,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		
   		if (0 != employeeaddressvo.getAddressCode()) {
 			address.setAddressCode(employeeaddressvo.getAddressCode());
+ 
 		}
 		if (null !=employeeaddressvo.getAddressline1()){
 			address.setAddressLine1(employeeaddressvo.getAddressline1());
@@ -162,17 +165,17 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		if (null !=employeeaddressvo.getAddressline2()){
 			address.setAddressLine2(employeeaddressvo.getAddressline2());
 		}
+ 
+ 
 
 
 		if (null !=employeeaddressvo.getBegindate()){
 			address.setBeginDate(employeeaddressvo.getBegindate());
 		}
-
-
+ 
 		if (null !=employeeaddressvo.getEnddate()){
 			address.setEndDate(employeeaddressvo.getEnddate());
-		}
-
+		} 
 		if (null != employeeaddressvo.getCity()) {
 			address.setCity(employeeaddressvo.getCity());
 		}
@@ -180,6 +183,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		if (null != employeeaddressvo.getState()) {
 			address.setState(employeeaddressvo.getState());
 		}
+ 
 		
 		if(null!= employeeaddressvo.getPincode()) {
 			address.setPincode(employeeaddressvo.getPincode());
@@ -199,8 +203,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
         
         if(null!= employeeinfo) {
         	address.setEmployeeInfo(employeeinfo.get());
-        }
-		
+        } 
 		addressRepository.save(address);
 	}
 }
