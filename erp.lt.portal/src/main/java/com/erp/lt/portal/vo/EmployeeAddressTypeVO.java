@@ -1,21 +1,16 @@
 package com.erp.lt.portal.vo;
 
-import java.io.Serializable;
-import java.util.List;
-
-import com.erp.lt.portal.model.EmployeeAddress;
-
-public class EmployeeAddressTypeVO implements Serializable
+public class EmployeeAddressTypeVO //implements Serializable
 
 {
 
-	private static final long serialVersionUID = 8066169032253813215L;
+	//private static final long serialVersionUID = 8066169032253813215L;
 	private int code;
 
 	private String title;
 
 	 
-	private List<EmployeeAddress> employeeAddresses;
+	//private List<EmployeeAddress> employeeAddresses;
 
 
 
@@ -30,14 +25,14 @@ public class EmployeeAddressTypeVO implements Serializable
 	}
 
 
-	public List<EmployeeAddress> getEmployeeAddresses() {
-		return employeeAddresses;
-	}
+	//public List<EmployeeAddress> getEmployeeAddresses() {
+		//return employeeAddresses;
+	//}
 
 
-	public void setEmployeeAddresses(List<EmployeeAddress> employeeAddresses) {
-		this.employeeAddresses = employeeAddresses;
-	}
+	//public void setEmployeeAddresses(List<EmployeeAddress> employeeAddresses) {
+		//this.employeeAddresses = employeeAddresses;
+	//}
 
 
 	public int getCode() {

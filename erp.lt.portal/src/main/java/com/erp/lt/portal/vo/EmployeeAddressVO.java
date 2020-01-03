@@ -1,14 +1,15 @@
 package com.erp.lt.portal.vo;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 import java.util.Date;
 
 import com.erp.lt.portal.model.AddressType;
 import com.erp.lt.portal.model.EmployeeInfo;
 
-public class EmployeeAddressVO implements Serializable {
+public class EmployeeAddressVO //implements Serializable 
+{
 
-	private static final long serialVersionUID = -7799807974972674074L;
+	//private static final long serialVersionUID = -7799807974972674074L;
 
 	private int addressCode;
 	
@@ -25,6 +26,16 @@ public class EmployeeAddressVO implements Serializable {
 	private String pincode;
 	
 	private Date begindate;
+	
+	private Date enddate;
+	private String state;
+	
+	private AddressType addressType;
+	
+	private int addressTypeCode;
+	
+	private EmployeeInfo employeeInfo;
+
 	
 	
 	public Date getBegindate() {
@@ -43,18 +54,6 @@ public class EmployeeAddressVO implements Serializable {
 		this.enddate = enddate;
 	}
 
-	private Date enddate;
-	
-
-	private String state;
-	
-	private AddressType addressType;
-	
-	private int addressTypeCode;
-	
-	private EmployeeInfo employeeInfo;
-
-	
 	public String getAddressline1() {
 		return addressline1;
 	}
@@ -86,8 +85,6 @@ public class EmployeeAddressVO implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	
 
 	public String getState() {
 		return state;
