@@ -17,4 +17,6 @@ public interface EmployeeAddressRepository extends JpaRepository<EmployeeAddress
 			+ " on empadd.address_type_code = addtype.code  " + " where empadd.employee_id=:id", nativeQuery = true)
 	public Optional<EmployeeAddress> getEmployeeAddress(@Param(value = "id") int id);
 
+	public Optional<EmployeeAddress> getEmployementHistory(int employeeCode);
+
 }

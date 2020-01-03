@@ -28,7 +28,7 @@ public class EmployementHistory implements Serializable {
 
 	private BigDecimal ctc;
 
-	private String employerNmae;
+	private String employerName;
 
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
@@ -80,12 +80,14 @@ public class EmployementHistory implements Serializable {
 		this.ctc = ctc;
 	}
 
-	public String getEmployerNmae() {
-		return this.employerNmae;
+	
+
+	public String getEmployerName() {
+		return employerName;
 	}
 
-	public void setEmployerNmae(String employerNmae) {
-		this.employerNmae = employerNmae;
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
 	}
 
 	public Date getEndDate() {
