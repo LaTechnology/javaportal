@@ -35,66 +35,57 @@ public class EmployeeInfoController {
 
 	@PostMapping(path = ERPConstants.EMPLOYEE_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void addEmployee(@RequestBody EmployeeInfoVO employeeInfoVo) {
-		employeeinfoservice.addEmployeeInfo(employeeInfoVo);
+	employeeinfoservice.addEmployeeInfo(employeeInfoVo);
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GET_URL)
-
-	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeNumber") String employeeNumber) {
-		EmployeeInfoVO employeeInfoVO = new EmployeeInfoVO();
-		try {
-			final EmployeeInfo employeeInfo = employeeinfoservice.getEmployeeInfoByEmpId(employeeNumber);
-			employeeinfoservice.doMap(employeeInfo, employeeInfoVO);
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-		}
-		return employeeInfoVO;
-
+	public EmployeeInfoVO getEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
+	return employeeinfoservice.getEmployeeInfoByEmpId(employeeCode);
 	}
 
 	@GetMapping(path = ERPConstants.EMPLOYEE_GETALL_URL)
 	public List<EmployeeInfoVO> getAllEmployee() {
-		return employeeinfoservice.getAllEmployeeInfo();
+	return employeeinfoservice.getAllEmployeeInfo();
 
 	}
 
 	@PutMapping(path = ERPConstants.EMPLOYEE_EDIT_URL)
 	public boolean editEmployee(@RequestBody EmployeeInfoVO employeeInfoVo) {
-		boolean infoVO = true;
-		try {
-			infoVO = employeeinfoservice.editEmployeeInfo(employeeInfoVo);
-		} catch (NotFoundException e) { // TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (infoVO) {
-			System.out.println("Employee Not found");
-		} else {
-			try {
-				employeeinfoservice.editEmployeeInfo(employeeInfoVo);
-			} catch (NotFoundException e) { // TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return infoVO;
+	boolean infoVO = true;
+	try {
+	infoVO = employeeinfoservice.editEmployeeInfo(employeeInfoVo);
+	} catch (NotFoundException e) { // TODO Auto-generated catch block
+	e.printStackTrace();
+	}
+	if (infoVO) {
+	System.out.println("Employee Not found");
+	} else {
+	try {
+	employeeinfoservice.editEmployeeInfo(employeeInfoVo);
+	} catch (NotFoundException e) { // TODO Auto-generated catch block
+	e.printStackTrace();
+	}
+	}
+	return infoVO;
 	}
 
 	@PatchMapping(path = ERPConstants.EMPLOYEE_PATCHING_URL)
 
 	public boolean editedEmployeeInfo(@RequestBody EmployeeInfoVO employeeInfoVo) {
-		boolean status = false;
-		try {
-			status = employeeinfoservice.patchEmployeeInfo(employeeInfoVo);
-		} catch (NotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	boolean status = false;
+	try {
+	status = employeeinfoservice.patchEmployeeInfo(employeeInfoVo);
+	} catch (NotFoundException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+	}
 
-		if (status) {
-			System.out.println("Employee saved");
-		} else {
-			System.out.println("Employee not saved");
-		}
-		return status;
+	if (status) {
+	System.out.println("Employee saved");
+	} else {
+	System.out.println("Employee not saved");
+	}
+	return status;
 	}
 	/*
 	 * @DeleteMapping(path = ERPConstants.EMPLOYEE_DELETE_URL) public void
