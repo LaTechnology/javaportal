@@ -1,10 +1,11 @@
   <h2><b>EMPLOYEE PERSONAL INFORMATION</b></h2>
   <br>
   <form (ngSubmit)="onSubmit()" autocomplete="off">
+    
     <div class="form-row">
       <div class="form-group col-md-6">
       <label for="name">First Name</label>
-      <input type="text" class="form-control" id="firstName" required [(ngModel)]="employee.firstName" name="firstName">
+      <input type="text" class="form-control" id="firstname" required [(ngModel)]="employee.firstname" name="firstname">
     </div>
 
     <div class="form-group col-md-6">
@@ -16,19 +17,19 @@
     <div class="form-row">
       <div class="form-group col-md-6">
       <label for="name">MaritalStatus</label>
-      <input type="text" class="form-control" id="maritalstatus" required [(ngModel)]="employee.maritalstatus" name="maritalstatus">
+      <input type="text" class="form-control" id="maritalStatus" required [(ngModel)]="employee.maritalStatus" name="maritalStatus">
     </div>
 
     <div class="form-group col-md-6">
       <label for="name">MarriageDate</label>
-      <input type="date" class="form-control" id="marriagedate" required [(ngModel)]="employee.marriagedate" name="marriagedate">
+      <input type="date" class="form-control" id="marriageDate" required [(ngModel)]="employee.marriageDate" name="marriageDate">
     </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
       <label for="name">DateOfBirth</label>
-      <input type="date" class="form-control" id="dateofBirth" required [(ngModel)]="employee.dateofBirth" name="dateofBirth">
+      <input type="date" class="form-control" id="dob" required [(ngModel)]="employee.dob" name="dob">
     </div>
 
     <div class="form-group col-md-6">     
@@ -57,9 +58,21 @@
 
     <div class="form-group col-md-6">
       <label for="name">Gender</label>
-      <input type="text" class="form-control" id="gender" required [(ngModel)]="employee.gender" name="gender">
+      <input type="text" class="form-control" id="genderType" required [(ngModel)]="employee.genderType" name="genderType">
     </div>
     </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Status</label>
+      <input type="number" class="form-control" id="status" required [(ngModel)]="employee.status" name="status">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Employee Code</label>
+      <input type="text" class="form-control" id="employeeCode" required [(ngModel)]="employee.employeeCode" name="employeeCode">
+    </div>
+    </div>
+
    <div>
     <button type="submit" class="btn btn-success">Submit</button>
     </div>

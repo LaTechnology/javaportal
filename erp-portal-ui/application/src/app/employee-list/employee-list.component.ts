@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeDetailsComponent } from './../employee-details/employee-details.component';
 import { Observable } from "rxjs";
 import { EmployeeService } from "./../employee.service";
-import { Employee } from "./../employee";
+import { EmployeeInfoVO } from "./../employee";
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employees: Observable<Employee[]>;
+  employees: Observable<EmployeeInfoVO[]>;
 
 
   constructor(private employeeService: EmployeeService,
@@ -26,8 +26,8 @@ export class EmployeeListComponent implements OnInit {
     this.employees = this.employeeService.getEmployeesList();
   }
 
-  deleteEmployee(id: number) {
-    this.employeeService.deleteEmployee(id)
+  deleteEmployee(employeeCode: BigInteger) {
+    this.employeeService.deleteEmployee(employeeCode)
       .subscribe(
         data => {
           console.log(data);
@@ -36,11 +36,13 @@ export class EmployeeListComponent implements OnInit {
         error => console.log(error));
   }
 
-  employeeDetails(id: number){
-    this.router.navigate(['details', id]);
+  employeeDetails(employeeCode: BigInteger){
+    this.router.navigate(['details', employeeCode]);
   }
 
-  updateEmployee(id: number){
-    this.router.navigate(['update', id]);
+  updateEmployee(employeeCode: BigInteger){
+    this.router.navigate(['update', employeeCode]);
   }
 }
+
+

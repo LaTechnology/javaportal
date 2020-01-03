@@ -3,19 +3,22 @@
 <hr/>
 <div *ngIf="employee">
   <div>
-    <label><b>FIRST NAME: </b></label> {{employee.firstName}}
+    <label><b>EMPLOYEE CODE: </b></label> {{employee.employeeCode}}
+  </div>
+  <div>
+    <label><b>FIRST NAME: </b></label> {{employee.firstname}}
   </div>
   <div>
     <label><b>LAST NAME: </b></label> {{employee.lastName}}
   </div>
   <div>
-    <label><b>MARITAL STATUS: </b></label> {{employee.maritalstatus}}
+    <label><b>MARITAL STATUS: </b></label> {{employee.maritalStatus}}
   </div>  
   <div>
-    <label><b>MARRAGE DATE: </b></label> {{employee.marriagedate}}
+    <label><b>MARRAGE DATE: </b></label> {{employee.marriageDate}}
   </div>  
   <div>
-    <label><b>DATE OF BIRTH: </b></label> {{employee.dateofBirth}}
+    <label><b>DATE OF BIRTH: </b></label> {{employee.dob}}
   </div>  
   <div>
     <label><b>NATIONALITY: </b></label> {{employee.nationality}}
@@ -30,8 +33,12 @@
     <label><b>CITIZEN: </b></label> {{employee.citizen}}
   </div> 
   <div>
-    <label><b>GENDER: </b></label> {{employee.gender}}
+    <label><b>GENDER: </b></label> {{employee.genderType}}
   </div>  
+  <div>
+    <label><b>STATUS: </b></label> {{employee.status}}
+  </div>  
+ 
 </div>
 <br>
 <br>

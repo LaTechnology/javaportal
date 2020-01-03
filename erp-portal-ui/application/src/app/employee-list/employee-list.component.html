@@ -1,4 +1,3 @@
-
   <table class="table">
   <thead class="thead-dark">
       <tr>
@@ -12,6 +11,7 @@
         <!-- <th scope="col">STATEOFBIRTH</th> -->
         <th scope="col">CITIZEN</th>
         <th scope="col">GENDER</th>
+        <th scope="col">STATUS</th>
         <th scope="col">ACTION</th>
       </tr>
     </thead>
@@ -20,16 +20,18 @@
     <tbody>
       <tr *ngFor="let employee of employees | async">
         <!-- <th scope="row">1</th> -->
-        <td>{{employee.firstName}}</td>
+        <td>{{employee.employeeCode}}</td>
+        <td>{{employee.firstname}}</td>
         <td>{{employee.lastName}}</td>
-        <!-- <td>{{employee.maritalstatus}}</td> -->
-        <!-- <td>{{employee.marriagedate}}</td> -->
-        <td>{{employee.dateofBirth}}</td>
+        <!-- <td>{{employee.maritalStatus}}</td> -->
+        <!-- <td>{{employee.marriageDate}}</td> -->
+        <td>{{employee.dob}}</td>
         <!-- <td>{{employee.nationality}}</td> -->
         <!-- <td>{{employee.countryofbirth}}</td> -->
         <!-- <td>{{employee.stateofbirth}}</td> -->
-        <td>{{employee.citizen}}</td>
-        <td>{{employee.gender}}</td>
+        <!-- <td>{{employee.citizen}}</td> -->
+        <td>{{employee.genderType}}</td>
+        <!-- <td>{{employee.status}}</td> -->
         <td><button (click)="deleteEmployee(employee.id)" class="btn btn-danger"><i class="material-icons">
           delete_forever
           </i>
