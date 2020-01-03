@@ -15,7 +15,9 @@ import java.util.List;
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	@Column(name = "employee_code")
 	private int employeeCode;
 
@@ -27,8 +29,7 @@ public class EmployeeInfo implements Serializable {
 	private Date dob;
 
 	private String firstname;
-	
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "marriage_date")
 	private Date marriageDate;
@@ -64,166 +65,166 @@ public class EmployeeInfo implements Serializable {
 	public EmployeeInfo() {
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public int getemployeeCode() {
-	return employeeCode;
+		return employeeCode;
 	}
-
 
 	public void setemployeeCode(int employeeCode) {
-	this.employeeCode = employeeCode;
+		this.employeeCode = employeeCode;
 	}
 
-
 	public String getCitizen() {
-	return this.citizen;
+		return this.citizen;
 	}
 
 	public void setCitizen(String citizen) {
-	this.citizen = citizen;
+		this.citizen = citizen;
 	}
 
 	public String getCountryofbirth() {
-	return this.countryofbirth;
+		return this.countryofbirth;
 	}
 
 	public void setCountryofbirth(String countryofbirth) {
-	this.countryofbirth = countryofbirth;
+		this.countryofbirth = countryofbirth;
 	}
 
 	public Date getDob() {
-	return this.dob;
+		return this.dob;
 	}
 
 	public void setDob(Date dob) {
-	this.dob = dob;
+		this.dob = dob;
 	}
 
 	public String getFirstname() {
-	return this.firstname;
+		return this.firstname;
 	}
 
 	public void setFirstname(String firstname) {
-	this.firstname = firstname;
+		this.firstname = firstname;
 	}
 
-	
-	
-
 	public Date getMarriageDate() {
-	return this.marriageDate;
+		return this.marriageDate;
 	}
 
 	public void setMarriageDate(Date marriageDate) {
-	this.marriageDate = marriageDate;
+		this.marriageDate = marriageDate;
 	}
 
 	public String getNationality() {
-	return this.nationality;
+		return this.nationality;
 	}
 
 	public void setNationality(String nationality) {
-	this.nationality = nationality;
+		this.nationality = nationality;
 	}
 
 	public String getStateofbirth() {
-	return this.stateofbirth;
+		return this.stateofbirth;
 	}
 
 	public void setStateofbirth(String stateofbirth) {
-	this.stateofbirth = stateofbirth;
+		this.stateofbirth = stateofbirth;
 	}
 
 	public byte getStatus() {
-	return this.status;
+		return this.status;
 	}
 
 	public void setStatus(byte status) {
-	this.status = status;
+		this.status = status;
 	}
 
 	public List<CommunicationDetail> getCommunicationDetails() {
-	return this.communicationDetails;
+		return this.communicationDetails;
 	}
 
 	public void setCommunicationDetails(List<CommunicationDetail> communicationDetails) {
-	this.communicationDetails = communicationDetails;
+		this.communicationDetails = communicationDetails;
 	}
 
 	public CommunicationDetail addCommunicationDetail(CommunicationDetail communicationDetail) {
-	getCommunicationDetails().add(communicationDetail);
-	communicationDetail.setEmployeeInfo(this);
+		getCommunicationDetails().add(communicationDetail);
+		communicationDetail.setEmployeeInfo(this);
 
-	return communicationDetail;
+		return communicationDetail;
 	}
 
 	public CommunicationDetail removeCommunicationDetail(CommunicationDetail communicationDetail) {
-	getCommunicationDetails().remove(communicationDetail);
-	communicationDetail.setEmployeeInfo(null);
+		getCommunicationDetails().remove(communicationDetail);
+		communicationDetail.setEmployeeInfo(null);
 
-	return communicationDetail;
+		return communicationDetail;
 	}
 
 	public List<EducationDetail> getEducationDetails() {
-	return this.educationDetails;
+		return this.educationDetails;
 	}
 
 	public void setEducationDetails(List<EducationDetail> educationDetails) {
-	this.educationDetails = educationDetails;
+		this.educationDetails = educationDetails;
 	}
 
 	public EducationDetail addEducationDetail(EducationDetail educationDetail) {
-	getEducationDetails().add(educationDetail);
-	educationDetail.setEmployeeInfo(this);
+		getEducationDetails().add(educationDetail);
+		educationDetail.setEmployeeInfo(this);
 
-	return educationDetail;
+		return educationDetail;
 	}
 
 	public EducationDetail removeEducationDetail(EducationDetail educationDetail) {
-	getEducationDetails().remove(educationDetail);
-	educationDetail.setEmployeeInfo(null);
+		getEducationDetails().remove(educationDetail);
+		educationDetail.setEmployeeInfo(null);
 
-	return educationDetail;
+		return educationDetail;
 	}
 
 	public GenderType getGenderType() {
-	return this.genderType;
+		return this.genderType;
 	}
 
 	public void setGenderType(GenderType genderType) {
-	this.genderType = genderType;
+		this.genderType = genderType;
 	}
 
 	public MaritalStatus getMaritalStatus() {
-	return this.maritalStatus;
+		return this.maritalStatus;
 	}
 
 	public void setMaritalStatus(MaritalStatus maritalStatus) {
-	this.maritalStatus = maritalStatus;
+		this.maritalStatus = maritalStatus;
 	}
 
 	public List<EmployementHistory> getEmployementHistories() {
-	return this.employementHistories;
+		return this.employementHistories;
 	}
 
 	public void setEmployementHistories(List<EmployementHistory> employementHistories) {
-	this.employementHistories = employementHistories;
+		this.employementHistories = employementHistories;
 	}
 
 	public EmployementHistory addEmployementHistory(EmployementHistory employementHistory) {
-	getEmployementHistories().add(employementHistory);
-	employementHistory.setEmployeeInfo(this);
+		getEmployementHistories().add(employementHistory);
+		employementHistory.setEmployeeInfo(this);
 
-	return employementHistory;
+		return employementHistory;
 	}
 
 	public EmployementHistory removeEmployementHistory(EmployementHistory employementHistory) {
-	getEmployementHistories().remove(employementHistory);
-	employementHistory.setEmployeeInfo(null);
+		getEmployementHistories().remove(employementHistory);
+		employementHistory.setEmployeeInfo(null);
 
-	return employementHistory;
+		return employementHistory;
 	}
-
-
 
 }

@@ -27,6 +27,6 @@ public interface EmployeeAddressRepository extends JpaRepository<EmployeeAddress
 	public Optional<EmployeeAddress> getEmployeeAddress(@Param(value = "id") int id);
 	
 
-	public Optional<EmployeeAddress> getEmployementHistory(int employeeCode);
+	
 
 }
