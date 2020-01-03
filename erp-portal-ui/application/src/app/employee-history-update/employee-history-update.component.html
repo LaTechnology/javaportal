@@ -1,0 +1,62 @@
+<h3>Update EmployeeHistory </h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="form-group">
+      <label for="name">Employer Name</label>
+      <input type="text" class="form-control" id="employerName" required [(ngModel)]="employeeHistory.employerName" name="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">BeginDate</label>
+      <input type="date" class="form-control" id="beginDate" required [(ngModel)]="employeeHistory.beginDate" date="beginDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">EndDate</label>
+      <input type="date" class="form-control" id="endDate" required [(ngModel)]="employeeHistory.endDate" name="endDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Designation</label>
+      <select>
+        <option value="{employeeDesignation.designationCode}">Hr</option>
+        <option value="{employeeDesignation.designationCode}">JuniorDeveloper</option>
+        <option value="{employeeDesignation.designationCode}">SeniorDeveloper</option>
+    
+      </select>
+    </div>
+
+    <div class="form-group">
+      <h2>Address</h2>
+      <label for="name">Line 1</label>
+      <input type="text" class="form-control" id="addressLine1" required [(ngModel)]="employeeHistoryAddress.addressLine1" name="addressLine1">
+      <label for="name">Line 2</label>
+      <input type="text" class="form-control" id="addressLine2" required [(ngModel)]="employeeHistoryAddress.addressLine2" name="addressLine2">
+      <label for="name">City</label>
+      <input type="text" class="form-control" id="city" required [(ngModel)]="employeeHistoryAddress.city" name="city">
+      <label for="name">State</label>
+      <input type="text" class="form-control" id="state" required [(ngModel)]="employeeHistoryAddress.state" name="state">
+      <label for="name">Country</label>
+      <input type="text" class="form-control" id="country" required [(ngModel)]="employeeHistoryAddress.country" name="country">
+      <label for="name">Pincode</label>
+      <input type="text" class="form-control" id="pincode" required [(ngModel)]="employeeHistoryAddress.pincode" name="pincode">
+
+     
+    </div>
+
+    <div class="form-group">
+      <label for="name">ctc</label>
+      <input type="text" class="form-control" id="ctc" required [(ngModel)]="employeeHistory.ctc" name="ctc">
+    </div>
+
+    <div class="form-group">
+      <label for="name">References</label>
+      <input type="text" class="form-control" id="reference" required [(ngModel)]="employeeHistory.reference" name="reference">
+    </div>
+
+   
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+  
+  
+</div>

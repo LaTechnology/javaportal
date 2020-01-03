@@ -74,8 +74,8 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		 if(null != address.getPincode()) { 
 			 addressVO.setPincode(address.getPincode());
 			 }
-		 if(0!= employeeInfo.getEmployeeCode()) {
-			 addressVO.setEmployeeCode(employeeInfo.getEmployeeCode());
+		 if(0!= employeeInfo.getemployeeCode()) {
+			 addressVO.setEmployeeCode(employeeInfo.getemployeeCode());
 		 }
 		 
 		 if(0!=address.getAddressType().getAddressTypeCode()) {

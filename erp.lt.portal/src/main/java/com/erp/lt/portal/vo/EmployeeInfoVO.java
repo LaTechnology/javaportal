@@ -16,20 +16,15 @@ public class EmployeeInfoVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 5222006776920099426L;
 
-	private String employeeNumber;
-	private String email;
-	
-	private int employeeCode;
+	private String employeeCode;
 
-  private String citizen;
+	private String citizen;
 
 	private String countryofbirth;
 
 	private Date dob;
 
 	private String firstname;
-
-	private String lastName;
 
 	private Date marriageDate;
 
@@ -43,102 +38,94 @@ public class EmployeeInfoVO implements Serializable {
 
 	private int maritalStatusCode;
 
-	public int getEmployeeCode() {
-		return employeeCode;
+	public String getEmployeeCode() {
+	return employeeCode;
 	}
 
-	public void setEmployeeCode(int employeeCode) {
-		this.employeeCode = employeeCode;
+	public void setEmployeeCode(String employeeCode) {
+	this.employeeCode = employeeCode;
 	}
 
 	public String getCitizen() {
-		return citizen;
+	return citizen;
 	}
 
 	public void setCitizen(String citizen) {
-		this.citizen = citizen;
+	this.citizen = citizen;
 	}
 
 	public String getCountryofbirth() {
-		return countryofbirth;
+	return countryofbirth;
 	}
 
 	public void setCountryofbirth(String countryofbirth) {
-		this.countryofbirth = countryofbirth;
+	this.countryofbirth = countryofbirth;
 	}
 
 	public Date getDob() {
-		return dob;
+	return dob;
 	}
 
 	public void setDob(Date dob) {
-		this.dob = dob;
+	this.dob = dob;
 	}
 
 	public String getFirstname() {
-		return firstname;
+	return firstname;
 	}
 
 	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	public Date getMarriageDate() {
-		return marriageDate;
+	return marriageDate;
 	}
 
 	public void setMarriageDate(Date marriageDate) {
-		this.marriageDate = marriageDate;
+	this.marriageDate = marriageDate;
 	}
 
 	public String getNationality() {
-		return nationality;
+	return nationality;
 	}
 
 	public void setNationality(String nationality) {
-		this.nationality = nationality;
+	this.nationality = nationality;
 	}
 
 	public String getStateofbirth() {
-		return stateofbirth;
+	return stateofbirth;
 	}
 
 	public void setStateofbirth(String stateofbirth) {
-		this.stateofbirth = stateofbirth;
+	this.stateofbirth = stateofbirth;
 	}
 
 	public byte getStatus() {
-		return status;
+	return status;
 	}
 
 	public void setStatus(byte status) {
-		this.status = status;
+	this.status = status;
 	}
 
 	public int getGenderCode() {
-		return genderCode;
+	return genderCode;
 	}
 
 	public void setGenderCode(int genderCode) {
-		this.genderCode = genderCode;
+	this.genderCode = genderCode;
 	}
 
 	public int getMaritalStatusCode() {
-		return maritalStatusCode;
+	return maritalStatusCode;
 	}
 
 	public void setMaritalStatusCode(int maritalStatusCode) {
-		this.maritalStatusCode = maritalStatusCode;
+	this.maritalStatusCode = maritalStatusCode;
 	}
- 
-
+	
  
 }

@@ -1,0 +1,44 @@
+<p>
+  employee-history-list works!
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <table id="example" class="display" style="width:100%"></table>
+    <div class="panel-heading">
+      <h2>Employee List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>EmployeerName</th>
+            <th>Begin Date</th>
+            <th>End Date</th>
+            <th>Address<th>            
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employeeHistory of employeeHistory| async">
+            <td>{{employeeHistory.employeerName}}</td>
+            <td>{{employeeHistory.beginDate}}</td>
+            <td>{{employeeHistory.endDate}}</td>
+            <td>{{employeeHistory.Address}}</td>
+            <td>{{employee.designation}}</td>
+           
+           
+            
+            <td><button (click)="deleteEmployeeHistory(employeeHistory.id)" class="btn btn-danger">Delete</button>
+                <button (click)="updateEmployeeHistory(employeeHistory.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                <button (click)="employeeDetailsHistory(employeeHistory.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

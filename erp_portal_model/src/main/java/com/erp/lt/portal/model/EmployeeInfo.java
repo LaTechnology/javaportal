@@ -14,19 +14,12 @@ import java.util.List;
 @NamedQuery(name = "EmployeeInfo.findAll", query = "SELECT e FROM EmployeeInfo e")
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
 	@Column(name = "employee_code")
 	private int employeeCode;
-
-	// employee number
-	@Column(name = "employee_number") // FK
-	private String employeeNumber;
-
-	// employee email // login id
-	@Column(name = "employee_email")
-	private String email;
 
 	private String citizen;
 
@@ -36,8 +29,6 @@ public class EmployeeInfo implements Serializable {
 	private Date dob;
 
 	private String firstname;
-
-	private String lastName;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "marriage_date")
@@ -74,11 +65,19 @@ public class EmployeeInfo implements Serializable {
 	public EmployeeInfo() {
 	}
 
-	public int getEmployeeCode() {
-		return this.employeeCode;
+	public int getId() {
+		return id;
 	}
 
-	public void setEmployeeCode(int employeeCode) {
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getemployeeCode() {
+		return employeeCode;
+	}
+
+	public void setemployeeCode(int employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 
@@ -112,14 +111,6 @@ public class EmployeeInfo implements Serializable {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public Date getMarriageDate() {
@@ -234,22 +225,6 @@ public class EmployeeInfo implements Serializable {
 		employementHistory.setEmployeeInfo(null);
 
 		return employementHistory;
-	}
-
-	public String getEmployeeNumber() {
-		return employeeNumber;
-	}
-
-	public void setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber = employeeNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 }

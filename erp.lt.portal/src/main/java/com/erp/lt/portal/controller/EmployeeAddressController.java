@@ -28,11 +28,14 @@ public class EmployeeAddressController {
 	@GetMapping(path = ERPConstantsAddress.EMPLOYEE_DETAILS_GET_URL)
 	public List<EmployeeAddressVO> getAddress(@PathVariable(value = "Id") int Id) {
 		System.out.println("Given id is" + Id);
+
 		List<EmployeeAddressVO> addressVO = employeeAddressService.getEmployeeAddress(Id);
+
 		return addressVO;
 	}
 
 	@PostMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE }) 
+
 	public void addemployeeadress(@RequestBody EmployeeAddressVO employeeaddressvo) {
 		employeeAddressService.addemployeaddress(employeeaddressvo);
 	}
@@ -42,7 +45,7 @@ public class EmployeeAddressController {
            boolean status =false;
 		try {
 			status= employeeAddressService.editemployeaddress(employeeaddressvo);
-			
+
 		} catch (NotFoundException e) {
 
 			e.printStackTrace();
@@ -60,10 +63,10 @@ public class EmployeeAddressController {
 		}
 	return status;
 	}
-	
 
 	@DeleteMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_DELETE_URL)
 	public void deleteEmployee(@PathVariable(value = "employeeNumber") int employeeNumber) {
+
 		employeeAddressService.deleteemployeaddress(employeeNumber);
 
 	}

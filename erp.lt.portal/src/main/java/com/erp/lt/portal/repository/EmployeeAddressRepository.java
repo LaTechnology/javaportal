@@ -13,7 +13,9 @@ import com.erp.lt.portal.model.EmployeeAddress;
 @Repository
 public interface EmployeeAddressRepository extends JpaRepository<EmployeeAddress, Integer> {
 
+
 	@Query(value = "SELECT e FROM EmployeeAddress e where e.employeeInfo.employeeCode=:id")
 	public List<EmployeeAddress> getEmployeeAddress(@Param(value = "id") int id);
+
 
 }

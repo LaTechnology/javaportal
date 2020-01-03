@@ -62,7 +62,7 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			 */
 
 			if (null != detail.getEmployeeInfo()) {
-				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getEmployeeCode());
+				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getemployeeCode());
 			}
 
 			if (null != detail.getPersonalEmailId()) {
@@ -99,10 +99,12 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 	public void doMap(CommunicationDetailsVO communicationDetailVo, CommunicationDetail communicationDetail)
 			throws NotFoundException {
 		EmployeeInfo employeeInfo = null;
-		if (-1 != communicationDetailVo.getEmployeeCode()) {
-			employeeInfo = employeeInfoService
-					.getEmployeeInfoByEmpId(String.valueOf(communicationDetailVo.getEmployeeCode()));
-		}
+		/*
+		 * if (-1 != communicationDetailVo.getEmployeeCode()) { employeeInfo =
+		 * employeeInfoService
+		 * .getEmployeeInfoByEmpId(String.valueOf(communicationDetailVo.getEmployeeCode(
+		 * ))); }
+		 */
 		if (null != communicationDetailVo.getCompanyEmailId()) {
 			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
 
