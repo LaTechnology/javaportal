@@ -22,26 +22,26 @@ import javassist.NotFoundException;
 @RequestMapping(path = ERPConstantsAddress.URL_BASE)
 public class EmployeeAddressController {
 	@Autowired
-	EmployeeAddressService empAddressService;
+	EmployeeAddressService employeeAddressService;
 
 	@GetMapping(path = ERPConstantsAddress.EMPLOYEE_DETAILS_GET_URL)
 	public EmployeeAddressVO getAddress(@PathVariable(value = "Id") int Id) {
 		System.out.println("Given id is" + Id);
-		EmployeeAddressVO addressVO = empAddressService.getEmployeeAddress(Id);
+		EmployeeAddressVO addressVO = employeeAddressService.getEmployeeAddress(Id);
 		return addressVO;
 	}
 
-	@PostMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE }) // "/addAddress/employeeaddress"
+	@PostMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE }) 
 
 	public void addemployeeadress(@RequestBody EmployeeAddressVO employeeaddressvo) {
-		empAddressService.addemployeaddress(employeeaddressvo);
+		employeeAddressService.addemployeaddress(employeeaddressvo);
 	}
 
 	@PutMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_EDIT_URL)
 	public void editemployeeaddress(@RequestBody EmployeeAddressVO employeeaddressvo) {
 
 		try {
-			empAddressService.editemployeaddress(employeeaddressvo);
+			employeeAddressService.editemployeaddress(employeeaddressvo);
 		} catch (NotFoundException e) {
 
 			e.printStackTrace();
@@ -51,14 +51,14 @@ public class EmployeeAddressController {
 	/*
 	 * @PatchMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_PATCHING_URL)
 	 * public void patchingemployeeaddress(@RequestBody EmployeeAddressVO
-	 * employeeaddressvo) { empAddressService.editemployeaddress(employeeaddressvo);
+	 * employeeaddressvo) { employeeAddressService.editemployeaddress(employeeaddressvo);
 	 * }
 	 */
 
 	@DeleteMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_DELETE_URL)
 	public void deleteEmployee(@PathVariable(value = "employeeNumber") int employeeNumber) {
 
-		empAddressService.deleteemployeaddress(employeeNumber);
+		employeeAddressService.deleteemployeaddress(employeeNumber);
 
 	}
 }
