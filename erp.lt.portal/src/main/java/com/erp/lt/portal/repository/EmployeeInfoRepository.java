@@ -21,7 +21,7 @@ import com.erp.lt.portal.vo.EmployeeInfoVO;
 @Repository
 public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo, Integer> {
 
-	@Query(value = "SELECT  eif.employee_code as employeecode, eif.firstname as firstname,eif.lastName as lastName,"
+	@Query(value = "SELECT  eif.employee_code as employeecode, eif.firstname as firstname,"
 			+ "gtc.code as genderCode ,eif.dob,ms.title as m_code, "
 			+ "eif.marriage_date as marriageDate, eif.citizen as citizen,eif.nationality as nationality,eif.countryofbirth as countryofbirth,"
 			+ "eif.stateofbirth as stateofbirth "
@@ -29,16 +29,17 @@ public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo, Inte
 			+ "on eif.gender_type_code= gtc.code join marital_status as ms  "
 			+ "on eif.marital_status_code = ms.code where eif.employee_code=:employeeCode ;", nativeQuery = true)
 
-	public EmployeeInfoVO getEmployeeInfo(@Param(value = "employeeCode") int employeeCode);
+			public EmployeeInfoVO getEmployeeInfo(@Param(value = "employeeCode") int employeeCode);
 
-	@Query(value = "SELECT  eif.employee_code as employeecode, eif.firstname as firstname,eif.lastName as lastName,"
+			@Query(value = "SELECT  eif.employee_code as employeecode, eif.firstname as firstname,"
 			+ "gtc.code as genderCode ,eif.dob,ms.title as m_code, "
 			+ "eif.marriage_date as marriageDate, eif.citizen as citizen,eif.nationality as nationality,eif.countryofbirth as countryofbirth,"
 			+ "eif.stateofbirth as stateofbirth "
 			+ "FROM employee_selfservicedb.gender_type as gtc join employee_selfservicedb.employee_info as eif  "
 			+ "on eif.gender_type_code= gtc.code join marital_status as ms  "
 			+ "on eif.marital_status_code = ms.code ", nativeQuery = true)
-	public List<EmployeeInfoVO> getAllEmployeeInfo();
+			public List<EmployeeInfoVO> getAllEmployeeInfo();
+
 	/*
 	 * @Query(value
 	 * ="SELECT  eif.employee_code as employeeCode, eif.firstname as firstname,eif.lastName as lastName,"

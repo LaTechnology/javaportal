@@ -19,15 +19,13 @@ public interface EmployeeInfoService {
 
 	public boolean editEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-
-	public EmployeeInfoVO getEmployeeInfoVOByEmpId(String employeeCode) throws NotFoundException;
-
-	public EmployeeInfo getEmployeeInfoByEmpId(String employeeCode) throws NotFoundException;
+	public EmployeeInfoVO getEmployeeInfoByEmpId(int employeeCode);
 
 	public List<EmployeeInfoVO> getAllEmployeeInfo();
 
-	void doMap(EmployeeInfo employeeInfo, EmployeeInfoVO employeeInfoVO);
-
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
+
+
+	
 
 }
