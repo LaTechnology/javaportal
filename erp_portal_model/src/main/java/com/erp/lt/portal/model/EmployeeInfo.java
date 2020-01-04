@@ -20,13 +20,7 @@ public class EmployeeInfo implements Serializable {
 	@Column(name = "employee_code")
 	private int employeeCode;
 
-	// employee number
-	@Column(name = "employee_number") // FK
-	private String employeeNumber;
 
-	// employee email // login id
-	@Column(name = "employee_email")
-	private String email;
 
 	private String citizen;
 
@@ -236,20 +230,5 @@ public class EmployeeInfo implements Serializable {
 		return employementHistory;
 	}
 
-	public String getEmployeeNumber() {
-		return employeeNumber;
-	}
-
-	public void setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber = employeeNumber;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 }
