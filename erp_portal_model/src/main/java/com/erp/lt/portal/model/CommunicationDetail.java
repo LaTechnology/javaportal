@@ -1,52 +1,65 @@
 package com.erp.lt.portal.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * The persistent class for the communication_details database table.
  * 
  */
 @Entity
-@Table(name="communication_details")
-@NamedQuery(name="CommunicationDetail.findAll", query="SELECT c FROM CommunicationDetail c")
+@Table(name = "communication_details")
+@NamedQuery(name = "CommunicationDetail.findAll", query = "SELECT c FROM CommunicationDetail c")
 public class CommunicationDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int code;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="begin_date")
+	@Column(name = "begin_date")
 	private Date beginDate;
 
-	@Column(name="client_email_id")
+	@Column(name = "client_email_id")
 	private String clientEmailId;
 
-	@Column(name="company_email_id")
+	@Column(name = "company_email_id")
 	private String companyEmailId;
 
-	@Column(name="emergency_comunication_number")
+	@Column(name = "emergency_comunication_number")
 	private String emergencyComunicationNumber;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="end_date")
+	@Column(name = "end_date")
 	private Date endDate;
 
-	@Column(name="personal_email_id")
+	@Column(name = "personal_email_id")
 	private String personalEmailId;
 
-	//bi-directional many-to-one association to EmployeeInfo
+	// bi-directional many-to-one association to EmployeeInfo
 	@ManyToOne
-	@JoinColumn(name="employee_code")
+	@JoinColumn(name = "employee_code")
 	private EmployeeInfo employeeInfo;
 
-	//bi-directional many-to-one association to MobileDetail
-	@OneToMany(mappedBy="communicationDetail")
+	/*
+	 * //bi-directional many-to-one association to MobileDetail
+	 * 
+	 */
+	@OneToMany(mappedBy = "communicationDetail")
 	private List<MobileDetail> mobileDetails;
 
 	public CommunicationDetail() {
@@ -134,7 +147,6 @@ public class CommunicationDetail implements Serializable {
 	public MobileDetail removeMobileDetail(MobileDetail mobileDetail) {
 		getMobileDetails().remove(mobileDetail);
 		mobileDetail.setCommunicationDetail(null);
-
 		return mobileDetail;
 	}
 
