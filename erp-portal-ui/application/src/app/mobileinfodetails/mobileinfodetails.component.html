@@ -1,0 +1,14 @@
+<h2> View Mobileinfo Communication Details</h2> 
+
+<hr/>
+<div *ngIf="mobileinfo">
+  <div>
+    <label><b>Mobile number 1:</b></label> {{mobileinfo.mobile_number_1}}
+  </div>
+  <div>
+    <label><b>Mobile number 2: </b></label> {{mobileinfo.mobile_number_2}}
+  </div>
+  
+<div>
+  <button (click)="list()" class="btn btn-primary">Back to Mobileinfo List</button><br>
+</div>
