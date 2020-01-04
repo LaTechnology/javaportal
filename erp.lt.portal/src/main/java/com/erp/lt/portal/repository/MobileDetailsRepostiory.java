@@ -16,11 +16,14 @@ import com.erp.lt.portal.model.MobileDetail;
  * @author User
  *
  */
-@Repository 
+@Repository
 public interface MobileDetailsRepostiory extends JpaRepository<MobileDetail, Integer> {
 	@Query(value = "select  mobiledt.code, mobiledt.mobile_number_1, mobiledt.moblie_number_2 , commd.code"
 			+ " From  communication_details as commd left join mobile_details as "
 			+ " mobiledt on commd.code = mobiledt.comminication_details_code "
 			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
 	public Optional<MobileDetail> getMobileDetails(@Param(value = "communication_code") int communication_code);
+
+	@Query(value = "DELETE FROM MobileDetail as md WHERE md.communicationDetail.code= :communicationDetail ")
+	public void deleteMobileDetailsByEmpID(@Param(value = "communicationDetail") Integer communicationDetail);
 }

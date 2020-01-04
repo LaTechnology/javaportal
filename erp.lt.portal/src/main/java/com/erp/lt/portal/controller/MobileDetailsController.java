@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erp.lt.portal.ERPConstantsCom;
+import com.erp.lt.portal.ERPConstants;
 import com.erp.lt.portal.service.MobileDetailsService;
 import com.erp.lt.portal.vo.MobileDetailsVO;
 
@@ -29,33 +29,37 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @RestController
-@RequestMapping(path = ERPConstantsCom.URL_BASE)
+@RequestMapping(path = ERPConstants.URL_BASE)
 @Slf4j
 public class MobileDetailsController {
 
 	private static final org.slf4j.Logger log = LoggerFactory.getLogger(MobileDetailsController.class.getName());
 
 	@Autowired
-	MobileDetailsService detailsService;
+	MobileDetailsService mobileDetailsService;
 
-	@GetMapping(path = ERPConstantsCom.MOBILE_DETAILS_GET_URL)
+	@GetMapping(path = ERPConstants.MOBILE_DETAILS_GET_URL)
 
 	public MobileDetailsVO getMobileDetails(@PathVariable(value = "code") int code) {
-		return detailsService.getMobileDetails(code);
+		return mobileDetailsService.getMobileDetails(code);
 
 	}
 
-	@PostMapping(path = ERPConstantsCom.MOBILE_DETAILS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@PostMapping(path = ERPConstants.MOBILE_DETAILS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public void addMobileDetials(@RequestBody MobileDetailsVO mobileDetailsVO) {
-		detailsService.addMobileDetials(mobileDetailsVO);
+		try {
+			mobileDetailsService.addMobileDetials(mobileDetailsVO);
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
-	@PutMapping(path = ERPConstantsCom.MOBILE_DETAILS_EDIT_URL, consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(path = ERPConstants.MOBILE_DETAILS_EDIT_URL, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public boolean editMobileDetials(@RequestBody MobileDetailsVO mobileDetailsVO) {
 		boolean detailsstatus = true;
 		log.info("Entereing into editMobileDetials");
 		try {
-			detailsstatus = detailsService.editMobileDetials(mobileDetailsVO);
+			detailsstatus = mobileDetailsService.editMobileDetials(mobileDetailsVO);
 		} catch (NotFoundException e) {
 			log.info("Employee Not Found " + mobileDetailsVO.getCode() + " " + e.getMessage());
 		}
@@ -63,7 +67,7 @@ public class MobileDetailsController {
 			log.info("Employee Not Found " + mobileDetailsVO.getCode() + " " + detailsstatus);
 		} else {
 			try {
-				detailsService.editMobileDetials(mobileDetailsVO);
+				mobileDetailsService.editMobileDetials(mobileDetailsVO);
 			} catch (NotFoundException e) {
 				e.printStackTrace();
 			}
@@ -72,30 +76,21 @@ public class MobileDetailsController {
 		return detailsstatus;
 	}
 
-	@PatchMapping(path = ERPConstantsCom.MOBILE_DETAILS_PATCHING_URL)
+	@PatchMapping(path = ERPConstants.MOBILE_DETAILS_PATCHING_URL)
 	public boolean patchMobileDetials(@RequestBody MobileDetailsVO mobileDetailsVO) {
 		boolean detailsstatus = true;
 		try {
-			detailsstatus = detailsService.editMobileDetials(mobileDetailsVO);
+			detailsstatus = mobileDetailsService.editMobileDetials(mobileDetailsVO);
 		} catch (NotFoundException e) {
 			e.printStackTrace();
 		}
-		if (detailsstatus) {
-			System.out.println("Employee Not Found");
-		} else {
-			try {
-				detailsService.editMobileDetials(mobileDetailsVO);
-			} catch (NotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-
 		return detailsstatus;
 	}
 
-	@DeleteMapping(path = ERPConstantsCom.MOBILE_DETAILS_DELETE_URL)
-	public void deleteMobileDetails(@Param(value = "code") int code) {
-		detailsService.deleteMobileDetails(code);
+	@DeleteMapping(path = ERPConstants.MOBILE_DETAILS_DELETE_URL)
+	public void deleteMobileDetails(@PathVariable(value = "empCode") Integer empCode,
+			@PathVariable(value = "mobileCode") Integer mobileCode) {
+		mobileDetailsService.deleteMobileDetails(empCode, mobileCode);
 	}
 
 }
