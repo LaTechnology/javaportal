@@ -15,9 +15,7 @@ import java.util.List;
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
+	
 	@Column(name = "employee_code")
 	private int employeeCode;
 
@@ -65,13 +63,7 @@ public class EmployeeInfo implements Serializable {
 	public EmployeeInfo() {
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	public int getemployeeCode() {
 		return employeeCode;
