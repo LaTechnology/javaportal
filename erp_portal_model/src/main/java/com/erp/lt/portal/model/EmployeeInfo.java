@@ -15,8 +15,6 @@ import java.util.List;
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	
-	@Column(name = "employee_code")
 	private int employeeCode;
 
 	private String citizen;
@@ -60,10 +58,12 @@ public class EmployeeInfo implements Serializable {
 	@OneToMany(mappedBy = "employeeInfo")
 	private List<EmployementHistory> employementHistories;
 
+	// bi-directional many-to-one association to EmployeeAddress
+	@OneToMany(mappedBy = "employeeInfo")
+	private List<EmployeeAddress> employeeAddresses;
+
 	public EmployeeInfo() {
 	}
-
-	
 
 	public int getemployeeCode() {
 		return employeeCode;
@@ -217,6 +217,28 @@ public class EmployeeInfo implements Serializable {
 		employementHistory.setEmployeeInfo(null);
 
 		return employementHistory;
+	}
+
+	public List<EmployeeAddress> getEmployeeAddresses() {
+		return this.employeeAddresses;
+	}
+
+	public void setEmployeeAddresses(List<EmployeeAddress> employeeAddresses) {
+		this.employeeAddresses = employeeAddresses;
+	}
+
+	public EmployeeAddress addEmployeeAddress(EmployeeAddress employeeAddress) {
+		getEmployeeAddresses().add(employeeAddress);
+		employeeAddress.setEmployeeInfo(this);
+
+		return employeeAddress;
+	}
+
+	public EmployeeAddress removeEmployeeAddress(EmployeeAddress employeeAddress) {
+		getEmployeeAddresses().remove(employeeAddress);
+		employeeAddress.setEmployeeInfo(null);
+
+		return employeeAddress;
 	}
 
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "employee_address")
 @NamedQuery(name = "EmployeeAddress.findAll", query = "SELECT e FROM EmployeeAddress e")
@@ -12,6 +11,7 @@ public class EmployeeAddress implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "address_code")
 	private int addressCode;
 
@@ -29,22 +29,31 @@ public class EmployeeAddress implements Serializable {
 
 	private String country;
 
-
 	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
 	private Date endDate;
-
-
 
 	private String pincode;
 
 	private String state;
 
-	//bi-directional many-to-one association to AddressType
-	
-	@ManyToOne
+	// bi-directional many-to-one association to AddressType
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "address_type_code")
 	private AddressType addressType;
+
+	@ManyToOne
+	@JoinColumn(name = "employee_code")
+	private EmployeeInfo employeeInfo;
+
+	// bi-directional many-to-one association to EmployementHistory
+	@ManyToOne
+	@JoinColumn(name = "oragnization_id")
+	private EmployementHistory employementHistory;
+
+	public EmployeeAddress() {
+	}
 	
 	public EmployeeInfo getEmployeeInfo() {
 		return employeeInfo;
@@ -53,15 +62,6 @@ public class EmployeeAddress implements Serializable {
 	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
 		this.employeeInfo = employeeInfo;
 	}
-
-	@ManyToOne
-	@JoinColumn(name="employee_code")
-	private EmployeeInfo employeeInfo;
-
-
-	public EmployeeAddress() {
-	}
-
 	public int getAddressCode() {
 		return this.addressCode;
 	}
@@ -110,8 +110,6 @@ public class EmployeeAddress implements Serializable {
 		this.country = country;
 	}
 
-
-
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -119,8 +117,6 @@ public class EmployeeAddress implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
-	
 
 	public String getPincode() {
 		return this.pincode;
@@ -144,6 +140,14 @@ public class EmployeeAddress implements Serializable {
 
 	public void setAddressType(AddressType addressType) {
 		this.addressType = addressType;
+	}
+	
+	public EmployementHistory getEmployementHistory() {
+		return this.employementHistory;
+	}
+
+	public void setEmployementHistory(EmployementHistory employementHistory) {
+		this.employementHistory = employementHistory;
 	}
 
 }

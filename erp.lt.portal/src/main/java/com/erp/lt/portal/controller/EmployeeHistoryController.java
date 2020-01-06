@@ -3,7 +3,6 @@ package com.erp.lt.portal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,20 +45,15 @@ public class EmployeeHistoryController {
 	@PutMapping(path = ERPConstants.EMPLOYEEHISTORY_EDIT_URL)
 	public boolean editEmployeeHistory(@RequestBody EmployeeHistoryVO employeeHistoryVO) {
 		boolean historyVO=true;
-		
 		try {
 			historyVO=employeeHistoryService.editEmployeeHistory(employeeHistoryVO);
 		} catch (javassist.NotFoundException e1) {
 			System.out.println("Employee not found" );
 		}
-		
 		if(historyVO) {
 				System.out.println("Employee History Not Found");
 			}
 			else {
-				
-					
-				
 				try {
 					employeeHistoryService.editEmployeeHistory(employeeHistoryVO);
 				} catch (javassist.NotFoundException e) {
