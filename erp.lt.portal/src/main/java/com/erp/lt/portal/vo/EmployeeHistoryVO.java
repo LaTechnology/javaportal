@@ -4,34 +4,36 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.erp.lt.portal.model.DesignationType;
+
 public class EmployeeHistoryVO implements Serializable {
 
 	private static final long serialVersionUID = 479779926340535942L;
 
-	private int id;
-	private int addressAddressCode;//
-	private Date beginDate;
-	private BigDecimal ctc;
+	private int id;//1
+	private Date beginDate;//2
+	private BigDecimal ctc;//3
 
-	private String employerName;
+	private String employerName;//4
 
-	private Date endDate;
+	private Date endDate;//5
 
-	private String reference;
+	private String reference;//6
 
-	private int employeeCode;
+	private int employeeCode;//7
 	
-	/*
-	 * private String employeeInfo; // private DesignationType designationType;
-	 */	
-	private int designationCode;
-	private String addressLine1;
-	private String addressLine2;
-	private String city;
-	private String country;
-	private String pincode;
-	private String state;
-
+//	 private String employeeInfo; 
+//	 private DesignationType designationType;
+		
+	private int designationCode;//8
+	private String addressLine1;//9
+	private String addressLine2;//10
+	private String city;//11
+	private String country;//12
+	private String pincode;//13
+	private String state;//14
+	private int addressTypeCode;//15
+	
 	public String getAddressLine1() {
 		return addressLine1;
 	}
@@ -89,22 +91,12 @@ public class EmployeeHistoryVO implements Serializable {
 		this.designationCode = designationType;
 	}
 
-	
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getAddressAddressCode() {
-		return addressAddressCode;
-	}
-
-	public void setAddressAddressCode(int addressAddressCode) {
-		this.addressAddressCode = addressAddressCode;
 	}
 
 	public BigDecimal getCtc() {
@@ -114,8 +106,6 @@ public class EmployeeHistoryVO implements Serializable {
 	public void setCtc(BigDecimal ctc) {
 		this.ctc = ctc;
 	}
-
-	
 
 	public String getEmployerName() {
 		return employerName;
@@ -156,14 +146,13 @@ public class EmployeeHistoryVO implements Serializable {
 	public void setEmployeeCode(int employeeCode) {
 		this.employeeCode = employeeCode;
 	}
-
-	/*
-	 * public String getEmployeeInfo() { return employeeInfo; }
-	 * 
-	 * public void setEmployeeInfo(String employeeInfo) { this.employeeInfo =
-	 * employeeInfo; 
-	 * }
-	 */
 	
+	public int getAddressTypeCode() {
+		return addressTypeCode;
+	}
+
+	public void setAddressTypeCode(int addressTypeCode) {
+		this.addressTypeCode = addressTypeCode;
+	}
 
 }

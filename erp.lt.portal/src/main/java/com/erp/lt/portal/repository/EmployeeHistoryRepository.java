@@ -9,7 +9,7 @@ import com.erp.lt.portal.model.EmployementHistory;
 @Repository
 public interface EmployeeHistoryRepository extends JpaRepository<EmployementHistory, Integer> {
 
-	 @Query(value ="SELECT  eh.employee_code, eh.employer_name, eh.begin_date,eh.end_date,eh.ctc, dt.description, " + 
+	 @Query(value ="SELECT  eh.employee_code, eh.begin_date,eh.end_date,eh.ctc, dt.description, " + 
 		 		" ea.address_line_1,ea.address_line_2,ea.city,ea.state,ea.country,ea.pincode " + 
 		 		" FROM employee_selfservicedb.employement_history as eh join employee_info ei " + 
 		 		" on ei.employee_code = eh.employee_code join designation_type dt " + 
