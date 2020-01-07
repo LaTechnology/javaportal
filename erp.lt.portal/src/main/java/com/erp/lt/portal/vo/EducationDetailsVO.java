@@ -29,6 +29,8 @@ public class EducationDetailsVO implements Serializable {
 	 private int employeecode;
 
 	private int educationTypecode;
+	
+	private int status;
 
 	public int getEducationTypecode() {
 		return educationTypecode;
@@ -123,5 +125,14 @@ public class EducationDetailsVO implements Serializable {
 	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
 		this.employeeInfo = employeeInfo;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 
 }
