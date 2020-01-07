@@ -35,17 +35,13 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 	@Override
 	public MobileDetailsVO getMobileDetails(Integer employeeCode) {
 		MobileDetailsVO detailsVO = new MobileDetailsVO();
-		CommunicationDetail comdetail;
+		Optional<CommunicationDetail> comdetail;
 		Optional<MobileDetail> optional = null;
-		try {
-			comdetail = communicationDetailsService.getCommunicationDetailByEmpId(employeeCode);
-			for (MobileDetail mobileDetail : comdetail.getMobileDetails()) {
-				if (mobileDetail.getCode() > 0) {
-					optional = mobileDetailsRepository.findById(mobileDetail.getCode());
-				}
+		comdetail = communicationDetailsRepository.getCommunicationDetailsByEmpId(employeeCode);
+		for (MobileDetail mobileDetail : comdetail.get().getMobileDetails()) {
+			if (mobileDetail.getCode() > 0) {
+				optional = mobileDetailsRepository.findById(mobileDetail.getCode());
 			}
-		} catch (NotFoundException e) {
-			e.printStackTrace();
 		}
 		MobileDetail detail = optional.get();
 
