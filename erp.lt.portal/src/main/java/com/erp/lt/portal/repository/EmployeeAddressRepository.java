@@ -25,10 +25,13 @@ public interface EmployeeAddressRepository extends JpaRepository<EmployeeAddress
 	 */	
 	
 	@Query(value= "SELECT e FROM EmployeeAddress e where e.employeeInfo.employeeCode=:id")
-	public Optional<EmployeeAddress> getEmployeeAddress(@Param(value = "id") int id);
+	public List<EmployeeAddress> getEmployeeAddress(@Param(value = "id") int id);
 	
 	@Query(value= "SELECT e FROM EmployeeAddress e where e.employeeInfo.employeeCode=:id and e.employementHistory.id =:HisId")
 	public List<EmployeeAddress> getEmployeeAddressHistory(@Param(value = "id") int id,@Param(value = "HisId") int HisId);
 	
+	
+	@Query(value= "SELECT e FROM EmployeeAddress e where e.employeeInfo.employeeCode=:id")
+	public Optional<EmployeeAddress> getEmployeeAddressopt(@Param(value = "id") int id);
 
 }

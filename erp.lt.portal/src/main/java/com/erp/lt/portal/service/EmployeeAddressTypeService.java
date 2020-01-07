@@ -7,7 +7,7 @@ public interface EmployeeAddressTypeService {
 	//public List<EmployeeAddressTypeVO> getallemployeeaddresstype(EmployeeAddressTypeVO employeeaddresstypevo);
 	//public void addemployeeaddresstype(EmployeeAddressTypeVO employeeaddresstypevo);
 				
-	public EmployeeAddressTypeVO getemployeeaddresstype(int empcode);
+	public EmployeeAddressTypeVO getemployeeaddresstype(int addTypeCode);
 	
 	//public void editemployeeaddresstype(EmployeeAddressTypeVO employeeaddresstypevo);
 	

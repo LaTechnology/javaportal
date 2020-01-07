@@ -16,10 +16,10 @@ public class EmployeeAddressTypeServiceImpl implements EmployeeAddressTypeServic
 	@Autowired
 	EmployeeAddressTypeRepository empaddresstyperepository;
 	@Override
-	public EmployeeAddressTypeVO  getemployeeaddresstype(int empcode) {
+	public EmployeeAddressTypeVO  getemployeeaddresstype(int addTypeCode) {
 
 		EmployeeAddressTypeVO employeeaddrsstypeVO = new EmployeeAddressTypeVO();
-	    Optional<AddressType> type	=empaddresstyperepository.findById(empcode);
+	    Optional<AddressType> type	=empaddresstyperepository.findById(addTypeCode);
 	    AddressType addresstype= type.get();
 		
 	   if(0 != addresstype.getAddressTypeCode()) {

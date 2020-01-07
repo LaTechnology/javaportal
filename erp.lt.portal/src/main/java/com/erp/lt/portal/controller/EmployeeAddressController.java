@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erp.lt.portal.ERPConstantsAddress;
+import com.erp.lt.portal.ERPConstants;
 import com.erp.lt.portal.service.EmployeeAddressService;
 import com.erp.lt.portal.vo.EmployeeAddressVO;
 
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping(path = ERPConstantsAddress.URL_BASE)
+@RequestMapping(path = ERPConstants.URL_BASE)
 public class EmployeeAddressController {
 	@Autowired
 	EmployeeAddressService employeeAddressService;
 
-	@GetMapping(path = ERPConstantsAddress.EMPLOYEE_DETAILS_GET_URL)
+	@GetMapping(path = ERPConstants.EMPLOYEE_DETAILS_GET_URL)
 	public List<EmployeeAddressVO> getAddress(@PathVariable(value = "Id") int Id) {
 		System.out.println("Given id is" + Id);
 
@@ -34,13 +34,13 @@ public class EmployeeAddressController {
 		return addressVO;
 	}
 
-	@PostMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE }) 
+	@PostMapping(path = ERPConstants.EMPLOYEE_ADDRESS_ADD_URL, consumes = { MediaType.APPLICATION_JSON_VALUE }) 
 
 	public void addemployeeadress(@RequestBody EmployeeAddressVO employeeaddressvo) {
 		employeeAddressService.addemployeaddress(employeeaddressvo);
 	}
 
-	@PutMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_EDIT_URL)
+	@PutMapping(path = ERPConstants.EMPLOYEE_ADDRESS_EDIT_URL)
 	public boolean editemployeeaddress(@RequestBody EmployeeAddressVO employeeaddressvo) {
            boolean status =false;
 		try {
@@ -64,7 +64,7 @@ public class EmployeeAddressController {
 	return status;
 	}
 
-	@DeleteMapping(path = ERPConstantsAddress.EMPLOYEE_ADDRESS_DELETE_URL)
+	@DeleteMapping(path = ERPConstants.EMPLOYEE_ADDRESS_DELETE_URL)
 	public void deleteEmployee(@PathVariable(value = "employeeNumber") int employeeNumber) {
 
 		employeeAddressService.deleteemployeaddress(employeeNumber);

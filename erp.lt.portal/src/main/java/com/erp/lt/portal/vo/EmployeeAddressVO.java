@@ -28,7 +28,10 @@ public class EmployeeAddressVO //implements Serializable
 	private Date begindate;
 	
 	private Date enddate;
+	
 	private String state;
+	
+	private int status;
 	
 	private AddressType addressType;
 	
@@ -150,6 +153,14 @@ public class EmployeeAddressVO //implements Serializable
 
 	public void setAddressTypeCode(int addressTypeCode) {
 		this.addressTypeCode = addressTypeCode;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 
