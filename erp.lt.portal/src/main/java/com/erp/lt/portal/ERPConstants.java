@@ -16,7 +16,13 @@ public class ERPConstants {
 	public static final String EMPLOYEE_EDIT_URL="/employee/edit/";
 	public static final String EMPLOYEE_PATCHING_URL="/employee/patching/";
 	public static final String EMPLOYEE_DELETE_URL="/delete/{employeeCode}";
+
+	public static final String EMPLOYEEEDUCATION_ADD_URL ="/add/educationdetails";
+	public static final String EMPLOYEEEDUCATION_GET_URL ="/get/educationdetails/{eduId}";
+	public static final String EMPLOYEEEDUCATION_EDIT_URL ="/edit/educationdetails";
+	public static final String EMPLOYEEEDUCATION_SOFTDELETE_URL ="/delete/educationdetails/{empId}";
 	
+
 	public static final String COMMUNICATION_DETAILS_ADD_URL = "/add/com/details/";
 	public static final String COMMUNICATION_DETAILS_GET_URL = "/get/com/details/{empId}";
 	public static final String COMMUNICATION_DETAILS_EDIT_URL = "/edit/com/details";
