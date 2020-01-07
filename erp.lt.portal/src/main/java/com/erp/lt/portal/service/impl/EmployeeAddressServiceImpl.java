@@ -1,14 +1,13 @@
 package com.erp.lt.portal.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.erp.lt.portal.model.AddressType;
-import com.erp.lt.portal.model.EducationDetail;
-import com.erp.lt.portal.model.Educationboard;
-import com.erp.lt.portal.model.Educationtype;
 import com.erp.lt.portal.model.EmployeeAddress;
 import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.repository.EmployeeAddressRepository;
@@ -31,11 +30,13 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 	EmployeeAddressTypeRepository employeeAddressTypeRepository;
 
 	@Override
-	public EmployeeAddressVO getEmployeeAddress(int Id) {
-		EmployeeAddressVO addressVO = new EmployeeAddressVO();
-		Optional<EmployeeAddress> employeeaddress = addressRepository.getEmployeeAddress(Id);
-		EmployeeAddress address = employeeaddress.get();
-
+	public List<EmployeeAddressVO> getEmployeeAddress(int Id) {
+		EmployeeAddressVO addressVO =null;
+		List<EmployeeAddressVO> addressDetailList = new ArrayList<EmployeeAddressVO>();
+		List<EmployeeAddress> employeeaddress = addressRepository.getEmployeeAddress(Id);
+		for(EmployeeAddress address: employeeaddress) {
+		addressVO= new EmployeeAddressVO();
+		
         EmployeeInfo employeeInfo= employeeInfoRepository.getOne(Id);
         		
 		if(0!=address.getAddressCode()) {
@@ -73,14 +74,17 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		 if(null != address.getPincode()) { 
 			 addressVO.setPincode(address.getPincode());
 			 }
-		 if(0!= employeeInfo.getEmployeeCode()) {
-			 addressVO.setEmployeeCode(employeeInfo.getEmployeeCode());
+		 if(0!= employeeInfo.getemployeeCode()) {
+			 addressVO.setEmployeeCode(employeeInfo.getemployeeCode());
 		 }
 		 
 		 if(0!=address.getAddressType().getAddressTypeCode()) {
 			 addressVO.setAddressTypeCode(address.getAddressType().getAddressTypeCode());
 		 }
-		return addressVO;
+		 addressDetailList.add(addressVO);
+		 
+		}
+		return addressDetailList;
 	
 	}
 	@Override
@@ -91,16 +95,21 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 
 		Optional<EmployeeAddress> exisitingEmployeeAddress = addressRepository.findById(addressVO.getAddressCode());
 		Optional<AddressType> addressType = null;
+		Optional<EmployeeAddress> empaddress=null;
 		Optional<EmployeeInfo> empInfo	 = null;
 
  
-		if (addressVO.getAddressTypeCode() != -1) {
+		if (addressVO.getAddressTypeCode() != 0) {
 			addressType = employeeAddressTypeRepository.findById(addressVO.getAddressTypeCode());
 		}
-		if (addressVO.getEmployeeCode()!=-1) {
-			empInfo = employeeInfoRepository.findById(addressVO.getAddressTypeCode());
+		if (addressVO.getEmployeeCode()!=0) {
+			empInfo = employeeInfoRepository.findById(addressVO.getEmployeeCode());
+			
 		}
-    
+         if(addressVO.getEmployeeCode()!=0) {
+        	 empaddress=addressRepository.findById(addressVO.getEmployeeCode());
+
+ 		}
 	     if(null!=exisitingEmployeeAddress) {
 	    	old= exisitingEmployeeAddress.get(); 
 	        
@@ -124,22 +133,18 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 			return status;
 }
 		
-		
-
-	
-
 	@Override
-	public void deleteemployeaddress(int Addresscode) {
+	public void deleteemployeaddress(int Id) {
+		if(Id!=0)
              
-			addressRepository.deleteById(Addresscode);
+			addressRepository.deleteById(Id);
  
 	}
 
-	
 	@Override
 	public void addemployeaddress(EmployeeAddressVO employeeaddressvo) {
 		EmployeeAddress address = new EmployeeAddress();
-        
+        Optional<EmployeeAddress> empaddress=null;
 		Optional<AddressType> addressType = null;
 		
 		Optional<EmployeeInfo> employeeinfo = null;

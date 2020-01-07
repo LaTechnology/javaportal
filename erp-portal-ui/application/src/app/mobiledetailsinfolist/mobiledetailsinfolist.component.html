@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <table id="example" class="display" style="width:100%"></table>
+      <div class="panel-heading">
+        <h2>MOBILE INFO LIST</h2>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Mobilenumber 1</th>
+              <th>Mobilenumber 2</th>
+              
+              
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let mobileinfo of mobile_details | async">
+              <td>{{mobileinfo.mobile_number_1}}</td>
+              <td>{{mobileinfo.mobile_number_2}}</td>
+              
+              
+             
+              
+              <td>
+                  <button (click)="  getMobileinfo(mobileinfo.code)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                  
+                  <button (click)="employeeDetails(mobileinfo.code)" class="btn btn-info" style="margin-left: 10px">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  

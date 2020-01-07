@@ -5,45 +5,48 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 /**
  * The persistent class for the employement_history database table.
  * 
  */
 @Entity
-@Table(name="employement_history")
-@NamedQuery(name="EmployementHistory.findAll", query="SELECT e FROM EmployementHistory e")
+@Table(name = "employement_history")
+@NamedQuery(name = "EmployementHistory.findAll", query = "SELECT e FROM EmployementHistory e")
 public class EmployementHistory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-
-	@Column(name="address_address_code")
-	private int addressAddressCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;//1
 
 	@Temporal(TemporalType.DATE)
-	private Date beginDate;
+	@Column(name = "begin_date")
+	private Date beginDate;//2
 
-	private BigDecimal ctc;
+	private BigDecimal ctc;//3
 
-	private String employerName;
+	private String employerName;//4
 
 	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	@Column(name = "end_date")
+	private Date endDate;//5
 
-	private String reference;
+	private String reference;//6
 
-	//bi-directional many-to-one association to DesignationType
+	// bi-directional many-to-one association to DesignationType
 	@ManyToOne
-	@JoinColumn(name="designation_type_code")
-	private DesignationType designationType;
+	@JoinColumn(name = "designation_type_code")
+	private DesignationType designationType;//7
 
-	//bi-directional many-to-one association to EmployeeInfo
+	// bi-directional many-to-one association to EmployeeInfo
 	@ManyToOne
-	@JoinColumn(name="employee_code")
-	private EmployeeInfo employeeInfo;
+	@JoinColumn(name = "employee_code")
+	private EmployeeInfo employeeInfo;//8
+
+	// bi-directional many-to-one association to AddressType
+	@ManyToOne
+	@JoinColumn(name = "address_type_code")
+	private AddressType addressType;//9
 
 	public EmployementHistory() {
 	}
@@ -56,13 +59,6 @@ public class EmployementHistory implements Serializable {
 		this.id = id;
 	}
 
-	public int getAddressAddressCode() {
-		return this.addressAddressCode;
-	}
-
-	public void setAddressAddressCode(int addressAddressCode) {
-		this.addressAddressCode = addressAddressCode;
-	}
 
 	public Date getBeginDate() {
 		return this.beginDate;
@@ -79,8 +75,6 @@ public class EmployementHistory implements Serializable {
 	public void setCtc(BigDecimal ctc) {
 		this.ctc = ctc;
 	}
-
-	
 
 	public String getEmployerName() {
 		return employerName;
@@ -108,6 +102,14 @@ public class EmployementHistory implements Serializable {
 
 	public DesignationType getDesignationType() {
 		return this.designationType;
+	}
+	
+	public AddressType getAddressType() {
+		return this.addressType;
+	}
+
+	public void setAddressType(AddressType addressType) {
+		this.addressType = addressType;
 	}
 
 	public void setDesignationType(DesignationType designationType) {

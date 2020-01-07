@@ -12,12 +12,12 @@ import javassist.NotFoundException;
  *
  */
 public interface MobileDetailsService {
-	
+
 	public MobileDetailsVO getMobileDetails(int code);
 
-	public void addMobileDetials(MobileDetailsVO mobileDetailsVO);
+	public void addMobileDetials(MobileDetailsVO mobileDetailsVO) throws NotFoundException;
 
 	public boolean editMobileDetials(MobileDetailsVO mobileDetailsVO) throws NotFoundException;
-	
-	public void deleteMobileDetails(int code);
+
+	public void deleteMobileDetails(Integer commCode,Integer mobileCode) ;
 }
