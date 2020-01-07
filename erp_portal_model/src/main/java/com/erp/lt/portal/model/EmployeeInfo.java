@@ -14,19 +14,8 @@ import java.util.List;
 @NamedQuery(name = "EmployeeInfo.findAll", query = "SELECT e FROM EmployeeInfo e")
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "employee_code")
 	private int employeeCode;
-
-	// employee number
-	@Column(name = "employee_number") // FK
-	private String employeeNumber;
-
-	// employee email // login id
-	@Column(name = "employee_email")
-	private String email;
 
 	private String citizen;
 
@@ -36,8 +25,6 @@ public class EmployeeInfo implements Serializable {
 	private Date dob;
 
 	private String firstname;
-
-	private String lastName;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "marriage_date")
@@ -71,14 +58,18 @@ public class EmployeeInfo implements Serializable {
 	@OneToMany(mappedBy = "employeeInfo")
 	private List<EmployementHistory> employementHistories;
 
+	// bi-directional many-to-one association to EmployeeAddress
+	@OneToMany(mappedBy = "employeeInfo")
+	private List<EmployeeAddress> employeeAddresses;
+
 	public EmployeeInfo() {
 	}
 
-	public int getEmployeeCode() {
-		return this.employeeCode;
+	public int getemployeeCode() {
+		return employeeCode;
 	}
 
-	public void setEmployeeCode(int employeeCode) {
+	public void setemployeeCode(int employeeCode) {
 		this.employeeCode = employeeCode;
 	}
 
@@ -112,14 +103,6 @@ public class EmployeeInfo implements Serializable {
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
-
-	public String getLastName() {
-		return this.lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 
 	public Date getMarriageDate() {
@@ -236,20 +219,26 @@ public class EmployeeInfo implements Serializable {
 		return employementHistory;
 	}
 
-	public String getEmployeeNumber() {
-		return employeeNumber;
+	public List<EmployeeAddress> getEmployeeAddresses() {
+		return this.employeeAddresses;
 	}
 
-	public void setEmployeeNumber(String employeeNumber) {
-		this.employeeNumber = employeeNumber;
+	public void setEmployeeAddresses(List<EmployeeAddress> employeeAddresses) {
+		this.employeeAddresses = employeeAddresses;
 	}
 
-	public String getEmail() {
-		return email;
+	public EmployeeAddress addEmployeeAddress(EmployeeAddress employeeAddress) {
+		getEmployeeAddresses().add(employeeAddress);
+		employeeAddress.setEmployeeInfo(this);
+
+		return employeeAddress;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public EmployeeAddress removeEmployeeAddress(EmployeeAddress employeeAddress) {
+		getEmployeeAddresses().remove(employeeAddress);
+		employeeAddress.setEmployeeInfo(null);
+
+		return employeeAddress;
 	}
 
 }

@@ -69,7 +69,7 @@ public class EducationServiceImpl implements EducationService {
 				detailsVO.setEducationBoardCode(entity.getEducationboard().getCode());
 			}
 			if (null != entity.getEmployeeInfo()) {
-				detailsVO.setEmployeecode(entity.getEmployeeInfo().getEmployeeCode());
+				detailsVO.setEmployeecode(entity.getEmployeeInfo().getemployeeCode());
 			}
 			if (entity.getStatus() == 1) {
 

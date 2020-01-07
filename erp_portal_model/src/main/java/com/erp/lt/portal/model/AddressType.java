@@ -5,26 +5,29 @@ import javax.persistence.*;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the address_type database table.
  * 
  */
 @Entity
-@Table(name="address_type")
-@NamedQuery(name="AddressType.findAll", query="SELECT a FROM AddressType a")
+@Table(name = "address_type")
+@NamedQuery(name = "AddressType.findAll", query = "SELECT a FROM AddressType a")
 public class AddressType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="address_type_code")
+	@Column(name = "code")
 	private int addressTypeCode;
 
 	private String title;
 
-	//bi-directional many-to-one association to EmployeeAddress
-	@OneToMany(mappedBy="addressType")
+	// bi-directional many-to-one association to EmployeeAddress
+	@OneToMany(mappedBy = "addressType")
 	private List<EmployeeAddress> employeeAddresses;
+
+	// bi-directional many-to-one association to EmployementHistory
+	@OneToMany(mappedBy = "addressType")
+	private List<EmployementHistory> employementHistories;
 
 	public AddressType() {
 	}
@@ -65,6 +68,28 @@ public class AddressType implements Serializable {
 		employeeAddress.setAddressType(null);
 
 		return employeeAddress;
+	}
+
+	public List<EmployementHistory> getEmployementHistories() {
+		return this.employementHistories;
+	}
+
+	public void setEmployementHistories(List<EmployementHistory> employementHistories) {
+		this.employementHistories = employementHistories;
+	}
+
+	public EmployementHistory addEmployementHistory(EmployementHistory employementHistory) {
+		getEmployementHistories().add(employementHistory);
+		employementHistory.setAddressType(this);
+
+		return employementHistory;
+	}
+
+	public EmployementHistory removeEmployementHistory(EmployementHistory employementHistory) {
+		getEmployementHistories().remove(employementHistory);
+		employementHistory.setAddressType(null);
+
+		return employementHistory;
 	}
 
 }

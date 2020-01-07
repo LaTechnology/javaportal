@@ -5,6 +5,7 @@ package com.erp.lt.portal.service.impl;
 
 import java.util.Optional;
 
+import org.apache.commons.math3.genetics.NPointCrossover;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +34,15 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 	EmployeeInfoService employeeInfoService;
 
 	@Override
-	public CommunicationDetailsVO getCommunicationDetailsByEmpId(int empId) {
-		CommunicationDetailsVO detailsVO = new CommunicationDetailsVO();
+	public CommunicationDetail getCommunicationDetailByEmpId(int empId) throws NotFoundException {
 		Optional<CommunicationDetail> optional = communicationDetailsRepository.getCommunicationDetailsByEmpId(empId);
-		CommunicationDetail detail = optional.get();
+		return optional.isPresent() ? optional.get() : null;
+	}
+
+	@Override
+	public CommunicationDetailsVO getCommunicationDetailsByEmpId(int empId) throws NotFoundException {
+		CommunicationDetailsVO detailsVO = new CommunicationDetailsVO();
+		CommunicationDetail detail = getCommunicationDetailByEmpId(empId);
 		if (null != detail) {
 			if (null != detail.getCompanyEmailId()) {
 				detailsVO.setCompanyEmailId(detail.getCompanyEmailId());
@@ -62,7 +68,7 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			 */
 
 			if (null != detail.getEmployeeInfo()) {
-				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getEmployeeCode());
+				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getemployeeCode());
 			}
 
 			if (null != detail.getPersonalEmailId()) {
@@ -76,7 +82,40 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 	@Override
 	public void addCommunicationDetials(CommunicationDetailsVO communicationDetailVo) throws NotFoundException {
 		CommunicationDetail communicationDetail = new CommunicationDetail();
-		doMap(communicationDetailVo, communicationDetail);
+		Optional<EmployeeInfo> employeeInfo = null;
+
+		if (communicationDetailVo.getEmployeeCode() > 0) {
+			employeeInfo = employeeInfoRepository.findById(communicationDetailVo.getEmployeeCode());
+		}
+
+		if (communicationDetailVo.getCode() > 0) {
+			communicationDetail.setCode(communicationDetailVo.getCode());
+		}
+		if (communicationDetailVo.getBeginDate() != null) {
+			communicationDetail.setBeginDate(communicationDetailVo.getBeginDate());
+		}
+
+		if (communicationDetailVo.getClientEmailId() != null) {
+			communicationDetail.setClientEmailId(communicationDetailVo.getClientEmailId());
+		}
+		if (communicationDetailVo.getCompanyEmailId() != null) {
+			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
+		}
+
+		if (communicationDetailVo.getEmergencyComunicationNumber() != null) {
+			communicationDetail.setEmergencyComunicationNumber(communicationDetailVo.getEmergencyComunicationNumber());
+		}
+
+		if (communicationDetailVo.getEndDate() != null) {
+			communicationDetail.setEndDate(communicationDetailVo.getEndDate());
+		}
+		if (communicationDetailVo.getPersonalEmailId() != null) {
+			communicationDetail.setPersonalEmailId(communicationDetailVo.getPersonalEmailId());
+		}
+
+		if (employeeInfo.isPresent()) {
+			communicationDetail.setEmployeeInfo(employeeInfo.get());
+		}
 		communicationDetailsRepository.save(communicationDetail);
 	}
 
@@ -87,22 +126,17 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 		communicationDetailsRepository.save(communicationDetail);
 	}
 
-	@Override
-	public void deleteCommunicationDetailsByEmpId(int empId) {
-		if (empId > 0) {
-			communicationDetailsRepository.deleteById(empId);
-		}
-
-	}
+	
 
 	@Override
 	public void doMap(CommunicationDetailsVO communicationDetailVo, CommunicationDetail communicationDetail)
 			throws NotFoundException {
-		EmployeeInfo employeeInfo = null;
+
+		Optional<EmployeeInfo> optional = null;
 		if (-1 != communicationDetailVo.getEmployeeCode()) {
-			employeeInfo = employeeInfoService
-					.getEmployeeInfoByEmpId(String.valueOf(communicationDetailVo.getEmployeeCode()));
+			optional = employeeInfoRepository.findById(communicationDetailVo.getEmployeeCode());
 		}
+
 		if (null != communicationDetailVo.getCompanyEmailId()) {
 			communicationDetail.setCompanyEmailId(communicationDetailVo.getCompanyEmailId());
 
@@ -126,13 +160,22 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 		if (null != communicationDetailVo.getEmergencyComunicationNumber()) {
 			communicationDetail.setEmergencyComunicationNumber(communicationDetailVo.getEmergencyComunicationNumber());
 		}
-		if (null != employeeInfo) {
-			communicationDetail.setEmployeeInfo(employeeInfo);
+		if (optional.isPresent()) {
+			communicationDetail.setEmployeeInfo(optional.get());
 		}
 
 		if (null != communicationDetailVo.getPersonalEmailId()) {
 			communicationDetail.setPersonalEmailId(communicationDetailVo.getPersonalEmailId());
 		}
 	}
+	@Override
+	public void deleteCommunicationDetailsByEmpId(int empId) throws NotFoundException {
+		if(communicationDetailsRepository.getCommunicationDetailsByEmpId(empId).isPresent())
+		{
+			communicationDetailsRepository.deleteById(empId);
+		}else {
+			throw new NotFoundException("Employee Not Found");
+		}
 
+	}
 }

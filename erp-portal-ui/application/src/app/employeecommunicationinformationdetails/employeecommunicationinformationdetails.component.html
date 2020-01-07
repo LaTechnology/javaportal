@@ -1,0 +1,26 @@
+<div>
+<h2> View Employee Communication Details</h2> 
+</div>
+<div *ngIf="employeecommunication">
+  <div>
+    <label><b>company emailid:</b></label> {{employeecommunication.company_email_id}}
+  </div>
+  <div>
+    <label><b>personal emailid: </b></label> {{employeecommunication.personal_email_id}}
+  </div>
+  <div>
+    <label><b>client emailid: </b></label> {{employeecommunication.client_email_id}}
+  </div>  
+  <div>
+    <label><b> Emergency contact number: </b></label> {{employeecommunication.emergency_contact_number}}
+  </div> 
+  <div>
+    <label><b>begin date: </b></label> {{employeecommunication.begin_date}}
+  </div>  
+  <div>
+    <label><b>end date: </b></label> {{employeecommunication.end_date}}
+  </div>  
+</div>
+<div>
+<button (click)="list()" class="btn btn-primary">Back to Employee List</button><br>
+</div>

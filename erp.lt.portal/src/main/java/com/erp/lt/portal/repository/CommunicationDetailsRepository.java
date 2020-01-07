@@ -26,7 +26,6 @@ public interface CommunicationDetailsRepository extends JpaRepository<Communicat
 			+ " on comdetails.employee_code = empinfo.employee_code left join mobile_details as mobdetails "
 			+ " on comdetails.code = mobdetails.comminication_details_code  "
 			+ " where comdetails.employee_code = empinfo.employee_code and"
-			+ " comdetails.code = mobdetails.comminication_details_code and "
 			+ " comdetails.employee_code =:empId", nativeQuery = true)
 	public Optional<CommunicationDetail> getCommunicationDetailsByEmpId(@Param(value = "empId") int empId);
 
