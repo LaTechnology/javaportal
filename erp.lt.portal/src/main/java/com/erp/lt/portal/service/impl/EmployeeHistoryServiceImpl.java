@@ -239,7 +239,7 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
 					&& employeeHistoryVO.getAddressTypeCode() == 5) {
 
 				Optional<EmployeeAddress> existingaddress = employeeAddressRepository
-						.getEmployeeAddress(employeeHistoryVO.getEmployeeCode());
+						.getEmployeeAddressopt(employeeHistoryVO.getEmployeeCode());
 
 				employeeAddress = existingaddress.get();
 
