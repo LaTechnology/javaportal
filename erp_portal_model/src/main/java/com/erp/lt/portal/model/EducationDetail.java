@@ -5,19 +5,18 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 /**
  * The persistent class for the education_details database table.
  * 
  */
 @Entity
-@Table(name="education_details")
-@NamedQuery(name="EducationDetail.findAll", query="SELECT e FROM EducationDetail e")
+@Table(name = "education_details")
+@NamedQuery(name = "EducationDetail.findAll", query = "SELECT e FROM EducationDetail e")
 public class EducationDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int educationId;
 
 	private String additionalCertification;
@@ -33,24 +32,24 @@ public class EducationDetail implements Serializable {
 	private String instituteName;
 
 	private String universityName;
-	
-	
 
-	//bi-directional many-to-one association to Educationboard
+	private int status;
+
+	// bi-directional many-to-one association to Educationboard
 
 	@ManyToOne
-	@JoinColumn(name="education_board_code")
+	@JoinColumn(name = "education_board_code")
 	private Educationboard educationboard;
 
-	//bi-directional many-to-one association to Educationtype
+	// bi-directional many-to-one association to Educationtype
 	@ManyToOne
-	@JoinColumn(name="education_type_code")	
+	@JoinColumn(name = "education_type_code")
 	private Educationtype educationtype;
 
-	//bi-directional many-to-one association to EmployeeInfo
-	
+	// bi-directional many-to-one association to EmployeeInfo
+
 	@ManyToOne
-	@JoinColumn(name="employee_code")
+	@JoinColumn(name = "employee_code")
 	private EmployeeInfo employeeInfo;
 
 	public EducationDetail() {
@@ -136,10 +135,18 @@ public class EducationDetail implements Serializable {
 		this.employeeInfo = employeeInfo;
 	}
 
-	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	
-	
+
+
+
 
 
 }

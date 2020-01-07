@@ -12,8 +12,10 @@ public interface EducationService {
 
 	public boolean editEmployeeEducation(EducationDetailsVO dto) throws NotFoundException;
 
-	public void deleteEmployeeEducation(int eduId);
-
+	public List<EducationDetailsVO> deleteEmployeeEducation(int empId);
+	
 	public List<EducationDetailsVO> getEmployeeEducationDetail(int eduId);
+	
+	/* ?public EducationDetailsVO getOneEmployeeEducationDetail(int empId); */
 
 }
