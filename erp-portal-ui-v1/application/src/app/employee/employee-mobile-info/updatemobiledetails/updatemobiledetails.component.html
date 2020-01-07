@@ -1,0 +1,31 @@
+<h3>update Employee Mobiledetails info  </h3>
+
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class ="form-row"   >
+      <div class="form-group col-md-6">
+        <label for="name">communication employee code</label>
+        <input type="number" class="form-control" id="code" required [(ngModel)]="mobileinfo.code" name="code">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="name">employee communication code</label>
+        <input type="number" class="form-control" id="communicationDetail" required [(ngModel)]="mobileinfo.communicationDetail" name="communicationDetail">
+      </div>
+
+    <div class="form-group col-md-6">
+      <label for="name">Mobilenumber 1</label>
+      <input type="text" class="form-control" id="mobileNumber1" required [(ngModel)]="mobileinfo.mobileNumber1" name="mobileNumber1">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Mobilenumber 2</label>
+      <input type="text" class="form-control" id="moblieNumber2" required [(ngModel)]="mobileinfo.moblieNumber2" name="moblieNumber2">
+    </div>
+  </div>
+  
+  <div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  
+  </form>
+  <div [hidden]="!submitted">
+    
+  </div>
