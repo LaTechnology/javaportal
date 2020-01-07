@@ -12,10 +12,11 @@ import com.erp.lt.portal.vo.EmployeeDesignationVO;
 public class EmployeeDesignationController {
 	@Autowired
 	EmployeeDesignationService employeeDesignationService;
+
 	@GetMapping(path = "/get/EmpDesignation/{code}")
 	public EmployeeDesignationVO getEmployeeEdu(@PathVariable(value = "code") int code) {
-		 
-			return employeeDesignationService.getEmployeeDesignation(code);
-		}
+
+		return employeeDesignationService.getEmployeeDesignation(code);
+	}
 
 }

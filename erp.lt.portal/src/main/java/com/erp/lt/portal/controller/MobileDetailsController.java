@@ -88,9 +88,8 @@ public class MobileDetailsController {
 	}
 
 	@DeleteMapping(path = ERPConstants.MOBILE_DETAILS_DELETE_URL)
-	public void deleteMobileDetails(@PathVariable(value = "empCode") Integer empCode,
-			@PathVariable(value = "mobileCode") Integer mobileCode) {
-		mobileDetailsService.deleteMobileDetails(empCode, mobileCode);
+	public void deleteMobileDetails(@PathVariable(value = "empCode") Integer empCode) {
+		mobileDetailsService.deleteMobileDetails(empCode);
 	}
 
 }

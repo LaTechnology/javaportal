@@ -16,7 +16,7 @@ public class AddressType implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "code")
+	@Column(name = "address_type_code")
 	private int addressTypeCode;
 
 	private String title;

@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -55,6 +53,9 @@ public class CommunicationDetail implements Serializable {
 	@JoinColumn(name = "employee_code")
 	private EmployeeInfo employeeInfo;
 
+	@Column(name = "Status")
+	private int status;
+
 	/*
 	 * //bi-directional many-to-one association to MobileDetail
 	 * 
@@ -91,6 +92,14 @@ public class CommunicationDetail implements Serializable {
 
 	public String getCompanyEmailId() {
 		return this.companyEmailId;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public void setCompanyEmailId(String companyEmailId) {

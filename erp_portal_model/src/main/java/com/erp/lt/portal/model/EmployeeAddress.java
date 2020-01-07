@@ -11,7 +11,7 @@ public class EmployeeAddress implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "address_code")
 	private int addressCode;
 
@@ -36,7 +36,8 @@ public class EmployeeAddress implements Serializable {
 	private String pincode;
 
 	private String state;
-
+	@Column(name = "Status")
+	private int status;
 	// bi-directional many-to-one association to AddressType
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -54,7 +55,7 @@ public class EmployeeAddress implements Serializable {
 
 	public EmployeeAddress() {
 	}
-	
+
 	public EmployeeInfo getEmployeeInfo() {
 		return employeeInfo;
 	}
@@ -62,6 +63,7 @@ public class EmployeeAddress implements Serializable {
 	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
 		this.employeeInfo = employeeInfo;
 	}
+
 	public int getAddressCode() {
 		return this.addressCode;
 	}
@@ -141,13 +143,21 @@ public class EmployeeAddress implements Serializable {
 	public void setAddressType(AddressType addressType) {
 		this.addressType = addressType;
 	}
-	
+
 	public EmployementHistory getEmployementHistory() {
 		return this.employementHistory;
 	}
 
 	public void setEmployementHistory(EmployementHistory employementHistory) {
 		this.employementHistory = employementHistory;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

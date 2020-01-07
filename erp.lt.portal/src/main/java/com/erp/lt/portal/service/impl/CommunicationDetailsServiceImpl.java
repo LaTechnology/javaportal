@@ -62,17 +62,17 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			if (null != detail.getEmergencyComunicationNumber()) {
 				detailsVO.setEmergencyComunicationNumber(detail.getEmergencyComunicationNumber());
 			}
-			/*
-			 * if (null != detail.getMobileDetails()) {
-			 * detailsVO.setMobileDetails(detail.getMobileDetails()); }
-			 */
-
+			
 			if (null != detail.getEmployeeInfo()) {
 				detailsVO.setEmployeeCode(detail.getEmployeeInfo().getemployeeCode());
 			}
 
 			if (null != detail.getPersonalEmailId()) {
 				detailsVO.setPersonalEmailId(detail.getPersonalEmailId());
+			}
+			
+			if(detail.getStatus()==1 || detail.getStatus() == 0) {
+				detailsVO.setStatus(detail.getStatus());
 			}
 		}
 
@@ -116,6 +116,7 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 		if (employeeInfo.isPresent()) {
 			communicationDetail.setEmployeeInfo(employeeInfo.get());
 		}
+		communicationDetail.setStatus(1);
 		communicationDetailsRepository.save(communicationDetail);
 	}
 

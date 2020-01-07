@@ -1,5 +1,6 @@
 package com.erp.lt.portal.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,8 +19,8 @@ public interface EmployeeHistoryService {
 
 	public void deleteEmployeeHistory(int employeeCode);
 
-	public List<EmployementHistory> getAllEmployeeHistory();
-
-	public EmployeeHistoryVO getEmployeeHistory(int employeeCode);
+	public List<EmployeeHistoryVO> getEmployeeHistory(int employeeCode);
+	
+	
 
 }

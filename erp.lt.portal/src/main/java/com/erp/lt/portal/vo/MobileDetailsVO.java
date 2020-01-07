@@ -26,6 +26,8 @@ public class MobileDetailsVO implements Serializable {
 
 	private int communicationDetail;
 	
+	private int status;
+	
 	public int getCode() {
 		return code;
 	}
@@ -56,6 +58,14 @@ public class MobileDetailsVO implements Serializable {
 
 	public void setCommunicationDetail(int communicationDetail) {
 		this.communicationDetail = communicationDetail;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 

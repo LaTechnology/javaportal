@@ -3,7 +3,6 @@
  */
 package com.erp.lt.portal.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.erp.lt.portal.model.CommunicationDetail;
 import com.erp.lt.portal.model.MobileDetail;
+import com.erp.lt.portal.repository.CommunicationDetailsRepository;
 import com.erp.lt.portal.repository.MobileDetailsRepostiory;
 import com.erp.lt.portal.service.CommunicationDetailsService;
 import com.erp.lt.portal.service.MobileDetailsService;
@@ -29,11 +29,24 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 	MobileDetailsRepostiory mobileDetailsRepository;
 	@Autowired
 	CommunicationDetailsService communicationDetailsService;
+	@Autowired
+	CommunicationDetailsRepository communicationDetailsRepository;
 
 	@Override
-	public MobileDetailsVO getMobileDetails(int code) {
+	public MobileDetailsVO getMobileDetails(Integer employeeCode) {
 		MobileDetailsVO detailsVO = new MobileDetailsVO();
-		Optional<MobileDetail> optional = mobileDetailsRepository.findById(code);
+		CommunicationDetail comdetail;
+		Optional<MobileDetail> optional = null;
+		try {
+			comdetail = communicationDetailsService.getCommunicationDetailByEmpId(employeeCode);
+			for (MobileDetail mobileDetail : comdetail.getMobileDetails()) {
+				if (mobileDetail.getCode() > 0) {
+					optional = mobileDetailsRepository.findById(mobileDetail.getCode());
+				}
+			}
+		} catch (NotFoundException e) {
+			e.printStackTrace();
+		}
 		MobileDetail detail = optional.get();
 
 		if (0 != detail.getCode()) {
@@ -52,14 +65,17 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 
 			detailsVO.setCommunicationDetail(detail.getCommunicationDetail().getCode());
 		}
-
+		if (detail.getStatus() == 1 || detail.getStatus() == 0) {
+			detailsVO.setStatus(detail.getStatus());
+		}
 		return detailsVO;
 	}
 
 	public void addMobileDetials(MobileDetailsVO mobileDetailsVO) throws NotFoundException {
 		MobileDetail detail = new MobileDetail();
-		CommunicationDetail communicationOptional = communicationDetailsService
-				.getCommunicationDetailByEmpId(mobileDetailsVO.getCommunicationDetail());
+		Optional<CommunicationDetail> communicationOptional = communicationDetailsRepository
+				.findById(mobileDetailsVO.getCommunicationDetail());
+
 		if (null != mobileDetailsVO) {
 			if (0 != mobileDetailsVO.getCode()) {
 
@@ -72,9 +88,11 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 			if (0 != mobileDetailsVO.getMoblieNumber2()) {
 				detail.setMoblieNumber2(mobileDetailsVO.getMoblieNumber2());
 			}
-			if (null != communicationOptional) {
-				detail.setCommunicationDetail(communicationOptional);
+			if (communicationOptional.isPresent()) {
+				detail.setCommunicationDetail(communicationOptional.get());
 			}
+			detail.setStatus(1);
+
 		}
 		mobileDetailsRepository.save(detail);
 	}
@@ -111,13 +129,13 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 	}
 
 	@Override
-	public void deleteMobileDetails(Integer employeeCode, Integer mobileCode) {
+	public void deleteMobileDetails(Integer employeeCode) {
 		CommunicationDetail comdetail;
 		try {
 			comdetail = communicationDetailsService.getCommunicationDetailByEmpId(employeeCode);
 			for (MobileDetail mobileDetail : comdetail.getMobileDetails()) {
-				if (mobileDetail.getCode() == mobileCode) {
-					mobileDetailsRepository.deleteById(mobileCode);
+				if (mobileDetail.getCode() > 0) {
+					mobileDetailsRepository.deleteById(mobileDetail.getCode());
 				}
 			}
 		} catch (NotFoundException e) {

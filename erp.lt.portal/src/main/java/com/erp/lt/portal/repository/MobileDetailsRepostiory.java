@@ -24,6 +24,4 @@ public interface MobileDetailsRepostiory extends JpaRepository<MobileDetail, Int
 			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
 	public Optional<MobileDetail> getMobileDetails(@Param(value = "communication_code") int communication_code);
 
-	@Query(value = "DELETE FROM MobileDetail as md WHERE md.communicationDetail.code= :communicationDetail ")
-	public void deleteMobileDetailsByEmpID(@Param(value = "communicationDetail") Integer communicationDetail);
 }
