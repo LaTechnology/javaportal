@@ -1,0 +1,64 @@
+<p>
+  employee-education-update works!
+</p>
+<h3>Update EmployeeEducation</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div *ngFor="let data of employeeEducation">
+<h2>{{data.educationId}}</h2>
+    <div class="form-group">
+      <label for="name">Institute Name</label>
+      <input type="text" class="form-control" id="instituteName" required [(ngModel)]="data.instituteName" name="instituteName">
+    </div>
+    <div class="form-group">
+      <label for="name">University Name</label>
+      <input type="text" class="form-control" id="universityName" required [(ngModel)]="data.universityName" name="universityName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">BeginDate</label>
+      <input type="date" class="form-control" id="beginDate" required [(ngModel)]="data.beginDate" name="beginDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">EndDate</label>
+      <input type="date" class="form-control" id="endDate" required [(ngModel)]="data.endDate" name="endDate">
+    </div>
+    <div class="form-group">
+      <label for="name">AdditionalCertifications</label>
+      <input type="text" class="form-control" id="additionalCertification" required [(ngModel)]="data.additionalCertification" name="additionalCertification">
+    </div>
+    <div class="form-group">
+      <label for="name">Cgpa</label>
+      <input type="number" class="form-control" id="cgpa" required [(ngModel)]="data.cgpa" name="cgpa">
+    </div>
+
+    <div class="form-group">
+      <label for="educationBoard">EducationBoard</label>
+      <select id="employeeEducation"  name="employeeEducation" [(ngModel)]="employeeEducation.educationBoardCode" class="form-control">
+          <option select id="Choose..." name="Choose..." class="input-medium" disabled="disabled">Choose...</option>
+          <option value="1">STATEBOARD</option>
+          <option value="2">Cbse</option>
+         
+        </select>   
+    </div>
+    <div class="form-group">
+      <label for="employeeEducation">EducationType</label>
+      <select id="employeeEducation"  name="employeeEducation" [(ngModel)]="employeeEducation.educationTypecode" class="form-control">
+          <option select id="Choose..." name="Choose..." class="input-medium" disabled="disabled">Choose...</option>
+          <option value="1">sslc</option>
+          <option value="2">hsc</option>
+          <option value="3">ug</option>
+          <option value="4">pg</option>
+         
+        </select>    
+    </div>
+
+    
+
+   
+    <button type="submit" class="btn btn-success">Update</button>
+  </div>
+  </form>
+  
+  
