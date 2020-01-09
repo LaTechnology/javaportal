@@ -29,4 +29,8 @@ public interface EmployeeHistoryRepository extends JpaRepository<EmployementHist
 
 	@Query(value = "UPDATE EmployementHistory eh SET eh.status =:status where eh.employeeInfo.employeeCode =:EmpID ",nativeQuery = true)
 	public void softDeleteByEmpID(@Param(value = "EmpID") int EmpID, @Param(value = "status") int status);
+	
+	@Query(value = "SELECT e FROM EmployementHistory e where e.employeeInfo.employeeCode=:empId and e.id=:orgId")
+	public EmployementHistory editEmployeeHistoryByEmpIdAndOrgId(@Param(value = "empId") Integer empId,
+			@Param(value = "orgId") Integer orgId);
 }

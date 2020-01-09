@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.solr.common.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -215,14 +216,15 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
 		if (employeeHistoryVO.getEmployeeCode() <= 0) {
 			throw new NotFoundException("Employee not found");
 		}
-		Optional<EmployementHistory> existEmployeeHist = employeeHistoryRepository.findById(employeeHistoryVO.getId());
+		EmployementHistory existEmployeeHist = employeeHistoryRepository
+				.editEmployeeHistoryByEmpIdAndOrgId(employeeHistoryVO.getEmployeeCode(), employeeHistoryVO.getId());
 		Optional<DesignationType> desType = null;
 		Optional<EmployeeInfo> empinfo = employeeInfoRespository.findById(employeeHistoryVO.getEmployeeCode());
 		if (employeeHistoryVO.getDesignationCode() > 0) {
 			desType = employeeDesignationRepository.findById(employeeHistoryVO.getDesignationCode());
 		}
-		if (existEmployeeHist.isPresent()) {
-			old = existEmployeeHist.get();
+		if (null != existEmployeeHist) {
+			old = existEmployeeHist;
 			old.setBeginDate(employeeHistoryVO.getBeginDate());
 			old.setEndDate(employeeHistoryVO.getEndDate());
 			old.setAddressType(addressType.get());
@@ -238,10 +240,9 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
 			if (employeeHistoryVO.getEmployeeCode() != 0 && employeeHistoryVO.getId() != 0
 					&& employeeHistoryVO.getAddressTypeCode() == 5) {
 
-				Optional<EmployeeAddress> existingaddress = employeeAddressRepository
-						.getEmployeeAddressopt(employeeHistoryVO.getEmployeeCode());
-
-				employeeAddress = existingaddress.get();
+				EmployeeAddress existingaddress = employeeAddressRepository.editEmployeeHistoryByEmpIdAndOrgId(
+						employeeHistoryVO.getEmployeeCode(), employeeHistoryVO.getId());
+				employeeAddress = existingaddress;
 
 				employeeAddress.setAddressLine1(employeeHistoryVO.getAddressLine1());
 
