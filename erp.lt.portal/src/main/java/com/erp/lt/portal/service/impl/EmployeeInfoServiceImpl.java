@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.erp.lt.portal.model.EmployeeInfo;
 import com.erp.lt.portal.model.GenderType;
+import com.erp.lt.portal.model.LoginDetails;
 import com.erp.lt.portal.model.MaritalStatus;
 import com.erp.lt.portal.repository.EmployeeInfoRepository;
 import com.erp.lt.portal.repository.GenderTypeRepository;
@@ -33,6 +34,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 	@Override
 	public void addEmployeeInfo(EmployeeInfoVO employeeInfoVO) {
 		EmployeeInfo empinfo = new EmployeeInfo();
+		LoginDetails loginDetails = new LoginDetails();
 		Optional<GenderType> genderType = null;
 		Optional<MaritalStatus> maritalStatusOptional = null;
 		if (employeeInfoVO.getGenderCode() > 0) {
@@ -42,7 +44,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			maritalStatusOptional = maritalStatusRepository.findById(employeeInfoVO.getMaritalStatusCode());
 		}
 		if (null != employeeInfoVO.getEmployeeCode()) {
-			empinfo.setemployeeCode(Integer.parseInt(employeeInfoVO.getEmployeeCode()));
+			empinfo.setemployeeCode(getEmployeeCode());
 
 		}
 
@@ -70,17 +72,31 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		}
 		if (null != employeeInfoVO.getMarriageDate()) {
 			empinfo.setMarriageDate(employeeInfoVO.getMarriageDate());
-		}
+		}	
 		if (0 != employeeInfoVO.getStatus()) {
 			empinfo.setStatus(employeeInfoVO.getStatus());
 		}
+		if (null != employeeInfoVO.getLastName()) {
+			empinfo.setLastname(employeeInfoVO.getLastName());
+		}
+		if (null != employeeInfoVO.getEmailId()) {
+			empinfo.setLoginEmailId(employeeInfoVO.getEmailId());
+		}
+
 		if (null != maritalStatusOptional) {
 			empinfo.setMaritalStatus(maritalStatusOptional.get());
 		}
+		if (null != employeeInfoVO.getEmployeePrefix()) {
+			empinfo.setEmployeePrefix(employeeInfoVO.getEmployeePrefix());
+		}
 		employeeInfoRepository.save(empinfo);
+		
+		
+		
+		
 	}
 
-	// @Override
+	 @Override
 	public boolean editEmployeeInfo(EmployeeInfoVO modified) throws NotFoundException {
 
 		EmployeeInfo old = null;
@@ -102,13 +118,16 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(modified.getFirstname());
 			old.setCountryofbirth(modified.getCountryofbirth());
 			old.setDob(modified.getDob());
-			// old.setLastName(modified.getLastName());
+			
 			old.setNationality(modified.getNationality());
 			old.setMarriageDate(modified.getMarriageDate());
 			old.setStateofbirth(modified.getStateofbirth());
 			old.setStatus(modified.getStatus());
 			old.setMaritalStatus(maritalStatusOptional.get());
 			old.setGenderType(genderType.get());
+			old.setEmployeePrefix(modified.getEmployeePrefix());
+			old.setLoginEmailId(modified.getEmailId());
+			 old.setLastname(modified.getLastName());
 		}
 		employeeInfoRepository.save(old);
 		status = true;
@@ -125,6 +144,7 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 		if (null != employeeInfo) {
 			if (0 < employeeInfo.getemployeeCode()) {
 				empInfoVo.setEmployeeCode(String.valueOf(employeeInfo.getemployeeCode()));
+				
 			}
 			if (null != employeeInfo.getFirstname()) {
 				empInfoVo.setFirstname(employeeInfo.getFirstname());
@@ -157,7 +177,17 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			if (0 != employeeInfo.getStatus()) {
 				empInfoVo.setStatus(employeeInfo.getStatus());
 			}
-
+			if (null != employeeInfo.getEmployeePrefix()) {
+				empInfoVo.setEmployeePrefix(employeeInfo.getEmployeePrefix());
+			}
+			if (null != employeeInfo.getLoginEmailId()) {
+				empInfoVo.setEmailId(employeeInfo.getLoginEmailId());
+			}
+			if (null != employeeInfo.getLastname()) {
+				empInfoVo.setLastName(employeeInfo.getLastname());
+			}
+			
+		
 		}
 		return empInfoVo;
 
@@ -203,6 +233,15 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			if (0 != empInfo.getStatus()) {
 				infoVO.setStatus(empInfo.getStatus());
 			}
+			if (null != empInfo.getEmployeePrefix()) {
+				infoVO.setEmployeePrefix(empInfo.getEmployeePrefix());
+			}
+			if (null != empInfo.getLoginEmailId()) {
+				infoVO.setEmailId(empInfo.getLoginEmailId());
+			}
+			if (null != empInfo.getLastname()) {
+				infoVO.setLastName(empInfo.getLastname());
+			}
 			infoVOs.add(infoVO);
 		}
 		return infoVOs;
@@ -228,7 +267,10 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 			old.setFirstname(employeeInfoVo.getFirstname());
 			old.setCountryofbirth(employeeInfoVo.getCountryofbirth());
 			old.setDob(employeeInfoVo.getDob());
-
+			old.setEmployeePrefix(employeeInfoVo.getEmployeePrefix());
+			old.setLoginEmailId(employeeInfoVo.getEmailId());
+			 old.setLastname(employeeInfoVo.getLastName());
+			 old.setStatus(employeeInfoVo.getStatus());
 			old.setNationality(employeeInfoVo.getNationality());
 			old.setMarriageDate(employeeInfoVo.getMarriageDate());
 			old.setStateofbirth(employeeInfoVo.getStateofbirth());
@@ -241,5 +283,11 @@ public class EmployeeInfoServiceImpl implements EmployeeInfoService {
 
 		return status;
 
+	}
+
+	@Override
+	public int getEmployeeCode() {
+		
+		return employeeInfoRepository.getEmployeeCode()+1;
 	}
 }

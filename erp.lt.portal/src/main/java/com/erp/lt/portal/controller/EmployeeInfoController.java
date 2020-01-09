@@ -48,6 +48,11 @@ public class EmployeeInfoController {
 	return employeeinfoservice.getAllEmployeeInfo();
 
 	}
+	@GetMapping(path = ERPConstants.EMPLOYEE_GETEMPLOYEECODE_URL)
+	public int getEmployeeCode() {
+	return employeeinfoservice.getEmployeeCode();
+
+	}
 
 	@PutMapping(path = ERPConstants.EMPLOYEE_EDIT_URL)
 	public boolean editEmployee(@RequestBody EmployeeInfoVO employeeInfoVo) {
@@ -87,13 +92,6 @@ public class EmployeeInfoController {
 	}
 	return status;
 	}
-	/*
-	 * @DeleteMapping(path = ERPConstants.EMPLOYEE_DELETE_URL) public void
-	 * deleteEmployee(@PathVariable(value = "employeeCode") int employeeCode) {
-	 * employeeinfoservice.deleteEmployeeInfo(employeeCode);
-	 * 
-	 * if (0 >= employeeCode) {
-	 * employeeinfoservice.deleteEmployeeInfo(employeeCode); } }
-	 */
+	 
 
 }

@@ -37,6 +37,7 @@ public interface EmployeeInfoRepository extends JpaRepository<EmployeeInfo, Inte
 			+ "on eif.gender_type_code= gtc.code join marital_status as ms  "
 			+ "on eif.marital_status_code = ms.code ", nativeQuery = true)
 			public List<EmployeeInfoVO> getAllEmployeeInfo();
-
+			@Query(value = "select employee_Code from employee_selfservicedb.employee_info  ORDER BY employee_Code  DESC LIMIT 1",nativeQuery=true)
+			public int  getEmployeeCode();
 	
 }
