@@ -25,7 +25,9 @@ public interface EmployeeInfoService {
 
 	public boolean patchEmployeeInfo(EmployeeInfoVO employeeInfo) throws NotFoundException;
 
-
-	
+	public int getEmployeeCode();
 
 }
+	
+
+

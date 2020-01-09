@@ -32,11 +32,39 @@ public class EmployeeInfoVO implements Serializable {
 
 	private String stateofbirth;
 
-	private byte status;
-
+	
 	private int genderCode;
 
 	private int maritalStatusCode;
+	private String lastName;
+	private String emailId;
+	private String employeePrefix;
+      private int status;
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getEmployeePrefix() {
+		return employeePrefix;
+	}
+
+	public void setEmployeePrefix(String employeePrefix) {
+		this.employeePrefix = employeePrefix;
+	}
+
 
 	public String getEmployeeCode() {
 	return employeeCode;
@@ -103,12 +131,14 @@ public class EmployeeInfoVO implements Serializable {
 	this.stateofbirth = stateofbirth;
 	}
 
-	public byte getStatus() {
-	return status;
+	
+
+	public int getStatus() {
+		return status;
 	}
 
-	public void setStatus(byte status) {
-	this.status = status;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public int getGenderCode() {

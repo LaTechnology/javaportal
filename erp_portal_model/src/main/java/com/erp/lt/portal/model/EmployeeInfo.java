@@ -15,6 +15,7 @@ import java.util.List;
 public class EmployeeInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
+	@Column(name = "employee_code")
 	private int employeeCode;
 
 	private String citizen;
@@ -34,7 +35,29 @@ public class EmployeeInfo implements Serializable {
 
 	private String stateofbirth;
 
-	private byte status;
+	@Column(name = "login_email_id")
+	private String loginEmailId;
+
+	private int status;
+	private String lastname;
+	@Column(name = "employee_prefix")
+	private String employeePrefix;
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmployeePrefix() {
+		return employeePrefix;
+	}
+
+	public void setEmployeePrefix(String employeePrefix) {
+		this.employeePrefix = employeePrefix;
+	}
 
 	// bi-directional many-to-one association to CommunicationDetail
 	@OneToMany(mappedBy = "employeeInfo")
@@ -49,6 +72,7 @@ public class EmployeeInfo implements Serializable {
 	@JoinColumn(name = "gender_type_code")
 	private GenderType genderType;
 
+
 	// bi-directional many-to-one association to MaritalStatus
 	@ManyToOne
 	@JoinColumn(name = "marital_status_code")
@@ -58,10 +82,7 @@ public class EmployeeInfo implements Serializable {
 	@OneToMany(mappedBy = "employeeInfo")
 	private List<EmployementHistory> employementHistories;
 
-	// bi-directional many-to-one association to EmployeeAddress
-	@OneToMany(mappedBy = "employeeInfo")
-	private List<EmployeeAddress> employeeAddresses;
-
+	
 	public EmployeeInfo() {
 	}
 
@@ -129,12 +150,22 @@ public class EmployeeInfo implements Serializable {
 		this.stateofbirth = stateofbirth;
 	}
 
-	public byte getStatus() {
-		return this.status;
+	
+	public int getStatus() {
+		return status;
 	}
 
-	public void setStatus(byte status) {
+	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	
+	public String getLoginEmailId() {
+		return this.loginEmailId;
+	}
+
+	public void setLoginEmailId(String loginEmailId) {
+		this.loginEmailId = loginEmailId;
 	}
 
 	public List<CommunicationDetail> getCommunicationDetails() {
@@ -219,26 +250,43 @@ public class EmployeeInfo implements Serializable {
 		return employementHistory;
 	}
 
-	public List<EmployeeAddress> getEmployeeAddresses() {
-		return this.employeeAddresses;
-	}
+	//bi-directional many-to-one association to LoginDetail
+		@ManyToOne
+		@JoinColumn(name="login_id")
+		private LoginDetails loginDetail;
 
-	public void setEmployeeAddresses(List<EmployeeAddress> employeeAddresses) {
-		this.employeeAddresses = employeeAddresses;
-	}
+		//bi-directional many-to-one association to LoginDetail
+		@OneToMany(mappedBy="employeeInfo")
+		private List<LoginDetails> loginDetails;
+		public LoginDetails getLoginDetail() {
+			return this.loginDetail;
+		}
 
-	public EmployeeAddress addEmployeeAddress(EmployeeAddress employeeAddress) {
-		getEmployeeAddresses().add(employeeAddress);
-		employeeAddress.setEmployeeInfo(this);
+		public void setLoginDetail(LoginDetails loginDetail) {
+			this.loginDetail = loginDetail;
+		}
 
-		return employeeAddress;
-	}
+		public List<LoginDetails> getLoginDetails() {
+			return this.loginDetails;
+		}
 
-	public EmployeeAddress removeEmployeeAddress(EmployeeAddress employeeAddress) {
-		getEmployeeAddresses().remove(employeeAddress);
-		employeeAddress.setEmployeeInfo(null);
+		public void setLoginDetails(List<LoginDetails> loginDetails) {
+			this.loginDetails = loginDetails;
+		}
 
-		return employeeAddress;
-	}
+		public LoginDetails addLoginDetail(LoginDetails loginDetail) {
+			getLoginDetails().add(loginDetail);
+			loginDetail.setEmployeeInfo(this);
 
+			return loginDetail;
+		}
+
+		public LoginDetails removeLoginDetail(LoginDetails loginDetail) {
+			getLoginDetails().remove(loginDetail);
+			loginDetail.setEmployeeInfo(null);
+
+			return loginDetail;
+		}
+
+	
 }
