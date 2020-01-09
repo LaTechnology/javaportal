@@ -33,5 +33,8 @@ public interface EmployeeAddressRepository extends JpaRepository<EmployeeAddress
 	
 	@Query(value= "SELECT e FROM EmployeeAddress e where e.employeeInfo.employeeCode=:id")
 	public Optional<EmployeeAddress> getEmployeeAddressopt(@Param(value = "id") int id);
+	
+	@Query(value = "UPDATE EmployeeAddress ea SET ea.status =:status where ea.employeeInfo.employeeCode =:EmpID ",nativeQuery = true)
+	public void softDeleteByEmpID(@Param(value = "EmpID") int EmpID, @Param(value = "status") int status);
 
 }

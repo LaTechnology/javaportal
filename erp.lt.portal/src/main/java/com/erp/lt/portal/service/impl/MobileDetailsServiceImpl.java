@@ -126,16 +126,7 @@ public class MobileDetailsServiceImpl implements MobileDetailsService {
 
 	@Override
 	public void deleteMobileDetails(Integer employeeCode) {
-		CommunicationDetail comdetail;
-		try {
-			comdetail = communicationDetailsService.getCommunicationDetailByEmpId(employeeCode);
-			for (MobileDetail mobileDetail : comdetail.getMobileDetails()) {
-				if (mobileDetail.getCode() > 0) {
-					mobileDetailsRepository.deleteById(mobileDetail.getCode());
-				}
-			}
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-		}
+		int status = 0;
+		mobileDetailsRepository.softDeleteByEmpID(employeeCode, status);
 	}
 }

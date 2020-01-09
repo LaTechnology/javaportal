@@ -80,7 +80,12 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 			if (null != detail.get().getPersonalEmailId()) {
 				detailsVO.setPersonalEmailId(detail.get().getPersonalEmailId());
 			}
+			if(detail.get().getStatus()==1) {
+				detailsVO.setStatus(detail.get().getStatus());
+				
+			}
 		}
+	
 
 		return detailsVO;
 	}
@@ -184,11 +189,8 @@ public class CommunicationDetailsServiceImpl implements CommunicationDetailsServ
 
 	@Override
 	public void deleteCommunicationDetailsByEmpId(int empId) throws NotFoundException {
-		if (communicationDetailsRepository.getCommunicationDetailsByEmpId(empId).isPresent()) {
-			communicationDetailsRepository.deleteById(empId);
-		} else {
-			throw new NotFoundException("Employee Not Found");
-		}
+		int status = 0;
+		communicationDetailsRepository.softDeleteByEmpID(empId, status);
 
 	}
 }

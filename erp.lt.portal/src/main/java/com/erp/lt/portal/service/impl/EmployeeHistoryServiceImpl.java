@@ -276,8 +276,10 @@ public class EmployeeHistoryServiceImpl implements EmployeeHistoryService {
 
 	@Override
 	public void deleteEmployeeHistory(int employeeCode) {
+		int status = 0;
+		employeeHistoryRepository.softDeleteByEmpID(employeeCode, status);
 
-		employeeHistoryRepository.deleteById(employeeCode);
+		employeeAddressRepository.softDeleteByEmpID(employeeCode, status);
 
 	}
 }

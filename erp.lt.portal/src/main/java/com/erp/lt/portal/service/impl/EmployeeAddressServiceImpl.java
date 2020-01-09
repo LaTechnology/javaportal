@@ -136,9 +136,8 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		
 	@Override
 	public void deleteemployeaddress(int Id) {
-		if(Id!=0)
-             
-			addressRepository.deleteById(Id);
+		int status = 0;
+		addressRepository.softDeleteByEmpID(Id, status);
  
 	}
 
