@@ -30,5 +30,8 @@ public interface MobileDetailsRepostiory extends JpaRepository<MobileDetail, Int
 			+ " mobiledt on commd.code = mobiledt.comminication_details_code "
 			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
 	public List<MobileDetail> getMobileDetailsComPost(@Param(value = "communication_code") int communication_code); 
+	
+	@Query(value = "UPDATE MobileDetail md SET md.status =:status where md.employeeInfo.employeeCode =:EmpID ",nativeQuery = true)
+	public void softDeleteByEmpID(@Param(value = "EmpID") int EmpID, @Param(value = "status") int status);
 
 }

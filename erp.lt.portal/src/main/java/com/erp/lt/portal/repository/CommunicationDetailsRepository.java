@@ -32,4 +32,7 @@ public interface CommunicationDetailsRepository extends JpaRepository<Communicat
 	public Optional<CommunicationDetail> getCommunicationDetailsByEmpId(
 			@Param(value = "empId") int empId);
 
+
+	@Query(value = "UPDATE CommunicationDetail cd SET cd.status =:status where cd.employeeInfo.employeeCode =:EmpID ",nativeQuery = true)
+	public void softDeleteByEmpID(@Param(value = "EmpID") int EmpID, @Param(value = "status") int status);
 }
