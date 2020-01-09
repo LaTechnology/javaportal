@@ -10,12 +10,14 @@ public class ERPConstants {
 	public static final String EMPLOYEEHISTORY_PATCHING_URL="/erp/emphistory/patching/";
 	public static final String EMPLOYEEHISTORY_DELETE_URL="/erp/emphistory/delete/{employeeCode}";	
 	
-	public static final String EMPLOYEE_ADD_URL = "/employee/add/";
-	public static final String EMPLOYEE_GET_URL = "/get/empinfo/{employeeCode}";
+	public static final String EMPLOYEE_ADD_URL = "/employee/add";
+	public static final String EMPLOYEE_GET_URL = "/get/employeeinfo/{employeeCode}";
 	public static final String EMPLOYEE_GETALL_URL="/employee/getall/";
 	public static final String EMPLOYEE_EDIT_URL="/employee/edit/";
 	public static final String EMPLOYEE_PATCHING_URL="/employee/patching/";
-	public static final String EMPLOYEE_DELETE_URL="/delete/{employeeCode}";
+	public static final String EMPLOYEE_GETEMPLOYEECODE_URL="/get/employeeCode";
+	public static final String EMPLOYEE_LOGINPASSWORDRESET_URL="/portal/login/details";
+	public static final String EMPLOYEE_USERLOGIN_URL="/portal/login/{emailId}/{password}";
 	
 	public static final String COMMUNICATION_DETAILS_ADD_URL = "/add/com/details/";
 	public static final String COMMUNICATION_DETAILS_GET_URL = "/get/com/details/{empId}";
