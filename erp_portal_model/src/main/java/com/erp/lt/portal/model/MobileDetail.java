@@ -32,6 +32,9 @@ public class MobileDetail implements Serializable {
 	@JoinColumn(name = "comminication_details_code")
 	private CommunicationDetail communicationDetail;
 
+	@Column(name = "Status")
+	private int status;
+	
 	public MobileDetail() {
 	}
 	
@@ -66,6 +69,16 @@ public class MobileDetail implements Serializable {
 
 	public void setCommunicationDetail(CommunicationDetail communicationDetail) {
 		this.communicationDetail = communicationDetail;
+	}
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

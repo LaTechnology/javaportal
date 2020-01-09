@@ -1,0 +1,32 @@
+<p>
+  employee-education-details works!
+</p>
+<h2>Employee Education Details</h2> 
+
+<hr/>
+<div *ngFor="let data of employeeEducation">
+{{data.universityName}}
+  {{employeeEducation.additionalCertification}}
+  <div>
+    <label><b>University Name:</b></label> {{data.universityName}}
+  </div>
+  <div>
+    <label><b>Institute Name:</b></label> {{data.instituteName}}
+  </div>
+  <div>
+    <label><b>Begin Date:</b></label> {{data.beginDate}}
+  </div>
+  <div>
+    <label><b>End Date:</b></label> {{data.endDate}}
+  </div>
+  <div>
+    <label><b>Additional Details:</b></label> {{data.additionalCertification}}
+  </div>
+ </div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Employee Education List</button><br>
+
+
+

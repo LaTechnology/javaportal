@@ -81,6 +81,7 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		 if(0!=address.getAddressType().getAddressTypeCode()) {
 			 addressVO.setAddressTypeCode(address.getAddressType().getAddressTypeCode());
 		 }
+		 addressVO.setStatus(address.getStatus());
 		 addressDetailList.add(addressVO);
 		 
 		}
@@ -135,9 +136,8 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
 		
 	@Override
 	public void deleteemployeaddress(int Id) {
-		if(Id!=0)
-             
-			addressRepository.deleteById(Id);
+		int status = 0;
+		addressRepository.softDeleteByEmpID(Id, status);
  
 	}
 
@@ -209,6 +209,8 @@ public class EmployeeAddressServiceImpl implements EmployeeAddressService {
         if(null!= employeeinfo) {
         	address.setEmployeeInfo(employeeinfo.get());
         } 
+        
+        address.setStatus(1);
 		addressRepository.save(address);
 	}
 }

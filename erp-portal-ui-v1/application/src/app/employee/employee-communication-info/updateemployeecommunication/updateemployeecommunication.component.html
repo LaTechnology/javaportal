@@ -1,0 +1,49 @@
+<h3>UPDATE Employee communication info  </h3>
+
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class ="form-row"   >
+
+      <div class="form-group col-md-6">
+        <label for="name">Employee code</label>
+        <input type="number" class="form-control" id="employeeCode" required [(ngModel)]="employeecommunication.employeeCode" name="employeeCode">
+      </div>
+
+    <div class="form-group col-md-6">
+      <label for="name">company emailid</label>
+      <input type="text" class="form-control" id="companyEmailId" required [(ngModel)]="employeecommunication.companyEmailId" name="companyEmailId">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">personal emailid</label>
+      <input type="text" class="form-control" id="personalEmailId" required [(ngModel)]="employeecommunication.personalEmailId" name="personalEmailId">
+    </div>
+  </div>
+    <div class ="form-row"   >
+      <div class="form-group col-md-6">
+      <label for="name">client emailid</label>
+      <input type="text" class="form-control" id="clientEmailId" required [(ngModel)]="employeecommunication.clientEmailId" name="clientEmailId">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Emergency commmunication number</label>
+      <input type="number" class="form-control" id="emergencyComunicationNumber" required [(ngModel)]="employeecommunication.emergencyComunicationNumber" name="emergencyComunicationNumber">
+    </div>
+  </div>
+    <div class ="form-row"   >
+      <div class="form-group col-md-6">
+      <label for="name">begin date</label>
+      <input type="date" class="form-control" id="beginDate" required [(ngModel)]="employeecommunication.beginDate" name="beginDate ">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">end date</label>
+      <input type="date" class="form-control" id="endDate " required [(ngModel)]="employeecommunication.endDate" name="endDate">
+    </div>
+  </div>
+
+    <div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+  
+  </form>
+  <div [hidden]="!submitted">
+    
+  </div>
+

@@ -3,6 +3,7 @@
  */
 package com.erp.lt.portal.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,7 +24,14 @@ public interface MobileDetailsRepostiory extends JpaRepository<MobileDetail, Int
 			+ " mobiledt on commd.code = mobiledt.comminication_details_code "
 			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
 	public Optional<MobileDetail> getMobileDetails(@Param(value = "communication_code") int communication_code);
+	
+	@Query(value = "select  mobiledt.code, mobiledt.mobile_number_1, mobiledt.moblie_number_2 , commd.code"
+			+ " From  communication_details as commd left join mobile_details as "
+			+ " mobiledt on commd.code = mobiledt.comminication_details_code "
+			+ " where mobiledt.comminication_details_code=:communication_code", nativeQuery = true)
+	public List<MobileDetail> getMobileDetailsComPost(@Param(value = "communication_code") int communication_code); 
+	
+	@Query(value = "UPDATE MobileDetail md SET md.status =:status where md.employeeInfo.employeeCode =:EmpID ",nativeQuery = true)
+	public void softDeleteByEmpID(@Param(value = "EmpID") int EmpID, @Param(value = "status") int status);
 
-	@Query(value = "DELETE FROM MobileDetail as md WHERE md.communicationDetail.code= :communicationDetail ")
-	public void deleteMobileDetailsByEmpID(@Param(value = "communicationDetail") Integer communicationDetail);
 }

@@ -6,22 +6,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.erp.lt.portal.ERPConstantAddressType;
-import com.erp.lt.portal.ERPConstantsAddress;
+import com.erp.lt.portal.ERPConstants;
 import com.erp.lt.portal.service.EmployeeAddressTypeService;
 import com.erp.lt.portal.vo.EmployeeAddressTypeVO;
 
 
-@RequestMapping(path=ERPConstantsAddress.URL_BASE)
+@RequestMapping(path=ERPConstants.URL_BASE)
 @RestController
 public class EmployeeAddressTypeController {
 	@Autowired
 	EmployeeAddressTypeService empAddresstypeService;
 
-	@GetMapping(path =ERPConstantAddressType.EMPLOYEE_ADDRESS_TYPE_GET_URL)
+	@GetMapping(path =ERPConstants.EMPLOYEE_ADDRESS_TYPE_GET_URL)
 	
-	public EmployeeAddressTypeVO getEmployeeAddressType(@PathVariable(value = "code") int EmpAddressid)
+	public EmployeeAddressTypeVO getEmployeeAddressType(@PathVariable(value = "addTypeCode") int addTypeCode)
 	{
-	    return empAddresstypeService.getemployeeaddresstype(EmpAddressid);
+	    return empAddresstypeService.getemployeeaddresstype(addTypeCode);
 	}
 }

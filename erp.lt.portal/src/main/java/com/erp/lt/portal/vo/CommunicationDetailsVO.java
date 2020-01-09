@@ -34,6 +34,9 @@ public class CommunicationDetailsVO implements Serializable {
 
 	private String personalEmailId;
 
+	private int status;
+	
+	
 	public int getCode() {
 		return code;
 	}
@@ -96,6 +99,14 @@ public class CommunicationDetailsVO implements Serializable {
 
 	public void setEmployeeCode(int employeeCode) {
 		this.employeeCode = employeeCode;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 

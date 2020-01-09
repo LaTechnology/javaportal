@@ -1,0 +1,39 @@
+<p>
+  employee-education-list works!
+</p>
+<div class="panel panel-primary">
+  <table id="example" class="display" style="width:100%"></table>
+    <div class="panel-heading">
+      <h2>Employee Education List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>InstituteName</th>
+            <th>UniversityName</th>
+            <th>BeginDate</th>
+            <th>EndDate</th> 
+              <th>CGPA</th>           
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let empEdu of employeesEducation| async">
+            <td>{{empEdu.instituteName}}</td>
+            <td>{{empEdu.universityName}}</td>
+            <td>{{empEdu.beginDate}}</td>
+            <td>{{empEdu.endDate}}</td>
+            <td>{{empEdu.cgpa}}</td>
+           
+           
+            
+            <td><button (click)="deleteEmployeeEducation(employeeEducation.id)" class="btn btn-danger">Delete</button>
+                <button (click)="updateEmployeeEducation(employeeEducation.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                <button (click)="employeeEducationDetails(employeeEducation.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

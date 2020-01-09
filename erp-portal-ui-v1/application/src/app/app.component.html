@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <div>
+      <li class="nav-item">
+        <a routerLink="add" class="nav-link" routerLinkActive="active">Add Employee</a>
+    </li>
+    <li class="nav-item">
+        <a routerLink="employees" class="nav-link" routerLinkActive="active">Employee List</a>
+    </li>
+    
+  </div><br>
+<div>
+    <li class="nav-item">
+      <a routerLink="eduadd" class="nav-link" routerLinkActive="active">Add Employee Education</a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="edudetails/:id" class="nav-link" routerLinkActive="active">View EmployeeEducation</a>
+</li>
+</div><br>
+
+<div>
+  <li class="nav-item">
+        <a routerLink="com" class="nav-link" routerLinkActive="active">Add employee communication info </a>
+    </li>
+    
+    <li class="nav-item">
+      <a routerLink="comdetails/:employeeCode" class="nav-link" routerLinkActive="active">view employee infodetails confirmation </a>
+  </li>
+  </div><br>
+  <div>
+  <li class="nav-item">
+    <a routerLink="mob" class="nav-link" routerLinkActive="active">Add employee mobile info </a>
+  </li>
+  <li class="nav-item">
+    <a routerLink="/mobinfodetails/:employeeCode" class="nav-link" routerLinkActive="active">view mobileinfodetailsconfirmation </a>
+  </li>
+  </div>
+  </ul>
+</nav>
+
+
+<div class="container">
+  <br>
+  <h2 style="text-align: center;">{{title}}</h2>
+  <hr>  
+  <div class="card">
+    <div class="card-body">
+  <router-outlet></router-outlet>
+  
+    </div>
+  </div>
+</div>

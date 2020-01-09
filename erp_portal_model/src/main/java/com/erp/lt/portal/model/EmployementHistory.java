@@ -16,37 +16,37 @@ public class EmployementHistory implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;//1
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "begin_date")
-	private Date beginDate;//2
+	private Date beginDate;	
+	private BigDecimal ctc;
 
-	private BigDecimal ctc;//3
-
-	private String employerName;//4
+	private String employerName;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "end_date")
-	private Date endDate;//5
+	private Date endDate;
 
-	private String reference;//6
+	private String reference;
+	@Column(name = "Status")
+	private int status;
 
 	// bi-directional many-to-one association to DesignationType
 	@ManyToOne
 	@JoinColumn(name = "designation_type_code")
-	private DesignationType designationType;//7
+	private DesignationType designationType;
 
 	// bi-directional many-to-one association to EmployeeInfo
 	@ManyToOne
 	@JoinColumn(name = "employee_code")
-	private EmployeeInfo employeeInfo;//8
+	private EmployeeInfo employeeInfo;
 
 	// bi-directional many-to-one association to AddressType
 	@ManyToOne
 	@JoinColumn(name = "address_type_code")
-	private AddressType addressType;//9
+	private AddressType addressType;
 
 	public EmployementHistory() {
 	}
@@ -122,6 +122,14 @@ public class EmployementHistory implements Serializable {
 
 	public void setEmployeeInfo(EmployeeInfo employeeInfo) {
 		this.employeeInfo = employeeInfo;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }
