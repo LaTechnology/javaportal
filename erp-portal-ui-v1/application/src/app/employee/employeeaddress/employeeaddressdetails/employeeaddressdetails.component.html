@@ -1,0 +1,37 @@
+<h2>Employee Address Details</h2> 
+
+<div *ngFor="let employeeaddressvo of employeeaddressvo">
+    <div>
+        <label><b>EmployeeCode: </b></label> {{employeeaddressvo.employeeCode}}
+      </div>
+      <div>
+        <label><b>BeginDate: </b></label> {{employeeaddressvo.begindate}}
+      </div>
+      <div>
+        <label><b>EndDate: </b></label> {{employeeaddressvo.enddate}}
+      </div>
+  <div>
+    <label><b>AddressLine1: </b></label> {{employeeaddressvo.addressline1}}
+  </div>  
+  <div>
+    <label><b>AddressLine2: </b></label> {{employeeaddressvo.addressline2}}
+  </div>  
+  <div>
+    <label><b>City: </b></label> {{employeeaddressvo.city}}
+  </div>  
+  <div>
+    <label><b>Country: </b></label> {{employeeaddressvo.country}}
+  </div>  
+  <div>
+    <label><b>State: </b></label> {{employeeaddressvo.state}}
+  </div>
+  <div>
+    <label><b>PinCode: </b></label> {{employeeaddressvo.pincode}}
+  </div>
+  <div>
+    <label><b>Title: </b></label> {{employeeaddressvo.addressTypeCode}}
+  </div>
+
+</div>
+<button (click)="deleteEmployeeAddressVO(employeeaddressvo.employeeCode)" class="btn btn-danger">Delete</button>
+<button (click)="list()" class="btn btn-primary">Back to Employee Address List</button><br>

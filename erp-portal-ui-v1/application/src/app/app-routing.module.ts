@@ -19,6 +19,10 @@ import { UpdatemobiledetailsComponent } from './employee/employee-mobile-info/up
 import { MobileinfodetailsComponent } from './employee/employee-mobile-info/mobileinfodetails/mobileinfodetails.component';
 import { UpdateemployeecommunicationComponent } from './employee/employee-communication-info/updateemployeecommunication/updateemployeecommunication.component';
 import { EmployeecommunicationinfolistComponent } from './employee/employee-communication-info/employeecommunicationinfolist/employeecommunicationinfolist.component';
+import { CreateEmployeeaddressComponent } from './employee/employeeaddress/create-employeeaddress/create-employeeaddress.component';
+import { EmployeeaddresslistComponent } from './employee/employeeaddress/employeeaddresslist/employeeaddresslist.component';
+import { UpdateemployeeaddressComponent } from './employee/employeeaddress/updateemployeeaddress/updateemployeeaddress.component';
+import { EmployeeaddressdetailsComponent } from './employee/employeeaddress/employeeaddressdetails/employeeaddressdetails.component';
 
 
 
@@ -40,7 +44,11 @@ const routes: Routes = [{ path: '', redirectTo: 'employee', pathMatch: 'full' },
 { path:'mobinfodetails/:employeeCode',component:MobileinfodetailsComponent} , 
 { path:'updatemob/:employeeCode',component:UpdatemobiledetailsComponent}  ,
 { path:'cominfolist' ,component:EmployeecommunicationinfolistComponent}  ,
-{ path:'updatecom/:employeeCode',component:UpdateemployeecommunicationComponent}
+{ path:'updatecom/:employeeCode',component:UpdateemployeecommunicationComponent},
+{ path:'addemployeeaddress', component: CreateEmployeeaddressComponent },
+{ path:'employee_address', component: EmployeeaddresslistComponent },
+{ path:'updateaddress/:employeeCode', component: UpdateemployeeaddressComponent },
+{ path:'detailsaddress/:employeeCode', component:EmployeeaddressdetailsComponent },
 
 ];
 

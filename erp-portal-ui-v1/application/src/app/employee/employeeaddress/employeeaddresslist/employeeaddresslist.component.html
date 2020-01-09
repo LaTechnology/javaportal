@@ -1,0 +1,48 @@
+<div class="panel panel-primary">
+    <table id="example" class="display" style="width:100%"></table>
+      <div class="panel-heading">
+        <h2>Employee Address List</h2>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>EmployeeCode</th>
+              <th>BeginDate</th>
+              <th>EndDate</th>
+              <th>AddressLine1</th>
+              <th>AddressLine2</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>State</th>
+              <th>Pincode</th>
+              <th>Title</th>
+              <th>ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let employeeaddressvo of employeeaddressvo">
+              <td>{{employeeaddressvo.employeeCode}}</td>
+              <td>{{employeeaddressvo.begindate}}</td>
+              <td>{{employeeaddressvo.enddate}}</td>
+              <td>{{employeeaddressvo.addressline1}}</td>
+              <td>{{employeeaddressvo.addressline2}}</td>
+              <td>{{employeeaddressvo.city}}</td>
+              <td>{{employeeaddressvo.country}}</td>
+              <td>{{employeeaddressvo.state}}</td>
+              <td>{{employeeaddressvo.pincode}}</td>
+              <td>{{employeeaddressvo.addressTypeCode}}</td>
+              <td><button (click)="deleteEmployeeAddressVO(employeeaddressvo.employeeCode)" class="btn btn-danger">Delete</button>
+                  <button (click)="updateEmployeeAddressVO(employeeaddressvo.employeeCode)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                  <button (click)="employeeaddressDetails(employeeaddressvo.employeeCode)" class="btn btn-info" style="margin-left: 10px">Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+
+   
+  
+  

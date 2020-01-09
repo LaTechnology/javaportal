@@ -20,6 +20,10 @@ import { UpdatemobiledetailsComponent } from './employee/employee-mobile-info/up
 import { MobileinfodetailsComponent } from './employee/employee-mobile-info/mobileinfodetails/mobileinfodetails.component';
 import { EmployeecommunicationinfolistComponent } from './employee/employee-communication-info/employeecommunicationinfolist/employeecommunicationinfolist.component';
 import { UpdateemployeecommunicationComponent } from './employee/employee-communication-info/updateemployeecommunication/updateemployeecommunication.component';
+import { CreateEmployeeaddressComponent } from './employee/employeeaddress/create-employeeaddress/create-employeeaddress.component';
+import { EmployeeaddressdetailsComponent } from './employee/employeeaddress/employeeaddressdetails/employeeaddressdetails.component';
+import { EmployeeaddresslistComponent } from './employee/employeeaddress/employeeaddresslist/employeeaddresslist.component';
+import { UpdateemployeeaddressComponent } from './employee/employeeaddress/updateemployeeaddress/updateemployeeaddress.component';
 
 
 
@@ -42,7 +46,11 @@ import { UpdateemployeecommunicationComponent } from './employee/employee-commun
     MobileinfodetailsComponent,
     UpdatemobiledetailsComponent,
     EmployeecommunicationinfolistComponent,
-    UpdateemployeecommunicationComponent
+    UpdateemployeecommunicationComponent,
+    CreateEmployeeaddressComponent,
+    EmployeeaddresslistComponent,
+    EmployeeaddressdetailsComponent,
+    UpdateemployeeaddressComponent,
   
   ],
   imports: [

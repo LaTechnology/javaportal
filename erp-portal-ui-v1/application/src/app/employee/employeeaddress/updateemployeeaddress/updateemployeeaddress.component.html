@@ -1,0 +1,69 @@
+<h3>Update Employee Address</h3>
+  <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div *ngFor="let employeeaddressvo of employeeaddressvo">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label for="employeeCode">EmployeeCode</label>
+          <input type="text" class="form-control" id="employeeCode" required [(ngModel)]="employeeaddressvo.employeeCode" name="employeeCode" maxlength="4">
+        </div>
+    <div class="form-group col-md-2">
+        <label for="begindate">BeginDate</label>
+      <input type="date" class="form-control" id="begindate" required [(ngModel)]="employeeaddressvo.begindate" name="begindate">
+    </div>
+   <div class="form-group col-md-2">
+      <label for="enddate">EndDate</label>
+      <input type="date" class="form-control" id="enddate" required [(ngModel)]="employeeaddressvo.enddate" name="enddate">
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="form-group col-md-2">
+        <label for="addressline1">AddressLine1</label>
+      <input type="text" class="form-control" id="addressline1" required [(ngModel)]="employeeaddressvo.addressline1" name="addressline1" maxlength="20">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="addressline2">AddressLine2</label>
+      <input type="text" class="form-control" id="addressline2" required [(ngModel)]="employeeaddressvo.addressline2" name="addressline2" maxlength="20">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="city">City</label>
+      <input type="text" class="form-control" id="city" required [(ngModel)]="employeeaddressvo.city" name="city" maxlength="12">
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group col-md-2"> 
+      <label for="country">Country</label>
+      <input type="text" class="form-control" id="country" required [(ngModel)]="employeeaddressvo.country" name="country" maxlength="12">
+    </div>
+    <div class="form-group col-md-2">
+        <label for="state">State</label>
+      <input type="text" class="form-control" id="state" required [(ngModel)]="employeeaddressvo.state" name="state" maxlength="12">
+    </div>
+        <div class="form-group col-md-2">
+      <label for="pincode">Pincode</label>
+      <input type="text" class="form-control" id="pincode" required [(ngModel)]="employeeaddressvo.pincode" name="pincode" maxlength="8">
+    </div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+      <label for="title">Title</label>
+      <select id="title"  name="addressType" [(ngModel)]="employeeaddressvo.addressTypeCode" class="form-control">
+          <option select id="Choose..." name="Choose..." class="input-medium" disabled="disabled">Choose...</option>
+          <option value="1">Current</option>
+          <option value="2">Permanent</option>
+          <option value="3">Mailing</option>
+          <option value="4">Office</option>
+          <option value="5">Worksite</option>
+          <option value="6">Emergency Contact Address</option>
+        </select>        
+    </div>
+  </div>
+<div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</div>
+    </div>
+</form>
+<div [hidden]="!submitted">
+</div>
+
+
