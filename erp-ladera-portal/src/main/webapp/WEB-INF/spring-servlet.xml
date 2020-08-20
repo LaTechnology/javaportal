@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
+  
+    <!-- Provide support for component scanning -->  
+    <context:component-scan base-package="erp.ladera.portal.controllers" />  
+    <context:component-scan base-package="erp.ladera.portal.repository" />  
+    <context:component-scan base-package="erp.ladera.portal.service" />  
+    <context:component-scan base-package="erp.ladera.portal.model" />  
+    
+     
+    <!--Provide support for conversion, formatting and validation -->  
+    <mvc:annotation-driven/>  
+<!-- Define Spring MVC view resolver -->  
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/"></property>  
+        <property name="suffix" value=".jsp"></property>          
+     </bean>  
+     
+     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+    </bean>
+    
+<!--     register page beans -->
+     <bean id="registerPageService" class="erp.ladera.portal.service.impl.DefaultRegisterPageService">
+    </bean>
+     <bean id="registerPageController" class="erp.ladera.portal.controllers.RegisterPageController">
+        <property name="registerPageService" ref="registerPageService" />
+        <property name="detailsService" ref="detailsService" />
+         <property name="hybrisRegistrationService" ref="hybrisRegistrationService" />
+        
+        
+    </bean>
+<!--     login page beans -->
+    <bean id="loginPageService" class="erp.ladera.portal.service.impl.DefaultLoginPageService">
+    </bean>
+     <bean id="loginPageController" class="erp.ladera.portal.controllers.LoginPageController">
+        <property name="loginPageService" ref="loginPageService" />
+    </bean>
+    
+     <bean id="detailsService" class="erp.ladera.portal.service.impl.DefaultDetailsService">
+    </bean>
+    <bean id="hybrisRegistrationService" class="erp.ladera.portal.service.impl.DefaultHybrisRegistrationService">
+       
+       <property name="restTemplate" ref = "restTemplate"/>
+    </bean>
+    
+    
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        
+    </bean>
+   
+    <bean id="detailsStoreController" class="erp.ladera.portal.controllers.DetailsStoreController">
+        
+    </bean>
+    
+    
+    
+<!--      <bean id="registerPageRepository" class="erp.ladera.portal.repository.RegisterPageRepository">   -->
+<!--     <property name="hibernateTemplate" ref="template"></property>   -->
+<!--     </bean>   -->
+     <!-- <bean id="registerPageModel" class="erp.ladera.portal.model.RegisterPageModel">  
+   
+    </bean> --> 
+    
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>  
+<property name="url" value="jdbc:mysql://localhost:13306/erp_portal_java"></property>  
+<property name="username" value="root"></property>  
+<property name="password" value="root"></property>  
+</bean>  
+<bean id="mysessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource"></property>  
+ <property name="packagesToScan" value="erp.ladera.portal.model" />
+
+        <property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>  
+                <prop key="hibernate.hbm2ddl.auto">update</prop>  
+                <prop key="hibernate.show_sql">true</prop>  
+            </props>  
+        </property>  
+    </bean>  
+    <!-- Transaction Manager -->
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <property name="sessionFactory">
+        <ref bean="mysessionFactory" />
+    </property>
+</bean>
+      
+    <bean id="template" class="org.springframework.orm.hibernate4.HibernateTemplate">  
+    <property name="sessionFactory" ref="mysessionFactory"></property>  
+    </bean>  
+      
+   
+</beans>  
